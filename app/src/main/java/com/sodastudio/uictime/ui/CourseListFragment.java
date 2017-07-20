@@ -9,7 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.sodastudio.uictime.CourseManager;
 import com.sodastudio.uictime.R;
+import com.sodastudio.uictime.model.Course;
+
+import java.util.List;
 
 /**
  * Created by Jun on 7/20/2017.
@@ -36,7 +40,10 @@ public class CourseListFragment extends Fragment {
 
     private void updateUI(){
 
-        mAdapter = new CourseAdapter();
+        CourseManager courseManager = CourseManager.getInstance(getActivity());
+        List<Course> courses = courseManager.getCourses();
+
+        mAdapter = new CourseAdapter(courses);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -53,7 +60,11 @@ public class CourseListFragment extends Fragment {
 
     private class CourseAdapter extends RecyclerView.Adapter<CourseHolder>{
 
-        // private List<Course> mCourses;
+        private List<Course> mCourses;
+
+        public CourseAdapter(List<Course> courses){
+            mCourses = courses;
+        }
 
         @Override
         public CourseHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -67,10 +78,12 @@ public class CourseListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(CourseHolder holder, int position) {
-            holder.mCourseTextView.setText("This is test 1");
-            holder.mCourseTextView.setText("This is test 2");
-            holder.mCourseTextView.setText("This is test 3");
-            holder.mCourseTextView.setText("This is test 4");
+            Course course = mCourses.get(position);
+            String courseInfo = course.getSubject() + " " +
+                                course.getNumber() + " " +
+                                course.getTitle();
+
+            holder.mCourseTextView.setText(courseInfo);
         }
 
         @Override
