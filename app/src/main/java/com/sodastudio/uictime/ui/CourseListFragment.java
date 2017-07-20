@@ -73,7 +73,7 @@ public class CourseListFragment extends Fragment {
         private TextView titleText;
         private Button addButton;
 
-        public CourseHolder(View itemView){
+        private CourseHolder(View itemView){
             super(itemView);
 
             itemView.setOnClickListener(this);
@@ -87,7 +87,7 @@ public class CourseListFragment extends Fragment {
             addButton.setActivated(false);
         }
 
-        public void bindCourse(Course course){
+        private void bindCourse(Course course){
             mCourse = course;
 
             subjectText.setText(mCourse.getSubject());
@@ -117,7 +117,7 @@ public class CourseListFragment extends Fragment {
 
         private List<Course> mCourses;
 
-        public CourseAdapter(List<Course> courses){
+        private CourseAdapter(List<Course> courses){
             mCourses = courses;
         }
 
