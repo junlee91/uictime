@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="subject">
+        <item>Academic Skills Program</item>
+        <item>Accounting</item>
+        <item>African American Studies</item>
+        <item>Anatomy and Cell Biology</item>
+        <item>Anthropology</item>
+        <item>Applied Health Sciences</item>
+        <item>Arabic</item>
+        <item>Archaeological Studies</item>
+        <item>Architecture</item>
+        <item>Art</item>
+        <item>Art History</item>
+        <item>BMS">Basic Medical Sciences</item>
+        <item>Biochem Molecular Genetics</item>
+        <item>Bioengineering</item>
+        <item>Biological Sciences</item>
+        <item>Biomedical Health Info Sciences</item>
+        <item>Biomedical Visualization</item>
+        <item>Biopharmaceutical Sciences</item>
+        <item>Biostatistics</item>
+        <item>Business Administration</item>
+        <item>Campus Courses</item>
+        <item>Catholic Studies</item>
+        <item>Central East European Studies</item>
+        <item>Chemical Engineering</item>
+        <item>Chemistry</item>
+        <item>Chinese</item>
+        <item>Civil Materials Engineering</item>
+        <item>Classics</item>
+        <item>Clerkship - Medicine</item>
+        <item>Clerkship Electives-Chicago</item>
+        <item>Clerkship Electives-Peoria</item>
+        <item>Clerkship Electives-Rockford</item>
+        <item>Clerkship Electives-Urbana</item>
+        <item>Communication</item>
+        <item>Community Health Sciences</item>
+        <item>Computer Science</item>
+        <item>Criminology, Law, and Justice</item>
+        <item>Curriculum and Instruction</item>
+        <item>Dent-Applied Oral and Behav Sci</item>
+        <item>Dent-Biomedical and Clinical Sci</item>
+        <item>Dent-Community Learning Exper</item>
+        <item>Dent-Oral/Systemic Issues</item>
+        <item>Dent-Oral/Systemic Topics</item>
+        <item>Dental Administration</item>
+        <item>Dental Behavioral Science</item>
+        <item>Design</item>
+        <item>Dialogue</item>
+        <item>Disability and Human Development</item>
+        <item>Earth Environmental Sciences</item>
+        <item>Economics</item>
+        <item>Education</item>
+        <item>Educational Policy Studies</item>
+        <item>Educational Psychology</item>
+        <item>Electrical and Computer Engr</item>
+        <item>Endodontics</item>
+        <item>Energy Engineering</item>
+        <item>Engineering</item>
+        <item>English</item>
+        <item>Entrepreneurship</item>
+        <item>Environmtl and Occuptnl Hlth Sci</item>
+        <item>Epidemiology</item>
+        <item>Finance</item>
+        <item>French</item>
+        <item>Gender and Womens Studies</item>
+        <item>Geography</item>
+        <item>Germanic Studies</item>
+        <item>Global Asian Studies</item>
+        <item>Graduate College</item>
+        <item>Graduate Educ Medical Sciences</item>
+        <item>Greek, Ancient</item>
+        <item>Greek, Modern</item>
+        <item>Guaranteed Admissions Medicine</item>
+        <item>Health Information Management</item>
+        <item>Health Policy and Administration</item>
+        <item>Healthy Living Practitioner</item>
+        <item>Hebrew</item>
+        <item>Histology</item>
+        <item>History</item>
+        <item>Honors College</item>
+        <item>Humanities</item>
+        <item>Industrial Engineering</item>
+        <item>Information and Decision Sciences</item>
+        <item>Information Technology</item>
+        <item>Interdisc Public Hlth Sciences</item>
+        <item>Interdisc Studies in the Arts</item>
+        <item>International Studies</item>
+        <item>Italian</item>
+        <item>Japanese</item>
+        <item>Jewish Studies</item>
+        <item>Kinesiology</item>
+        <item>Korean</item>
+        <item>Latin</item>
+        <item>Latin American and Latino Studies</item>
+        <item>Learning Sciences</item>
+        <item>Liberal Arts and Sciences</item>
+        <item>Library and Information Science</item>
+        <item>Linguistics</item>
+        <item>Literatures, Cultrl Stdy and Ling</item>
+        <item>Lithuanian</item>
+        <item>Management</item>
+        <item>Marketing</item>
+        <item>Master of Business Admin</item>
+        <item>Master of Engineering</item>
+        <item>Mathematical Computer Science</item>
+        <item>Mathematics</item>
+        <item>Mathematics Teaching</item>
+        <item>Mechanical Engineering</item>
+        <item>Medical Biotechnology</item>
+        <item>Medical Education</item>
+        <item>Medical Humanities</item>
+        <item>Medicinal Chem and Pharmacognosy</item>
+        <item>Medicinal Chemistry</item>
+        <item>Microbiology and Immunology</item>
+        <item>Military Science</item>
+        <item>Moving Image Arts</item>
+        <item>Music</item>
+        <item>Native American Studies</item>
+        <item>Natural Sciences</item>
+        <item>Naval Science</item>
+        <item>Neuroscience</item>
+        <item>Nursing Core</item>
+        <item>Nursing Elective</item>
+        <item>Nursing Practicum</item>
+        <item>Nursing Specialty</item>
+        <item>Occupational Therapy</item>
+        <item>Oral Medicine and Diagnostic Sci</item>
+        <item>Oral Sciences</item>
+        <item>Oral and Maxillofacial Surgery</item>
+        <item>Orthodontics</item>
+        <item>Pathology</item>
+        <item>Patient Safety Leadership</item>
+        <item>Pediatric Dentistry</item>
+        <item>Periodontics</item>
+        <item>Pharmacognosy</item>
+        <item>Pharmacology</item>
+        <item>Pharmacy</item>
+        <item>Pharmacy Practice</item>
+        <item>Pharmacy Syst,Outcomes and Policy</item>
+        <item>Philosophy</item>
+        <item>Physical Therapy</item>
+        <item>Physics</item>
+        <item>Physiology and Biophysics</item>
+        <item>Polish</item>
+        <item>Political Science</item>
+        <item>Portuguese</item>
+        <item>Preclinical Medicine</item>
+        <item>Prosthodontics</item>
+        <item>Psychology</item>
+        <item>Public Administration</item>
+        <item>Public Health</item>
+        <item>Public Policy Analysis</item>
+        <item>Religious Studies</item>
+        <item>Restorative Dentistry</item>
+        <item>Russian</item>
+        <item>Slavic and Baltic Languages and Lit</item>
+        <item>Social Justice</item>
+        <item>Social Work</item>
+        <item>Sociology</item>
+        <item>Spanish</item>
+        <item>Special Education</item>
+        <item>Specialty Medicine</item>
+        <item>Statistics</item>
+        <item>Surgery</item>
+        <item>Theatre</item>
+        <item>Urban Planning and Policy</item>
+        <item>Urban Studies</item>
+        <item>Urban and Public Affairs</item>
+    </string-array>
+    
+    <string-array name="term">
+        <item>Fall 2017</item>
+        <item>Spring 2018</item>
+    </string-array>
+</resources>
