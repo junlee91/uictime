@@ -1,5 +1,7 @@
 package com.sodastudio.uictime.ui;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sodastudio.uictime.CourseManager;
 import com.sodastudio.uictime.R;
@@ -25,6 +28,8 @@ import java.util.List;
 public class CourseListFragment extends Fragment {
 
     private static final String COURSE_SELECTOR = "CourseSelector";
+
+    private static final int COURSE_SELECT = 0;
 
     private RecyclerView mRecyclerView;
     private CourseAdapter mAdapter;
@@ -45,6 +50,7 @@ public class CourseListFragment extends Fragment {
             public void onClick(View v) {
                 FragmentManager manager = getFragmentManager();
                 CoursePickerFragment dialog = new CoursePickerFragment();
+                dialog.setTargetFragment(CourseListFragment.this, COURSE_SELECT);
                 dialog.show(manager, COURSE_SELECTOR);
             }
         });
@@ -53,6 +59,21 @@ public class CourseListFragment extends Fragment {
         updateUI();
 
         return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(resultCode != Activity.RESULT_OK) {
+            return;
+        }
+
+        if(requestCode == COURSE_SELECT){
+            String term = (String)data.getSerializableExtra(CoursePickerFragment.EXTRA_TERM);
+            String subject = (String)data.getSerializableExtra(CoursePickerFragment.EXTRA_SUBJECT);
+
+            Toast.makeText(getActivity(), "Selected: " + term + ", " + subject, Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private void updateUI(){

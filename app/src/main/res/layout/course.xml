@@ -5,17 +5,23 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center">
+
         <LinearLayout
             android:id="@+id/course_view_layout"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:orientation="horizontal"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp">
 
             <TextView
                 android:id="@+id/course_subject_text"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:gravity="center"/>
 
@@ -29,15 +35,21 @@
                 android:id="@+id/course_title_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:textAlignment="center"/>
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/course_add_button"
+            android:layout_marginLeft="140dp"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="13dp"
+            android:layout_gravity="center_horizontal"
+            android:text="View"/>
 
-    <Button
-        android:id="@+id/course_add_button"
-        android:layout_marginLeft="310dp"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:text="+"/>
+    </FrameLayout>
+
+
 </RelativeLayout>

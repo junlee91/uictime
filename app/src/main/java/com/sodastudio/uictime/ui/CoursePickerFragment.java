@@ -1,7 +1,10 @@
 package com.sodastudio.uictime.ui;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,6 +21,11 @@ import com.sodastudio.uictime.R;
  */
 
 public class CoursePickerFragment extends DialogFragment {
+
+    public static final String EXTRA_TERM =
+            "com.sodastudio.uictime.course.term";
+    public static final String EXTRA_SUBJECT =
+            "com.sodastudio.uictime.course.subject";
 
     private Spinner termSpinner;
     private Spinner subjectSpinner;
@@ -49,7 +57,27 @@ public class CoursePickerFragment extends DialogFragment {
         return new AlertDialog.Builder(getActivity())
                 .setView(v)
                 .setTitle(R.string.select_term_and_subject)
-                .setPositiveButton(android.R.string.ok, null)
+                .setPositiveButton(android.R.string.ok,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String term = termSpinner.getSelectedItem().toString();
+                                String subject = subjectSpinner.getSelectedItem().toString();
+
+                                sendResult(Activity.RESULT_OK, term, subject);
+                            }
+                        })
                 .create();
+    }
+
+    private void sendResult(int resultCode, String term, String subject){
+        if(getTargetFragment() == null) return;
+
+        Intent intent = new Intent();
+        intent.putExtra(EXTRA_TERM, term);
+        intent.putExtra(EXTRA_SUBJECT, subject);
+
+        getTargetFragment()
+                .onActivityResult(getTargetRequestCode(), resultCode, intent);
     }
 }
