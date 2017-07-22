@@ -131,6 +131,7 @@ public class CourseListFragment extends Fragment {
         private TextView numberText;
         private TextView titleText;
         private Button addButton;
+        private TextView creditsText;
 
         private CourseHolder(View itemView){
             super(itemView);
@@ -141,6 +142,8 @@ public class CourseListFragment extends Fragment {
             numberText = (TextView)itemView.findViewById(R.id.course_number_text);
             titleText = (TextView)itemView.findViewById(R.id.course_title_text);
             addButton = (Button)itemView.findViewById(R.id.course_add_button);
+            creditsText = (TextView)itemView.findViewById(R.id.course_credit_text);
+
 
             addButton.setVisibility(View.INVISIBLE);
             addButton.setActivated(false);
@@ -164,6 +167,7 @@ public class CourseListFragment extends Fragment {
             subjectText.setText(mCourse.getSubject());
             numberText.setText(String.valueOf(mCourse.getNumber()));
             titleText.setText(mCourse.getTitle());
+            creditsText.setText(" " + mCourse.getCredits().replace(".", ""));
         }
 
         @Override
