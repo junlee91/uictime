@@ -22,6 +22,9 @@ import com.sodastudio.uictime.CourseManager;
 import com.sodastudio.uictime.R;
 import com.sodastudio.uictime.model.Course;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -45,7 +48,7 @@ public class CourseListFragment extends Fragment {
 
     private Button mselectButton;
 
-    private String mTerm;
+    private int mTerm;
     private String mSubject;
 
     @Override
@@ -83,11 +86,11 @@ public class CourseListFragment extends Fragment {
             String term = (String)data.getSerializableExtra(CoursePickerFragment.EXTRA_TERM);
             String subject = (String)data.getSerializableExtra(CoursePickerFragment.EXTRA_SUBJECT);
 
-            Toast.makeText(getActivity(), "Selected: " + term + ", " + subject, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(), "Selected: " + term + ", " + subject, Toast.LENGTH_SHORT).show();
 
             //TODO:: Convert 'Computer Science to CS'
             // mSubject = subject;
-            mTerm = term;   // int?
+            mTerm = 220178;
             mSubject = "CS";
             new BackgroundTask().execute();
         }
@@ -124,6 +127,14 @@ public class CourseListFragment extends Fragment {
 
             addButton.setVisibility(View.INVISIBLE);
             addButton.setActivated(false);
+
+            addButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Toast.makeText(getActivity(), "Selected: ", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
         private void bindCourse(Course course){
@@ -184,7 +195,7 @@ public class CourseListFragment extends Fragment {
 
     }
 
-    class BackgroundTask extends AsyncTask<Void, Void, String>
+    private class BackgroundTask extends AsyncTask<Void, Void, String>
     {
         String target;
 
@@ -228,14 +239,42 @@ public class CourseListFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             try{
-                AlertDialog dialog;
-                AlertDialog.Builder builder = new AlertDialog.Builder(CourseListFragment.this.getContext());
-                dialog = builder.setMessage(result)
-                        .setPositiveButton("Ok", null)
-                        .create();
-                dialog.show();
+                CourseManager courseManager = CourseManager.getInstance(getActivity());
+                courseManager.clearCourse();
 
-                //TODO: Update RecyclerView
+
+                JSONObject jsonObject = new JSONObject(result);
+                JSONArray jsonArray = jsonObject.getJSONArray("response");
+                int count = 0;
+
+                String courseSubject;
+                String courseNumber;
+                String courseTitle;
+                String courseCredits;
+
+                while(count < jsonArray.length()){
+                    JSONObject object = jsonArray.getJSONObject(count);
+                    courseSubject = object.getString("courseSubject");
+                    courseNumber = object.getString("courseNumber");
+                    courseTitle = object.getString("courseTitle");
+                    courseCredits = object.getString("courseCredits");
+
+                    Course course = new Course(mTerm, courseSubject, Integer.valueOf(courseNumber), courseTitle, courseCredits);
+
+                    courseManager.addCourse(course);
+                    count++;
+                }
+
+                if(count == 0){
+                    AlertDialog dialog;
+                    AlertDialog.Builder builder = new AlertDialog.Builder(CourseListFragment.this.getContext());
+                    dialog = builder.setMessage("No result found")
+                            .setPositiveButton("Ok", null)
+                            .create();
+                    dialog.show();
+                }
+
+                mAdapter.notifyDataSetChanged();
 
             } catch (Exception e){
                 e.printStackTrace();

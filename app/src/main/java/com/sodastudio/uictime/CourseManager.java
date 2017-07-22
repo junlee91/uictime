@@ -31,15 +31,6 @@ public class CourseManager {
 
         mCourses = new ArrayList<>();
 
-        Course c1 = new Course(220178, "CS", 141, "Program Design II","3 Hours");
-        Course c2 = new Course(220178, "CS", 251, "Data Structures","4 Hours");
-        Course c3 = new Course(220178, "CS", 211, "Programming Practicum","2 Hours");
-        Course c4 = new Course(220178, "CS", 151, "Mathematical Computation","3 Hours");
-
-        mCourses.add(c1);
-        mCourses.add(c2);
-        mCourses.add(c3);
-        mCourses.add(c4);
     }
 
     public List<Course> getCourses() {
@@ -56,5 +47,9 @@ public class CourseManager {
 
     public void deleteCourse(Course course){
         mCourses.remove(course);
+    }
+
+    public void clearCourse(){
+        mCourses.clear();
     }
 }
