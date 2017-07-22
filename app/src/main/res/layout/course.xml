@@ -21,13 +21,13 @@
 
             <TextView
                 android:id="@+id/course_subject_text"
-                android:layout_width="30dp"
+                android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:gravity="center"/>
 
             <TextView
                 android:id="@+id/course_number_text"
-                android:layout_width="40dp"
+                android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:gravity="center"/>
 
