@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sodastudio.uictime.CourseLibrary;
 import com.sodastudio.uictime.CourseManager;
 import com.sodastudio.uictime.R;
 import com.sodastudio.uictime.model.Course;
@@ -44,10 +45,12 @@ public class CourseListFragment extends Fragment {
     private static final int COURSE_SELECT = 0;
 
     private RecyclerView mRecyclerView;
+    private View emptyView;
     private CourseAdapter mAdapter;
 
     private Button mselectButton;
 
+    private CourseLibrary mCourseLibrary = new CourseLibrary();
     private int mTerm;
     private String mSubject;
 
@@ -58,6 +61,8 @@ public class CourseListFragment extends Fragment {
 
         mRecyclerView = (RecyclerView)view.findViewById(R.id.course_list_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        emptyView = view.findViewById(R.id.empty_list_view);
 
         mselectButton = (Button)view.findViewById(R.id.select_button);
         mselectButton.setOnClickListener(new View.OnClickListener() {
@@ -88,11 +93,20 @@ public class CourseListFragment extends Fragment {
 
             //Toast.makeText(getActivity(), "Selected: " + term + ", " + subject, Toast.LENGTH_SHORT).show();
 
-            //TODO:: Convert 'Computer Science to CS'
-            // mSubject = subject;
-            mTerm = 220178;
-            mSubject = "CS";
-            new BackgroundTask().execute();
+            mTerm = mCourseLibrary.getTermValue(term);
+            mSubject = mCourseLibrary.getSubjectValue(subject);
+
+            if(mTerm != 0 && mSubject != null)
+                new BackgroundTask().execute();
+            else
+            {
+                AlertDialog dialog;
+                AlertDialog.Builder builder = new AlertDialog.Builder(CourseListFragment.this.getContext());
+                dialog = builder.setMessage("No result found")
+                        .setPositiveButton("Ok", null)
+                        .create();
+                dialog.show();
+            }
         }
 
     }
@@ -101,6 +115,9 @@ public class CourseListFragment extends Fragment {
 
         CourseManager courseManager = CourseManager.getInstance(getActivity());
         List<Course> courses = courseManager.getCourses();
+
+        if(courses.size() == 0) emptyView.setVisibility(View.VISIBLE);
+        else emptyView.setVisibility(View.INVISIBLE);
 
         mAdapter = new CourseAdapter(courses);
         mRecyclerView.setAdapter(mAdapter);
@@ -269,6 +286,8 @@ public class CourseListFragment extends Fragment {
                     count++;
                 }
 
+                emptyView.setVisibility(View.INVISIBLE);
+
                 if(count == 0){
                     AlertDialog dialog;
                     AlertDialog.Builder builder = new AlertDialog.Builder(CourseListFragment.this.getContext());
@@ -276,6 +295,8 @@ public class CourseListFragment extends Fragment {
                             .setPositiveButton("Ok", null)
                             .create();
                     dialog.show();
+
+                    emptyView.setVisibility(View.VISIBLE);
                 }
 
                 mAdapter.notifyDataSetChanged();
@@ -289,5 +310,11 @@ public class CourseListFragment extends Fragment {
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate(values);
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateUI();
     }
 }

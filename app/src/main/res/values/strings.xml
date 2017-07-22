@@ -3,4 +3,5 @@
     <string name="select_button">Select</string>
     <string name="select_term_and_subject">Please select term and subject</string>
     <string name="add_button">Add</string>
+    <string name="empty_list_string">Please click SELECT button</string>
 </resources>
