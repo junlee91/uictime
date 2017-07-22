@@ -1,12 +1,15 @@
 package com.sodastudio.uictime.ui;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +22,12 @@ import com.sodastudio.uictime.CourseManager;
 import com.sodastudio.uictime.R;
 import com.sodastudio.uictime.model.Course;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.List;
 
 /**
@@ -35,6 +44,7 @@ public class CourseListFragment extends Fragment {
     private CourseAdapter mAdapter;
 
     private Button mselectButton;
+    private String mSubject;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -72,6 +82,11 @@ public class CourseListFragment extends Fragment {
             String subject = (String)data.getSerializableExtra(CoursePickerFragment.EXTRA_SUBJECT);
 
             Toast.makeText(getActivity(), "Selected: " + term + ", " + subject, Toast.LENGTH_SHORT).show();
+
+            //TODO:: Convert 'Computer Science to CS'
+            // mSubject = subject;
+            mSubject = "CS";
+            new BackgroundTask().execute();
         }
 
     }
@@ -130,7 +145,6 @@ public class CourseListFragment extends Fragment {
                 addButton.setVisibility(View.VISIBLE);
             }
 
-
         }
     }
 
@@ -165,5 +179,69 @@ public class CourseListFragment extends Fragment {
             return mCourses.size();
         }
 
+    }
+
+    class BackgroundTask extends AsyncTask<Void, Void, String>
+    {
+        String target;
+
+        @Override
+        protected void onPreExecute(){
+            try {
+                target = "http://junlee7.cafe24.com/uictime/CourseList.php?courseSubject=" + URLEncoder.encode(mSubject, "UTF-8");
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+
+            try{
+                URL url = new URL(target);
+                HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+                InputStream inputstream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputstream));
+                String temp;
+                StringBuilder stringBuilder = new StringBuilder();
+                while((temp = bufferedReader.readLine()) != null)
+                {
+                    stringBuilder.append(temp + "\n");
+                }
+
+                bufferedReader.close();
+                inputstream.close();
+                httpURLConnection.disconnect();
+
+                return stringBuilder.toString().trim();
+
+            }catch (Exception e)            {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            try{
+                AlertDialog dialog;
+                AlertDialog.Builder builder = new AlertDialog.Builder(CourseListFragment.this.getContext());
+                dialog = builder.setMessage(result)
+                        .setPositiveButton("Ok", null)
+                        .create();
+                dialog.show();
+
+                //TODO: Update RecyclerView
+
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
     }
 }
