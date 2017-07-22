@@ -131,8 +131,12 @@ public class CourseListFragment extends Fragment {
             addButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    String subject = subjectText.getText().toString();
+                    String number = numberText.getText().toString();
+                    String title = titleText.getText().toString();
 
-                    Toast.makeText(getActivity(), "Selected: ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Selected: " + subject + " " + number + ": " + title
+                            , Toast.LENGTH_SHORT).show();
                 }
             });
         }

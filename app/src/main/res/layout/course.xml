@@ -16,18 +16,18 @@
             android:layout_height="60dp"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:layout_marginRight="10dp">
 
             <TextView
                 android:id="@+id/course_subject_text"
-                android:layout_width="50dp"
+                android:layout_width="30dp"
                 android:layout_height="match_parent"
                 android:gravity="center"/>
 
             <TextView
                 android:id="@+id/course_number_text"
-                android:layout_width="50dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:gravity="center"/>
 
