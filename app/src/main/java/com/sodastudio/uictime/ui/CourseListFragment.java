@@ -44,6 +44,8 @@ public class CourseListFragment extends Fragment {
     private CourseAdapter mAdapter;
 
     private Button mselectButton;
+
+    private String mTerm;
     private String mSubject;
 
     @Override
@@ -85,6 +87,7 @@ public class CourseListFragment extends Fragment {
 
             //TODO:: Convert 'Computer Science to CS'
             // mSubject = subject;
+            mTerm = term;   // int?
             mSubject = "CS";
             new BackgroundTask().execute();
         }

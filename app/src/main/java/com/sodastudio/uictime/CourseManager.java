@@ -31,14 +31,10 @@ public class CourseManager {
 
         mCourses = new ArrayList<>();
 
-        Course c1 = new Course(220178, "CS", 141, "Program Design II",
-                "3 Hours", 10050, "LBD", "MWF", "10:00 - 11:00", "LCA1", "Reed, Dale");
-        Course c2 = new Course(220178, "CS", 251, "Data Structures",
-                "4 Hours", 10050, "LBD", "MWF", "10:00 - 11:00", "LCA1", "Liilis, John");
-        Course c3 = new Course(220178, "CS", 211, "Programming Practicum",
-                "2 Hours", 10050, "LBD", "MWF", "9:00 - 10:00", "LCA1", "Troy, Patrick");
-        Course c4 = new Course(220178, "CS", 151, "Mathematical Computation",
-                "3 Hours", 10050, "LBD", "MWF", "15:00 - 16:00", "LCA1", "Hogan, Doug");
+        Course c1 = new Course(220178, "CS", 141, "Program Design II","3 Hours");
+        Course c2 = new Course(220178, "CS", 251, "Data Structures","4 Hours");
+        Course c3 = new Course(220178, "CS", 211, "Programming Practicum","2 Hours");
+        Course c4 = new Course(220178, "CS", 151, "Mathematical Computation","3 Hours");
 
         mCourses.add(c1);
         mCourses.add(c2);
