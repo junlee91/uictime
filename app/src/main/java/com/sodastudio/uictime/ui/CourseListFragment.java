@@ -283,7 +283,6 @@ public class CourseListFragment extends Fragment {
                 CourseManager courseManager = CourseManager.getInstance(getActivity());
                 courseManager.clearCourse();
 
-
                 JSONObject jsonObject = new JSONObject(result);
                 JSONArray jsonArray = jsonObject.getJSONArray("response");
                 int count = 0;

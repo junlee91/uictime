@@ -27,7 +27,7 @@ public class CourseListActivity extends SingleFragmentActivity {
             return;
         }
 
-        Toast.makeText(this, "Press back button to end the program", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Press again to end", Toast.LENGTH_SHORT).show();
         lastTimeBackPressed = System.currentTimeMillis();
     }
 }
