@@ -18,15 +18,15 @@
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="10dp"
-            android:background="@color/colorIdle">
+            android:layout_marginRight="5dp"
+            android:background="@color/colorPrimary">
 
             <TextView
                 android:id="@+id/course_subject_text"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:text="CS"
-                android:textColor="@color/colorTextIdel"
+                android:textColor="@color/colorTextIdle"
                 android:textStyle="bold"
                 android:gravity="center"/>
 
@@ -35,7 +35,7 @@
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:text="141"
-                android:textColor="@color/colorTextIdel"
+                android:textColor="@color/colorTextIdle"
                 android:textStyle="bold"
                 android:gravity="center"/>
 
@@ -45,7 +45,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center_vertical"
-                android:textColor="@color/colorTextIdel"
+                android:textColor="@color/colorTextIdle"
                 android:textStyle="bold"
                 android:text="Program Design I"/>
 
@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="5dp"
             android:orientation="vertical">
 
             <TextView
@@ -64,25 +64,27 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="70dp"
                 android:text="3 hours"
-                android:textColor="@color/colorTextIdel"
+                android:textStyle="bold"
+                android:textColor="@color/colorTextIdle"
                 android:layout_gravity="center"
-                android:background="@color/colorPrimary"
+                android:background="@color/colorPrimaryDark"
                 />
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/course_add_button"
-            android:layout_marginLeft="140dp"
-            android:layout_width="70dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_gravity="center_horizontal"
-            android:textSize="11dp"
-            android:background="@drawable/ic_pageview_black_24dp"/>
 
     </FrameLayout>
+
+    <Button
+        android:id="@+id/course_add_button"
+        android:layout_alignParentRight="true"
+        android:layout_width="70dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_gravity="center_horizontal"
+        android:text="View"
+        android:textSize="11sp"/>
 
 
 </RelativeLayout>

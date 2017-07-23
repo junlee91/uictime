@@ -41,8 +41,10 @@ import java.util.List;
 public class CourseListFragment extends Fragment {
 
     private static final String COURSE_SELECTOR = "CourseSelector";
+    private static final String DETAIL_SELECTOR = "DetailSelector";
 
     private static final int COURSE_SELECT = 0;
+    private static final int DETAIL_SELECT = 1;
 
     private RecyclerView mRecyclerView;
     private View emptyView;
@@ -72,6 +74,9 @@ public class CourseListFragment extends Fragment {
                 CoursePickerFragment dialog = new CoursePickerFragment();
                 dialog.setTargetFragment(CourseListFragment.this, COURSE_SELECT);
                 dialog.show(manager, COURSE_SELECTOR);
+
+                // Comment on API 15
+                mselectButton.setBackground(getResources().getDrawable(R.drawable.ic_pageview_black_24dp));
             }
         });
 
@@ -107,6 +112,9 @@ public class CourseListFragment extends Fragment {
                         .create();
                 dialog.show();
             }
+
+            // Comment on API 15
+            mselectButton.setBackground(getResources().getDrawable(R.drawable.ic_search_black_24dp));
         }
 
     }
@@ -154,9 +162,17 @@ public class CourseListFragment extends Fragment {
                     String subject = subjectText.getText().toString();
                     String number = numberText.getText().toString();
                     String title = titleText.getText().toString();
+                    String credits = creditsText.getText().toString();
 
-                    Toast.makeText(getActivity(), "Selected: " + subject + " " + number + ": " + title
-                            , Toast.LENGTH_SHORT).show();
+                    //Course course = new Course(mTerm, subject, Integer.valueOf(number), title, credits);
+
+//                    Toast.makeText(getActivity(), "Selected: " + mCourse.getSubject() + " " + mCourse.getNumber() + ": " + mCourse.getTitle()
+//                            , Toast.LENGTH_SHORT).show();
+
+                    FragmentManager manager = getFragmentManager();
+                    DetailPickerFragment dialog = DetailPickerFragment.newInstance(mCourse);
+                    //dialog.setTargetFragment(DetailPickerFragment.this, DETAIL_SELECT);
+                    dialog.show(manager, DETAIL_SELECTOR);
                 }
             });
         }

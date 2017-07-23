@@ -2,6 +2,7 @@
     <string name="app_name">UICtime</string>
     <string name="select_button">Select</string>
     <string name="select_term_and_subject">Please select term and subject</string>
+    <string name="select_detail_course">Please select course</string>
     <string name="add_button">Add</string>
-    <string name="empty_list_string">Please click SELECT button</string>
+    <string name="empty_list_string">Please click SEARCH button</string>
 </resources>

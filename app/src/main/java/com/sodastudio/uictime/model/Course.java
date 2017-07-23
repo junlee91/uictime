@@ -1,10 +1,13 @@
 package com.sodastudio.uictime.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Jun on 7/20/2017.
  */
 
-public class Course {
+public class Course implements Parcelable {
     private int mTerm;          // Fall 2017
     private String mSubject;    // CS
     private int mNumber;        // 141
@@ -18,6 +21,40 @@ public class Course {
         mTitle = title;
         mCredits = credits;
     }
+
+    protected Course(Parcel in) {
+        mTerm = in.readInt();
+        mSubject = in.readString();
+        mNumber = in.readInt();
+        mTitle = in.readString();
+        mCredits = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(mTerm);
+        dest.writeString(mSubject);
+        dest.writeInt(mNumber);
+        dest.writeString(mTitle);
+        dest.writeString(mCredits);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Course> CREATOR = new Creator<Course>() {
+        @Override
+        public Course createFromParcel(Parcel in) {
+            return new Course(in);
+        }
+
+        @Override
+        public Course[] newArray(int size) {
+            return new Course[size];
+        }
+    };
 
     public int getTerm() {
         return mTerm;
