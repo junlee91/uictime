@@ -159,19 +159,9 @@ public class CourseListFragment extends Fragment {
             addButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String subject = subjectText.getText().toString();
-                    String number = numberText.getText().toString();
-                    String title = titleText.getText().toString();
-                    String credits = creditsText.getText().toString();
-
-                    //Course course = new Course(mTerm, subject, Integer.valueOf(number), title, credits);
-
-//                    Toast.makeText(getActivity(), "Selected: " + mCourse.getSubject() + " " + mCourse.getNumber() + ": " + mCourse.getTitle()
-//                            , Toast.LENGTH_SHORT).show();
 
                     FragmentManager manager = getFragmentManager();
                     DetailPickerFragment dialog = DetailPickerFragment.newInstance(mCourse);
-                    //dialog.setTargetFragment(DetailPickerFragment.this, DETAIL_SELECT);
                     dialog.show(manager, DETAIL_SELECTOR);
                 }
             });

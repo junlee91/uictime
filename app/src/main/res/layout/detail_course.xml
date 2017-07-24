@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center">
+
+        <LinearLayout
+            android:id="@+id/course_view_layout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@color/colorPrimary">
+
+            <TextView
+                android:id="@+id/detail_crn_text"
+                android:layout_width="55dp"
+                android:layout_height="match_parent"
+                android:text="34780"
+                android:textColor="@color/colorTextIdle"
+                android:textStyle="italic"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/detail_section_text"
+                android:layout_width="65dp"
+                android:layout_height="match_parent"
+                android:text="AA 1"
+                android:textColor="@color/colorTextIdle"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/detail_instructor_text"
+                android:layout_width="180dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/colorTextIdle"
+                android:textStyle="bold"
+                android:text="Dale F Reed"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="70dp"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimaryDark">
+
+            <TextView
+                android:id="@+id/detail_days_text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="MWF"
+                android:textStyle="bold"
+                android:textColor="@color/colorTextIdle"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/detail_time_text"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:textColor="@color/colorTextIdle"
+                android:layout_weight="2"
+                android:text="03:00 pm-03:50 pm"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/detail_room_text"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:textColor="@color/colorTextIdle"
+                android:layout_weight="1"
+                android:text="2BSB 250"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/detail_add_button"
+        android:layout_alignParentRight="true"
+        android:layout_width="70dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Add"
+        android:textSize="11sp"/>
+
+
+</RelativeLayout>
