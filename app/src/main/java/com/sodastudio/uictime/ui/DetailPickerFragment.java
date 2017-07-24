@@ -47,6 +47,7 @@ public class DetailPickerFragment extends DialogFragment {
     private String mTitle;      // Program Desgin II
     private String mCredits;    // 3 Hours
 
+    private TextView mSelectedCourseView;
     private RecyclerView mRecyclerView;
     private DetailCourseAdapter mAdapter;
 
@@ -82,13 +83,15 @@ public class DetailPickerFragment extends DialogFragment {
         mRecyclerView = (RecyclerView)v.findViewById(R.id.detail_list_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        mSelectedCourseView = (TextView)v.findViewById(R.id.selected_subject_text);
+        mSelectedCourseView.setText(mSubject + " " + mNumber + " " + mTitle + "\n" + mCredits);
+
         new BackgroundTask().execute();
 
         updateUI();
         
         return new AlertDialog.Builder(getActivity())
                 .setView(v)
-                .setTitle(R.string.select_detail_course)
                 .setPositiveButton(android.R.string.ok, null)
                 .create();
     }
