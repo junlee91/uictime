@@ -52,6 +52,8 @@ public class DetailPickerFragment extends DialogFragment {
     private RecyclerView mRecyclerView;
     private DetailCourseAdapter mAdapter;
 
+    private ImageButton manAddButton;
+
     public static DetailPickerFragment newInstance(Course course){
         Bundle args = new Bundle();
         args.putParcelable(ARG_COURSE, course);
@@ -87,6 +89,14 @@ public class DetailPickerFragment extends DialogFragment {
         mSelectedCourseView = (TextView)v.findViewById(R.id.selected_subject_text);
         mSelectedCourseView.setText(mSubject + " " + mNumber + " " + mTitle + "\n" + mCredits);
 
+        manAddButton = (ImageButton)v.findViewById(R.id.detail_man_add_button);
+        manAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO:: Add detail course by user input. (Additional fragment needed here)
+            }
+        });
+
         new BackgroundTask().execute();
 
         updateUI();
@@ -116,7 +126,6 @@ public class DetailPickerFragment extends DialogFragment {
         private TextView TimeText;
         private TextView RoomText;
         private Button addButton;
-        private ImageButton manAddButton;
 
         private DetailCourseHolder(View itemView) {
             super(itemView);
@@ -129,14 +138,6 @@ public class DetailPickerFragment extends DialogFragment {
             DaysText = (TextView)itemView.findViewById(R.id.detail_days_text);
             TimeText = (TextView)itemView.findViewById(R.id.detail_time_text);
             RoomText = (TextView)itemView.findViewById(R.id.detail_room_text);
-
-            manAddButton = (ImageButton)itemView.findViewById(R.id.detail_man_add_button);
-            manAddButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //TODO:: Add detail course by user input. (Additional fragment needed here)
-                }
-            });
 
             addButton = (Button)itemView.findViewById(R.id.detail_add_button);
             addButton.setVisibility(View.INVISIBLE);
