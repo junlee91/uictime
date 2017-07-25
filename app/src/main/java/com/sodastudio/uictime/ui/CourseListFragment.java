@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,8 @@ import java.util.List;
  */
 
 public class CourseListFragment extends Fragment {
+
+    public static final String TAG = "CourseListFragment";
 
     private static final String COURSE_SELECTOR = "CourseSelector";
     private static final String DETAIL_SELECTOR = "DetailSelector";
@@ -76,7 +79,7 @@ public class CourseListFragment extends Fragment {
                 dialog.show(manager, COURSE_SELECTOR);
 
                 // Comment on API 15
-                mselectButton.setBackground(getResources().getDrawable(R.drawable.ic_pageview_black_24dp));
+                //mselectButton.setBackground(getResources().getDrawable(R.drawable.ic_pageview_black_24dp));
             }
         });
 
@@ -114,7 +117,7 @@ public class CourseListFragment extends Fragment {
             }
 
             // Comment on API 15
-            mselectButton.setBackground(getResources().getDrawable(R.drawable.ic_search_black_24dp));
+            // mselectButton.setBackground(getResources().getDrawable(R.drawable.ic_search_black_24dp));
         }
 
     }
@@ -140,6 +143,9 @@ public class CourseListFragment extends Fragment {
         private TextView titleText;
         private Button addButton;
         private TextView creditsText;
+        private LinearLayout mLinearLayout;
+        private FrameLayout mFrameLayout;
+
 
         private CourseHolder(View itemView){
             super(itemView);
@@ -152,6 +158,9 @@ public class CourseListFragment extends Fragment {
             addButton = (Button)itemView.findViewById(R.id.course_add_button);
             creditsText = (TextView)itemView.findViewById(R.id.course_credit_text);
 
+            mLinearLayout = (LinearLayout)itemView.findViewById(R.id.course_view_layout);
+            mFrameLayout = (FrameLayout)itemView.findViewById(R.id.course_layout);
+            mFrameLayout.setOnClickListener(this);
 
             addButton.setVisibility(View.INVISIBLE);
             addButton.setActivated(false);
@@ -179,13 +188,25 @@ public class CourseListFragment extends Fragment {
         @Override
         public void onClick(View v) {
 
+            Log.d(TAG,"onClick FrameLayout");
+
             if( addButton.isActivated() )
             {
+                subjectText.setTextColor(getResources().getColor(R.color.colorAccent));
+                numberText.setTextColor(getResources().getColor(R.color.colorAccent));
+                titleText.setTextColor(getResources().getColor(R.color.colorAccent));
+                mLinearLayout.setBackgroundColor(getResources().getColor(R.color.colorCourseListIdle));
+                creditsText.setBackgroundColor(getResources().getColor(R.color.colorCourseTimeIdle));
                 addButton.setActivated(false);
                 addButton.setVisibility(View.INVISIBLE);
             }
             else
             {
+                subjectText.setTextColor(getResources().getColor(R.color.colorTextIdle));
+                numberText.setTextColor(getResources().getColor(R.color.colorTextIdle));
+                titleText.setTextColor(getResources().getColor(R.color.colorTextIdle));
+                mLinearLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                creditsText.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
                 addButton.setActivated(true);
                 addButton.setVisibility(View.VISIBLE);
             }

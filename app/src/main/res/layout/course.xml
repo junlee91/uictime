@@ -7,26 +7,27 @@
                 android:layout_height="wrap_content">
 
     <FrameLayout
+        android:id="@+id/course_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:foregroundGravity="center">
 
         <LinearLayout
             android:id="@+id/course_view_layout"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="40dp"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:background="@color/colorPrimary">
+            android:background="@color/colorCourseListIdle">
 
             <TextView
                 android:id="@+id/course_subject_text"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:text="CS"
-                android:textColor="@color/colorTextIdle"
+                android:textColor="@color/colorAccent"
                 android:textStyle="bold"
                 android:gravity="center"/>
 
@@ -35,7 +36,7 @@
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:text="141"
-                android:textColor="@color/colorTextIdle"
+                android:textColor="@color/colorAccent"
                 android:textStyle="bold"
                 android:gravity="center"/>
 
@@ -45,7 +46,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center_vertical"
-                android:textColor="@color/colorTextIdle"
+                android:textColor="@color/colorAccent"
                 android:textStyle="bold"
                 android:text="Program Design I"/>
 
@@ -54,20 +55,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/course_credit_text"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="40dp"
                 android:text="3 hours"
                 android:textStyle="bold"
                 android:textColor="@color/colorTextIdle"
                 android:layout_gravity="center"
-                android:background="@color/colorPrimaryDark"
+                android:background="@color/colorCourseTimeIdle"
                 />
 
         </LinearLayout>
@@ -79,7 +78,7 @@
         android:id="@+id/course_add_button"
         android:layout_alignParentRight="true"
         android:layout_width="70dp"
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="5dp"
         android:layout_gravity="center_horizontal"
