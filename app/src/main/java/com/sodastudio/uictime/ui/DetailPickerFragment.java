@@ -282,7 +282,7 @@ public class DetailPickerFragment extends DialogFragment {
                 if(count == 0){
                     AlertDialog dialog;
                     AlertDialog.Builder builder = new AlertDialog.Builder(DetailPickerFragment.this.getContext());
-                    dialog = builder.setMessage("No result found")
+                    dialog = builder.setMessage("No result found..\nYou can add course manually!\n\nPlease click the button on the right corner.")
                             .setPositiveButton("Ok", null)
                             .create();
                     dialog.show();
