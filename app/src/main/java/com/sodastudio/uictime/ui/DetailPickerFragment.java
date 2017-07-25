@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -115,6 +116,7 @@ public class DetailPickerFragment extends DialogFragment {
         private TextView TimeText;
         private TextView RoomText;
         private Button addButton;
+        private ImageButton manAddButton;
 
         private DetailCourseHolder(View itemView) {
             super(itemView);
@@ -128,13 +130,23 @@ public class DetailPickerFragment extends DialogFragment {
             TimeText = (TextView)itemView.findViewById(R.id.detail_time_text);
             RoomText = (TextView)itemView.findViewById(R.id.detail_room_text);
 
-            addButton = (Button)(TextView)itemView.findViewById(R.id.detail_add_button);
+            manAddButton = (ImageButton)itemView.findViewById(R.id.detail_man_add_button);
+            manAddButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //TODO:: Add detail course by user input. (Additional fragment needed here)
+                }
+            });
+
+            addButton = (Button)itemView.findViewById(R.id.detail_add_button);
             addButton.setVisibility(View.INVISIBLE);
             addButton.setActivated(false);
 
             addButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    //TODO:: Add detail course into TableManager  (mCourse)
+                    //NOTE: TableManager holds List of detail course and draw time table
 
                 }
             });
@@ -241,14 +253,6 @@ public class DetailPickerFragment extends DialogFragment {
         @Override
         protected void onPostExecute(String result) {
             try{
-                // TODO:: Parse json result
-//                AlertDialog dialog;
-//                AlertDialog.Builder builder = new AlertDialog.Builder(DetailPickerFragment.this.getContext());
-//                dialog = builder.setMessage(result)
-//                        .setPositiveButton("OK", null)
-//                        .create();
-//                dialog.show();
-
                 DetailCourseManager detailCourseManager = DetailCourseManager.getInstance(getActivity());
                 detailCourseManager.clearCourse();
 

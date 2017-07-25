@@ -5,6 +5,7 @@
               android:layout_height="match_parent">
 
     <ImageButton
+        android:id="@+id/detail_man_add_button"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_gravity="right"
