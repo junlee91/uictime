@@ -1,15 +1,36 @@
 package com.sodastudio.uictime;
 
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import com.sodastudio.uictime.ui.MainFragment;
+
+public class MainActivity extends SingleFragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fragment);
 
         // TODO:: LoadingActivity with animation
+    }
+
+    @Override
+    protected Fragment createFragment() {
+        return new MainFragment();
+    }
+
+    private long lastTimeBackPressed;
+
+    @Override
+    public void onBackPressed(){
+        if(System.currentTimeMillis() - lastTimeBackPressed < 1500)
+        {
+            finish();
+            return;
+        }
+
+        Toast.makeText(this, "Press again to end", Toast.LENGTH_SHORT).show();
+        lastTimeBackPressed = System.currentTimeMillis();
     }
 }

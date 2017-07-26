@@ -61,7 +61,7 @@ public class CourseListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
-        View view = inflater.inflate(R.layout.fragment_courselist, container, false);
+        View view = inflater.inflate(R.layout.fragment_courselist_view, container, false);
 
         mRecyclerView = (RecyclerView)view.findViewById(R.id.course_list_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

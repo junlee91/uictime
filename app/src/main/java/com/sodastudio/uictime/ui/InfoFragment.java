@@ -12,15 +12,13 @@ import com.sodastudio.uictime.R;
  * Created by Jun on 7/26/2017.
  */
 
-public class ScheduleFragment extends Fragment {
+public class InfoFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_schedule_view, container, false);
+        View view = inflater.inflate(R.layout.fragment_info_view, container, false);
 
         return view;
-
     }
-
 }
