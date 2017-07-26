@@ -17,10 +17,9 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.sodastudio.uictime.CourseLibrary;
-import com.sodastudio.uictime.CourseManager;
+import com.sodastudio.uictime.manager.CourseManager;
 import com.sodastudio.uictime.R;
 import com.sodastudio.uictime.model.Course;
 
@@ -70,23 +69,24 @@ public class CourseListFragment extends Fragment {
         emptyView = view.findViewById(R.id.empty_list_view);
 
         mselectButton = (Button)view.findViewById(R.id.select_button);
-        mselectButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager manager = getFragmentManager();
-                CoursePickerFragment dialog = new CoursePickerFragment();
-                dialog.setTargetFragment(CourseListFragment.this, COURSE_SELECT);
-                dialog.show(manager, COURSE_SELECTOR);
 
-                // Comment on API 15
-                //mselectButton.setBackground(getResources().getDrawable(R.drawable.ic_pageview_black_24dp));
-            }
-        });
-
+        setButtonClickListener();
 
         updateUI();
 
         return view;
+    }
+
+    private void updateUI(){
+
+        CourseManager courseManager = CourseManager.getInstance(getActivity());
+        List<Course> courses = courseManager.getCourses();
+
+        if(courses.size() == 0) emptyView.setVisibility(View.VISIBLE);
+        else emptyView.setVisibility(View.INVISIBLE);
+
+        mAdapter = new CourseAdapter(courses);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
@@ -122,16 +122,20 @@ public class CourseListFragment extends Fragment {
 
     }
 
-    private void updateUI(){
+    private void setButtonClickListener(){
 
-        CourseManager courseManager = CourseManager.getInstance(getActivity());
-        List<Course> courses = courseManager.getCourses();
+        mselectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager manager = getFragmentManager();
+                CoursePickerFragment dialog = new CoursePickerFragment();
+                dialog.setTargetFragment(CourseListFragment.this, COURSE_SELECT);
+                dialog.show(manager, COURSE_SELECTOR);
 
-        if(courses.size() == 0) emptyView.setVisibility(View.VISIBLE);
-        else emptyView.setVisibility(View.INVISIBLE);
-
-        mAdapter = new CourseAdapter(courses);
-        mRecyclerView.setAdapter(mAdapter);
+                // Comment on API 15
+                //mselectButton.setBackground(getResources().getDrawable(R.drawable.ic_pageview_black_24dp));
+            }
+        });
     }
 
     private class CourseHolder extends RecyclerView.ViewHolder

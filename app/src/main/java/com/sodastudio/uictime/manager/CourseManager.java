@@ -1,4 +1,4 @@
-package com.sodastudio.uictime;
+package com.sodastudio.uictime.manager;
 
 import android.content.Context;
 
