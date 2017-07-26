@@ -14,6 +14,8 @@ import com.sodastudio.uictime.R;
 
 public class ScheduleFragment extends Fragment {
 
+    public static final String TAG = "ScheduleFragment";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 

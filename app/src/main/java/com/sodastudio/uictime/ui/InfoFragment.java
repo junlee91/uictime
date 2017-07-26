@@ -14,6 +14,8 @@ import com.sodastudio.uictime.R;
 
 public class InfoFragment extends Fragment {
 
+    public static final String TAG = "InfoFragment";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
