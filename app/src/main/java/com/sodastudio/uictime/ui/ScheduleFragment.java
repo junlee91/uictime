@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.sodastudio.uictime.R;
@@ -61,7 +60,7 @@ public class ScheduleFragment extends Fragment {
 
     private void upDateUI(){
         ScheduleManager scheduleManager = ScheduleManager.getInstance(getActivity());
-        List<DetailCourse> mCourseList = scheduleManager.getSchedules();
+        List<DetailCourse> mCourseList = scheduleManager.getCourses();
 
         mAdapter = new CourseAdapter(mCourseList);
         mScheduleListView.setAdapter(mAdapter);
@@ -95,7 +94,7 @@ public class ScheduleFragment extends Fragment {
         @Override
         public void onBindViewHolder(CourseHolder holder, int position) {
             DetailCourse course = mCourseList.get(position);
-            holder.mTextView.setText(course.getTitle());
+            holder.mTextView.setText(course.getCRN() + " " + course.getSubject() + " " + course.getNumber() + " " + course.getTitle());
         }
 
         @Override

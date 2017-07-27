@@ -165,8 +165,10 @@ public class DetailPickerFragment extends DialogFragment {
                     if(mScheduleManager.addSchedule(mCourse)){
                         showToast("Course add success");
                     } else{
-                        showToast("Course add failed");
+                        showToast("Duplication!!");
                     }
+
+                    addButton.setVisibility(View.INVISIBLE);
                 }
             });
         }
