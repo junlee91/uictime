@@ -34,6 +34,8 @@ public class MainFragment extends Fragment {
 
         setButtonClickListener();
 
+        mListButton.callOnClick();
+
         return view;
     }
 

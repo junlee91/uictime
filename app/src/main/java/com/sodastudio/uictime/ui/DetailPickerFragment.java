@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,9 +17,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sodastudio.uictime.manager.DetailCourseManager;
 import com.sodastudio.uictime.R;
+import com.sodastudio.uictime.manager.ScheduleManager;
 import com.sodastudio.uictime.model.Course;
 import com.sodastudio.uictime.model.DetailCourse;
 
@@ -40,6 +44,10 @@ public class DetailPickerFragment extends DialogFragment {
 
     private static final String ARG_COURSE = "course";
 
+    static final String COURSE_ADD = "CourseAdd";
+
+    private ScheduleManager mScheduleManager;
+
     private int mTerm;          // Fall 2017
     private String mSubject;    // CS
     private int mNumber;        // 141
@@ -51,6 +59,8 @@ public class DetailPickerFragment extends DialogFragment {
     private DetailCourseAdapter mAdapter;
 
     private ImageButton manAddButton;
+
+    private Toast mToast;
 
     public static DetailPickerFragment newInstance(Course course){
         Bundle args = new Bundle();
@@ -92,6 +102,9 @@ public class DetailPickerFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
                 //TODO:: Add detail course by user input. (Additional fragment needed here)
+                FragmentManager manager = getFragmentManager();
+                CourseAddFragment dialog = new CourseAddFragment();
+                dialog.show(manager, COURSE_ADD);
             }
         });
 
@@ -125,6 +138,7 @@ public class DetailPickerFragment extends DialogFragment {
         private TextView RoomText;
         private Button addButton;
 
+
         private DetailCourseHolder(View itemView) {
             super(itemView);
 
@@ -146,7 +160,13 @@ public class DetailPickerFragment extends DialogFragment {
                 public void onClick(View v) {
                     //TODO:: Add detail course into TableManager  (mCourse)
                     //NOTE: TableManager holds List of detail course and draw time table
+                    mScheduleManager = ScheduleManager.getInstance(getActivity());
 
+                    if(mScheduleManager.addSchedule(mCourse)){
+                        showToast("Course add success");
+                    } else{
+                        showToast("Course add failed");
+                    }
                 }
             });
         }
@@ -298,4 +318,13 @@ public class DetailPickerFragment extends DialogFragment {
             }
         }
     }
+
+    private void showToast(String text) {
+        if (mToast != null) {
+            mToast.cancel();
+        }
+        mToast = Toast.makeText(getContext(), text, Toast.LENGTH_SHORT);
+        mToast.show();
+    }
+
 }
