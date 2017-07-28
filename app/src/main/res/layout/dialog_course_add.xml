@@ -35,7 +35,6 @@
                     android:background="@color/colorPrimary"
                     android:layout_weight="1"
                     android:padding="10dp"
-                    android:textAllCaps="true"
                     />
 
                 <EditText

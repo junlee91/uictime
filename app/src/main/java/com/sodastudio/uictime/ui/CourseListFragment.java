@@ -59,6 +59,8 @@ public class CourseListFragment extends Fragment {
     private int mTerm;
     private String mSubject;
 
+    public static int TERM_ID;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
@@ -105,6 +107,8 @@ public class CourseListFragment extends Fragment {
 
             mTerm = mCourseLibrary.getTermValue(term);
             mSubject = mCourseLibrary.getSubjectValue(subject);
+
+            TERM_ID = mTerm;   // to use in other activities
 
             mSelectedText.setText("Selected Term: " + term);
 
