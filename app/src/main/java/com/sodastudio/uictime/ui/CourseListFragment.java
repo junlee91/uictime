@@ -53,6 +53,7 @@ public class CourseListFragment extends Fragment {
     private CourseAdapter mAdapter;
 
     private Button mselectButton;
+    private TextView mSelectedText;
 
     private CourseLibrary mCourseLibrary = new CourseLibrary();
     private int mTerm;
@@ -69,6 +70,7 @@ public class CourseListFragment extends Fragment {
         emptyView = view.findViewById(R.id.empty_list_view);
 
         mselectButton = (Button)view.findViewById(R.id.select_button);
+        mSelectedText = (TextView)view.findViewById(R.id.selected_term_text);
 
         setButtonClickListener();
 
@@ -103,6 +105,8 @@ public class CourseListFragment extends Fragment {
 
             mTerm = mCourseLibrary.getTermValue(term);
             mSubject = mCourseLibrary.getSubjectValue(subject);
+
+            mSelectedText.setText("Selected Term: " + term);
 
             if(mTerm != 0 && mSubject != null)
                 new BackgroundTask().execute();
