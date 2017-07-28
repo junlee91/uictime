@@ -18,8 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="110dp"
-        android:layout_marginLeft="110dp"
-        android:text="Selected Term: "/>
+        android:layout_marginLeft="110dp"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/course_list_view"

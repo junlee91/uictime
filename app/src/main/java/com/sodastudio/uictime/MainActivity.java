@@ -30,7 +30,7 @@ public class MainActivity extends SingleFragmentActivity {
             return;
         }
 
-        Toast.makeText(this, "Press again to end", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Press again to end the UICTime", Toast.LENGTH_SHORT).show();
         lastTimeBackPressed = System.currentTimeMillis();
     }
 }

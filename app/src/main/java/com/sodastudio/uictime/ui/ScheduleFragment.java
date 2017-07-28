@@ -109,7 +109,7 @@ public class ScheduleFragment extends Fragment {
 
                     mScheduleManager.deleteSchedule(mCourse);
 
-                    showToast("Course deleted!!");
+                    showToast(mCourse.getTitle() + " deleted!!");
 
                     mDeleteButton.setVisibility(View.INVISIBLE);
 

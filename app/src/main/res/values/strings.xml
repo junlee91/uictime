@@ -7,4 +7,5 @@
     <string name="empty_list_string">Please click SEARCH button</string>
     <string name="select_section_text">Subject selected: </string>
     <string name="add_course_text">Please fill in the blanks</string>
+    <string name="weekdays">M   T   W   R   F</string>
 </resources>
