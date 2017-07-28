@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
+
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:background="@drawable/round_rect_shape"
+            android:backgroundTint="#ffffff">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/concise_crn_text"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/colorAccent"
+                    android:text="36389"/>
+
+                <TextView
+                    android:id="@+id/concise_course_text"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/colorAccent"
+                    android:text="CS 151"/>
+
+
+                <TextView
+                    android:id="@+id/concise_title_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/colorAccent"
+                    android:text="Mathematical Foundations of Computing"/>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="18dp"
+            android:layout_marginTop="5dp"
+            >
+
+            <TextView
+                android:id="@+id/concise_day_text"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/round_rect_shape"
+                android:backgroundTint="@color/colorGray"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:text="MWF"/>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/round_rect_shape"
+                android:layout_marginLeft="2dp"
+                android:backgroundTint="@color/colorGray">
+
+                <TextView
+                    android:id="@+id/concise_time_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:text="9:00 AM 9:50 AM"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="2dp"
+                android:background="@drawable/round_rect_shape"
+                android:backgroundTint="@color/colorGray">
+
+                <TextView
+                    android:id="@+id/concise_room_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textColor="#ffffff"
+                    android:gravity="center"
+                    android:text="BSB 250"/>
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/round_rect_shape"
+                android:layout_marginLeft="2dp"
+                android:backgroundTint="@color/colorGray">
+
+                <TextView
+                    android:id="@+id/concise_instructor_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textColor="#ffffff"
+                    android:gravity="center"
+                    android:text="Reed, D"/>
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/concise_delete_button"
+        android:layout_alignParentRight="true"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Delete"
+        android:textSize="11sp"/>
+
+</RelativeLayout>

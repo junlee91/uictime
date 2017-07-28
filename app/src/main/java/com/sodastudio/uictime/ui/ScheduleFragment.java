@@ -7,8 +7,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sodastudio.uictime.R;
 import com.sodastudio.uictime.manager.ScheduleManager;
@@ -28,6 +30,10 @@ public class ScheduleFragment extends Fragment {
     private CourseAdapter mAdapter;
 
     private ImageButton mImageButton;
+
+    private ScheduleManager mScheduleManager;
+
+    private Toast mToast;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -66,13 +72,75 @@ public class ScheduleFragment extends Fragment {
         mScheduleListView.setAdapter(mAdapter);
     }
 
-    private class CourseHolder extends RecyclerView.ViewHolder{
-        public TextView mTextView;
+    private class CourseHolder extends RecyclerView.ViewHolder
+            implements View.OnClickListener{
 
-        public CourseHolder(View view){
+        private DetailCourse mCourse;
+
+        private TextView mCrnText;
+        private TextView mCourseText;
+        private TextView mTitleText;
+        private TextView mDayText;
+        private TextView mTimeText;
+        private TextView mInstructorText;
+        private Button mDeleteButton;
+
+        private CourseHolder(View view){
             super(view);
 
-            mTextView = (TextView)view;
+            view.setOnClickListener(this);
+
+            mCrnText = (TextView)view.findViewById(R.id.concise_crn_text);
+            mCourseText = (TextView)view.findViewById(R.id.concise_course_text);
+            mTitleText = (TextView)view.findViewById(R.id.concise_title_text);
+            mTimeText = (TextView)view.findViewById(R.id.concise_time_text);
+            mDayText = (TextView)view.findViewById(R.id.concise_day_text);
+            mInstructorText = (TextView)view.findViewById(R.id.concise_instructor_text);
+
+            mDeleteButton = (Button)view.findViewById(R.id.concise_delete_button);
+            mDeleteButton.setVisibility(View.INVISIBLE);
+            mDeleteButton.setActivated(false);
+
+            mDeleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    mScheduleManager = ScheduleManager.getInstance(getActivity());
+
+                    mScheduleManager.deleteSchedule(mCourse);
+
+                    showToast("Course deleted!!");
+
+                    mDeleteButton.setVisibility(View.INVISIBLE);
+
+                    mAdapter.notifyDataSetChanged();
+                }
+            });
+        }
+
+        public void bindCourse(DetailCourse course){
+            mCourse = course;
+
+            mCrnText.setText(String.valueOf( mCourse.getCRN()));
+            mCourseText.setText(mCourse.getSubject() + " " + String.valueOf( mCourse.getNumber()));
+            mTitleText.setText(mCourse.getTitle());
+            mTimeText.setText(mCourse.getTime());
+            mDayText.setText(mCourse.getDays());
+            mInstructorText.setText(mCourse.getInstructor());
+        }
+
+        @Override
+        public void onClick(View v) {
+            if(mDeleteButton.isActivated())
+            {
+                mDeleteButton.setActivated(false);
+                mDeleteButton.setVisibility(View.INVISIBLE);
+            }
+            else
+            {
+                mDeleteButton.setActivated(true);
+                mDeleteButton.setVisibility(View.VISIBLE);
+            }
         }
     }
 
@@ -87,20 +155,28 @@ public class ScheduleFragment extends Fragment {
         @Override
         public CourseHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            View view = layoutInflater.inflate(android.R.layout.simple_list_item_1, parent, false);
+            View view = layoutInflater.inflate(R.layout.concise_view, parent, false);
             return new CourseHolder(view);
         }
 
         @Override
         public void onBindViewHolder(CourseHolder holder, int position) {
             DetailCourse course = mCourseList.get(position);
-            holder.mTextView.setText(course.getCRN() + " " + course.getSubject() + " " + course.getNumber() + " " + course.getTitle());
+            holder.bindCourse(course);
         }
 
         @Override
         public int getItemCount() {
             return mCourseList.size();
         }
+    }
+
+    private void showToast(String text) {
+        if (mToast != null) {
+            mToast.cancel();
+        }
+        mToast = Toast.makeText(getContext(), text, Toast.LENGTH_SHORT);
+        mToast.show();
     }
 
 }
