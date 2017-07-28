@@ -15,11 +15,11 @@
 
         <FrameLayout
             android:layout_width="wrap_content"
-            android:layout_height="19dp">
+            android:layout_height="20dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="18dp"
+                android:layout_height="20dp"
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="10dp"
                 android:orientation="horizontal">
