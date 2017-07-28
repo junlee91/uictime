@@ -88,6 +88,8 @@ public class DetailCourse {
     }
 
     public String getDays() {
+        if(mDays.equals(""))
+            return "TBA";
         return mDays;
     }
 
@@ -96,6 +98,8 @@ public class DetailCourse {
     }
 
     public String getTime() {
+        if(mTime.equals(""))
+            return "TBA";
         return mTime;
     }
 
@@ -104,6 +108,8 @@ public class DetailCourse {
     }
 
     public String getRoom() {
+        if(mRoom.equals(""))
+            return "TBA";
         return mRoom;
     }
 
@@ -112,6 +118,8 @@ public class DetailCourse {
     }
 
     public String getInstructor() {
+        if(mInstructor == null)
+            return "TBA";
         return mInstructor;
     }
 

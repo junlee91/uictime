@@ -15,9 +15,7 @@
 
         <FrameLayout
             android:layout_width="wrap_content"
-            android:layout_height="19dp"
-            android:background="@drawable/round_rect_shape"
-            android:backgroundTint="#ffffff">
+            android:layout_height="19dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -38,6 +36,7 @@
                     android:id="@+id/concise_course_text"
                     android:layout_width="60dp"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="2dp"
                     android:gravity="center"
                     android:textColor="@color/colorAccent"
                     android:text="CS 151"/>
@@ -47,6 +46,7 @@
                     android:id="@+id/concise_title_text"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="2dp"
                     android:gravity="center"
                     android:textColor="@color/colorAccent"
                     android:text="Mathematical Foundations of Computing"/>
@@ -64,7 +64,7 @@
 
             <TextView
                 android:id="@+id/concise_day_text"
-                android:layout_width="50dp"
+                android:layout_width="55dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/round_rect_shape"
                 android:backgroundTint="@color/colorGray"
