@@ -21,7 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="50dp"
             android:layout_marginRight="15dp"
             android:layout_marginLeft="15dp">
 
@@ -36,20 +35,18 @@
                 android:id="@+id/selected_subject_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CS 141 Program Design I"
+                android:text="CS 141 Program Design I\n3 hours"
                 android:layout_marginTop="5dp"
                 android:textSize="15sp"
                 />
 
         </LinearLayout>
 
-
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/detail_list_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="90dp"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp">

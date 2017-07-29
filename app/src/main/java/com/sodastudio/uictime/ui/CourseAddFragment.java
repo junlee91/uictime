@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.sodastudio.uictime.R;
 import com.sodastudio.uictime.manager.ScheduleManager;
+import com.sodastudio.uictime.model.DetailCourse;
 
 /**
  * Created by Jun on 7/27/2017.
@@ -103,7 +104,7 @@ public class CourseAddFragment extends DialogFragment {
 
             if(id == R.id.cancel_course_Button)
             {
-                showToast("Cancel!");
+                //showToast("Cancel!");
                 getDialog().dismiss();
             }
             else if(id == R.id.add_course_Button)
@@ -132,9 +133,20 @@ public class CourseAddFragment extends DialogFragment {
                 mRoom = roomText.getText().toString();
                 mInstructor = instructorText.getText().toString();
 
-                String text = subjectText.getText().toString() + numberText.getText().toString()
-                        + mTitle + mCredits + mDays + mTime + mRoom + mInstructor;
-                showToast(text);
+                DetailCourse detailCourse = new DetailCourse(mTerm, mSubject, mNumber, mTitle,
+                        mCredits, mCRN, mType, mDays, mTime, mRoom, mInstructor);
+
+                mScheduleManager = ScheduleManager.getInstance(getActivity());
+
+                if( mScheduleManager.addSchedule(detailCourse) ){
+
+                    // Add toast
+                    String text = subjectText.getText().toString() + numberText.getText().toString()
+                            + mTitle + " add success!";
+                    showToast(text);
+                } else {
+                    showToast("Course already in schedule!");
+                }
 
                 getDialog().dismiss();
             }

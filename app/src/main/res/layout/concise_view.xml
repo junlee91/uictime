@@ -32,15 +32,21 @@
                     android:textColor="@color/colorAccent"
                     android:text="36389"/>
 
-                <TextView
-                    android:id="@+id/concise_course_text"
-                    android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="2dp"
-                    android:gravity="center"
-                    android:textColor="@color/colorAccent"
-                    android:text="CS 151"/>
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
 
+                    <TextView
+                        android:id="@+id/concise_course_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:gravity="center"
+                        android:textColor="@color/colorAccent"
+                        android:text="ECON 151"/>
+
+                </FrameLayout>
 
                 <TextView
                     android:id="@+id/concise_title_text"
@@ -62,15 +68,23 @@
             android:layout_marginTop="5dp"
             >
 
-            <TextView
-                android:id="@+id/concise_day_text"
-                android:layout_width="55dp"
+            <FrameLayout
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@drawable/round_rect_shape"
-                android:backgroundTint="@color/colorGray"
-                android:textColor="#ffffff"
-                android:gravity="center"
-                android:text="MWF"/>
+                android:backgroundTint="@color/colorGray">
+
+                <TextView
+                    android:id="@+id/concise_day_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="#ffffff"
+                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="MWF"/>
+
+            </FrameLayout>
 
             <FrameLayout
                 android:layout_width="wrap_content"

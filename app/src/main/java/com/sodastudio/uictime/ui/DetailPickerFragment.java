@@ -163,9 +163,9 @@ public class DetailPickerFragment extends DialogFragment {
                     mScheduleManager = ScheduleManager.getInstance(getActivity());
 
                     if(mScheduleManager.addSchedule(mCourse)){
-                        showToast("Course add success");
+                        showToast("Course add success!");
                     } else{
-                        showToast("Duplication!!");
+                        showToast("Course already in schedule!");
                     }
 
                     addButton.setVisibility(View.INVISIBLE);

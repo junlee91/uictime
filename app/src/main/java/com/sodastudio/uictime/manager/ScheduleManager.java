@@ -69,7 +69,7 @@ public class ScheduleManager {
             }
         }
 
-        // check for time
+        // TODO:: check for time
 
         // add to schedule table
         addCourseToScheduleTable(detailCourse.getDays(), detailCourse.getTime());
