@@ -38,6 +38,8 @@ public class ScheduleFragment extends Fragment {
     private ImageButton mConciseViewButton;
     private ScheduleManager mScheduleManager;
 
+    private TextView mTotalCreditTextView;
+
     private Toast mToast;
 
     private CourseLibrary mCourseLibrary;
@@ -53,6 +55,8 @@ public class ScheduleFragment extends Fragment {
 
         mScheduleListView = (RecyclerView)view.findViewById(R.id.schedule_list_view);
         mScheduleListView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        mTotalCreditTextView = (TextView)view.findViewById(R.id.schedule_total_credits_text);
 
         mConciseViewButton = (ImageButton)view.findViewById(R.id.concise_view_button);
         mConciseViewButton.setActivated(false);
@@ -87,6 +91,8 @@ public class ScheduleFragment extends Fragment {
 
         ScheduleManager scheduleManager = ScheduleManager.getInstance(getActivity());
         List<DetailCourse> mCourseList = scheduleManager.getCourses();
+
+        mTotalCreditTextView.setText("Total: " + getTotalCredits(mCourseList) + " Hours");
 
         mAdapter = new CourseAdapter(mCourseList);
         mScheduleListView.setAdapter(mAdapter);
@@ -192,6 +198,11 @@ public class ScheduleFragment extends Fragment {
         public int getItemCount() {
             return mCourseList.size();
         }
+    }
+
+    private int getTotalCredits(List<DetailCourse> mCourseList){
+        // TODO:: return total credit hours
+        return 18;
     }
 
     private void showToast(String text) {

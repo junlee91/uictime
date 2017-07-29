@@ -36,6 +36,18 @@
 
     </FrameLayout>
 
+    <TextView
+        android:id="@+id/schedule_total_credits_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="10dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="Total: 12 Hours"
+        android:textSize="20sp"
+        />
+
     <Spinner
         android:id="@+id/schedule_term_spinner"
         android:layout_width="wrap_content"
