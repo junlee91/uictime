@@ -55,14 +55,39 @@ public class TimePickerFragment extends DialogFragment {
                                 int endHour = mEndTimePicker.getCurrentHour();
                                 int endMin = mEndTimePicker.getCurrentMinute();
 
-                                //TODO:: change time format
+                                String startTimeFormat = TimeFormat(startHour, startMin);
+                                String endTimeFormat = TimeFormat(endHour, endMin);
 
-                                String time = startHour + ":" + startMin + " " + endHour + ":" + endMin;
-
-                                sendResult(Activity.RESULT_OK, time);
+                                sendResult(Activity.RESULT_OK, startTimeFormat + " " + endTimeFormat);
                             }
                         })
                 .create();
+    }
+
+    private String TimeFormat(int start, int end){
+        String time = "";
+        String day = "AM";
+
+        if( start >= 13 ){
+            start -= 12;
+            day = "PM";
+        }
+
+        if( start == 12){
+            day = "PM";
+        }
+
+        if( end == 0 ){
+            time = start + ":" + end + end + " " + day;
+        }
+        else if( end > 0 && end < 10){
+            time = start + ":0" + end + " " + day;
+        }
+        else{
+            time = start + ":" + end + " " + day;
+        }
+
+        return time;
     }
 
     private void sendResult(int resultCode, String time_text){

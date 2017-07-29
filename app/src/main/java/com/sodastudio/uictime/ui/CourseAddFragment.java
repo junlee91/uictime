@@ -147,8 +147,9 @@ public class CourseAddFragment extends DialogFragment {
                 if( mScheduleManager.addSchedule(detailCourse) ){
 
                     // Add toast
-                    String text = subjectText.getText().toString() + numberText.getText().toString()
-                            + mTitle + " add success!";
+                    String text = subjectText.getText().toString() + " " +
+                            numberText.getText().toString() + " " +
+                            mTitle + " add success!";
                     showToast(text);
                 } else {
                     showToast("Course already in schedule!");
