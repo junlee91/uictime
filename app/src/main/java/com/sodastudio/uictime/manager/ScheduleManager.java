@@ -71,7 +71,7 @@ public class ScheduleManager {
 
         // TODO:: check for time
 
-        // add to schedule table
+        // TODO:: add to schedule table
         addCourseToScheduleTable(detailCourse.getDays(), detailCourse.getTime());
 
         return mCourses.add(detailCourse);

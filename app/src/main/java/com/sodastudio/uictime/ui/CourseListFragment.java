@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -149,6 +150,8 @@ public class CourseListFragment extends Fragment {
     private class CourseHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener{
 
+        private int row_index;
+
         private Course mCourse;
         private TextView subjectText;
         private TextView numberText;
@@ -158,11 +161,13 @@ public class CourseListFragment extends Fragment {
         private LinearLayout mLinearLayout;
         private FrameLayout mFrameLayout;
 
+        private SparseBooleanArray selectedItems;
 
         private CourseHolder(View itemView){
             super(itemView);
 
             itemView.setOnClickListener(this);
+            itemView.getVerticalScrollbarPosition();
 
             subjectText = (TextView)itemView.findViewById(R.id.course_subject_text);
             numberText = (TextView)itemView.findViewById(R.id.course_number_text);
@@ -188,8 +193,9 @@ public class CourseListFragment extends Fragment {
             });
         }
 
-        private void bindCourse(Course course){
+        private void bindCourse(Course course, int pos){
             mCourse = course;
+            row_index = pos;
 
             subjectText.setText(mCourse.getSubject());
             numberText.setText(String.valueOf(mCourse.getNumber()));
@@ -229,7 +235,6 @@ public class CourseListFragment extends Fragment {
     private class CourseAdapter extends RecyclerView.Adapter<CourseHolder>{
 
         private List<Course> mCourses;
-
         private CourseAdapter(List<Course> courses){
             mCourses = courses;
         }
@@ -248,7 +253,7 @@ public class CourseListFragment extends Fragment {
         public void onBindViewHolder(CourseHolder holder, int position) {
             Course course = mCourses.get(position);
 
-            holder.bindCourse(course);
+            holder.bindCourse(course, position);
         }
 
         @Override

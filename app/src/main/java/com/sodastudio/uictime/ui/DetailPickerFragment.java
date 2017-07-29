@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -136,7 +135,7 @@ public class DetailPickerFragment extends DialogFragment {
         private TextView DaysText;
         private TextView TimeText;
         private TextView RoomText;
-        private Button addButton;
+        private Button viewButton;
 
 
         private DetailCourseHolder(View itemView) {
@@ -151,15 +150,13 @@ public class DetailPickerFragment extends DialogFragment {
             TimeText = (TextView)itemView.findViewById(R.id.detail_time_text);
             RoomText = (TextView)itemView.findViewById(R.id.detail_room_text);
 
-            addButton = (Button)itemView.findViewById(R.id.detail_add_button);
-            addButton.setVisibility(View.INVISIBLE);
-            addButton.setActivated(false);
+            viewButton = (Button)itemView.findViewById(R.id.detail_add_button);
+            viewButton.setVisibility(View.INVISIBLE);
+            viewButton.setActivated(false);
 
-            addButton.setOnClickListener(new View.OnClickListener() {
+            viewButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //TODO:: Add detail course into TableManager  (mCourse)
-                    //NOTE: TableManager holds List of detail course and draw time table
                     mScheduleManager = ScheduleManager.getInstance(getActivity());
 
                     if(mScheduleManager.addSchedule(mCourse)){
@@ -168,7 +165,7 @@ public class DetailPickerFragment extends DialogFragment {
                         showToast("Course already in schedule!");
                     }
 
-                    addButton.setVisibility(View.INVISIBLE);
+                    viewButton.setVisibility(View.INVISIBLE);
                 }
             });
         }
@@ -186,15 +183,15 @@ public class DetailPickerFragment extends DialogFragment {
 
         @Override
         public void onClick(View v) {
-            if( addButton.isActivated() )
+            if( viewButton.isActivated() )
             {
-                addButton.setActivated(false);
-                addButton.setVisibility(View.INVISIBLE);
+                viewButton.setActivated(false);
+                viewButton.setVisibility(View.INVISIBLE);
             }
             else
             {
-                addButton.setActivated(true);
-                addButton.setVisibility(View.VISIBLE);
+                viewButton.setActivated(true);
+                viewButton.setVisibility(View.VISIBLE);
             }
         }
     }
