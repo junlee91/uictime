@@ -156,7 +156,11 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
         android:layout_gravity="center_horizontal"
+        android:background="@drawable/round_rect_shape"
+        android:backgroundTint="@color/colorDeleteButton"
+        android:alpha="0.7"
         android:text="Delete"
-        android:textSize="11sp"/>
+        android:textSize="11sp"
+        android:textStyle="bold"/>
 
 </RelativeLayout>
