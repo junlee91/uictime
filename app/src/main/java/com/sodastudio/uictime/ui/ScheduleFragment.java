@@ -82,6 +82,7 @@ public class ScheduleFragment extends Fragment {
         private TextView mTitleText;
         private TextView mDayText;
         private TextView mTimeText;
+        private TextView mRoomText;
         private TextView mInstructorText;
         private Button mDeleteButton;
 
@@ -95,6 +96,7 @@ public class ScheduleFragment extends Fragment {
             mTitleText = (TextView)view.findViewById(R.id.concise_title_text);
             mTimeText = (TextView)view.findViewById(R.id.concise_time_text);
             mDayText = (TextView)view.findViewById(R.id.concise_day_text);
+            mRoomText = (TextView)view.findViewById(R.id.concise_room_text);
             mInstructorText = (TextView)view.findViewById(R.id.concise_instructor_text);
 
             mDeleteButton = (Button)view.findViewById(R.id.concise_delete_button);
@@ -126,6 +128,7 @@ public class ScheduleFragment extends Fragment {
             mTitleText.setText(mCourse.getTitle());
             mTimeText.setText(mCourse.getTime());
             mDayText.setText(mCourse.getDays());
+            mRoomText.setText(mCourse.getRoom());
             mInstructorText.setText(mCourse.getInstructor());
         }
 

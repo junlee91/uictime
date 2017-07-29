@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -26,6 +28,10 @@ import com.sodastudio.uictime.model.DetailCourse;
  */
 
 public class CourseAddFragment extends DialogFragment {
+
+    private static final String TIME_PICKER = "time picker";
+
+    private static final int REQUEST_TIME = 0;
 
     private int mTerm;          // Fall 2017
     private String mSubject;    // CS
@@ -126,7 +132,7 @@ public class CourseAddFragment extends DialogFragment {
                 mNumber = Integer.valueOf( numberText.getText().toString());
                 mTitle = titleText.getText().toString();
                 mCredits = mCreditSpinner.getSelectedItem().toString() + " Hours";
-                mCRN = 0;
+                mCRN = 1000;
                 mType = "";
                 mDays = getCheckedDays();
                 mTime = timeText.getText().toString();
@@ -152,11 +158,26 @@ public class CourseAddFragment extends DialogFragment {
             }
             else if(id == R.id.time_add_text)
             {
-                //TODO::dialog time picker
-                showToast("Time picker!");
+                FragmentManager manager = getFragmentManager();
+                TimePickerFragment dialog = TimePickerFragment.getInstance();
+                dialog.setTargetFragment(CourseAddFragment.this, REQUEST_TIME);
+                dialog.show(manager, TIME_PICKER);
             }
         }
     };
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(resultCode != Activity.RESULT_OK){
+            return;
+        }
+
+        if(requestCode == REQUEST_TIME){
+            String time = (String)data.getSerializableExtra(TimePickerFragment.EXTRA_TIME);
+            timeText.setText(time);
+            mTime = timeText.getText().toString();
+        }
+    }
 
     private String getCheckedDays(){
         String days = "";

@@ -64,7 +64,7 @@ public class ScheduleManager {
 
         // check for duplicated CRN
         for(DetailCourse course : mCourses){
-            if(detailCourse.getCRN() == course.getCRN()){
+            if(detailCourse.getCRN() == course.getCRN() && detailCourse.getCRN() != 1000){
                 return false;
             }
         }

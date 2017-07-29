@@ -40,8 +40,9 @@
         android:id="@+id/concise_view_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="10dp"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
         android:background="@drawable/ic_view_list_black_24dp"/>
 
 </RelativeLayout>

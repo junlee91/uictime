@@ -1,7 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Start Time"
+            android:textStyle="bold"/>
+
+        <TimePicker
+            android:id="@+id/dialog_start_time_picker"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:timePickerMode="spinner"
+            >
+        </TimePicker>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="End Time"
+            android:textStyle="bold"/>
+
+        <TimePicker
+            android:id="@+id/dialog_end_time_picker"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:timePickerMode="spinner"
+            >
+        </TimePicker>
+
+    </LinearLayout>
+
+</FrameLayout>
