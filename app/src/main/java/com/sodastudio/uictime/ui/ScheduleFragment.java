@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -106,11 +107,14 @@ public class ScheduleFragment extends Fragment {
         private TextView mCrnText;
         private TextView mCourseText;
         private TextView mTitleText;
+        private TextView mTypeText;
         private TextView mDayText;
         private TextView mTimeText;
         private TextView mRoomText;
         private TextView mInstructorText;
         private Button mDeleteButton;
+        private FrameLayout mTypeLayout;
+
 
         private CourseHolder(View view){
             super(view);
@@ -120,10 +124,14 @@ public class ScheduleFragment extends Fragment {
             mCrnText = (TextView)view.findViewById(R.id.concise_crn_text);
             mCourseText = (TextView)view.findViewById(R.id.concise_course_text);
             mTitleText = (TextView)view.findViewById(R.id.concise_title_text);
+            mTypeText = (TextView)view.findViewById(R.id.concise_type_text);
             mTimeText = (TextView)view.findViewById(R.id.concise_time_text);
             mDayText = (TextView)view.findViewById(R.id.concise_day_text);
             mRoomText = (TextView)view.findViewById(R.id.concise_room_text);
             mInstructorText = (TextView)view.findViewById(R.id.concise_instructor_text);
+            mTypeLayout = (FrameLayout)view.findViewById(R.id.concise_type_layout);
+
+            mTypeLayout.setVisibility(View.INVISIBLE);
 
             mDeleteButton = (Button)view.findViewById(R.id.concise_delete_button);
             mDeleteButton.setVisibility(View.INVISIBLE);
@@ -156,6 +164,11 @@ public class ScheduleFragment extends Fragment {
             mDayText.setText(mCourse.getDays());
             mRoomText.setText(mCourse.getRoom());
             mInstructorText.setText(mCourse.getInstructor());
+
+            if(mCourse.getInstructor().equals("TBA")){
+                mTypeLayout.setVisibility(View.VISIBLE);
+                mTypeText.setText(mCourse.getType());
+            }
         }
 
         @Override

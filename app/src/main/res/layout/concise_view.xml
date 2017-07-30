@@ -144,6 +144,25 @@
 
             </FrameLayout>
 
+            <FrameLayout
+                android:id="@+id/concise_type_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/round_rect_shape"
+                android:layout_marginLeft="2dp"
+                android:backgroundTint="@color/colorGray">
+
+                <TextView
+                    android:id="@+id/concise_type_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textColor="#ffffff"
+                    android:gravity="center"
+                    android:text="LAB AB1"/>
+            </FrameLayout>
+
 
         </LinearLayout>
     </LinearLayout>
