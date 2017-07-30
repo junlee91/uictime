@@ -129,6 +129,14 @@ public class CourseListFragment extends Fragment {
             // mselectButton.setBackground(getResources().getDrawable(R.drawable.ic_search_black_24dp));
         }
 
+        if(requestCode == DETAIL_SELECT){
+            boolean onClick = (boolean)data.getSerializableExtra(DetailPickerFragment.EXTRA_CLICK);
+
+            if(onClick){
+
+            }
+        }
+
     }
 
     private void setButtonClickListener(){
@@ -150,8 +158,6 @@ public class CourseListFragment extends Fragment {
     private class CourseHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener{
 
-        private int row_index;
-
         private Course mCourse;
         private TextView subjectText;
         private TextView numberText;
@@ -159,15 +165,11 @@ public class CourseListFragment extends Fragment {
         private Button addButton;
         private TextView creditsText;
         private LinearLayout mLinearLayout;
-        private FrameLayout mFrameLayout;
-
-        private SparseBooleanArray selectedItems;
 
         private CourseHolder(View itemView){
             super(itemView);
 
             itemView.setOnClickListener(this);
-            itemView.getVerticalScrollbarPosition();
 
             subjectText = (TextView)itemView.findViewById(R.id.course_subject_text);
             numberText = (TextView)itemView.findViewById(R.id.course_number_text);
@@ -176,8 +178,6 @@ public class CourseListFragment extends Fragment {
             creditsText = (TextView)itemView.findViewById(R.id.course_credit_text);
 
             mLinearLayout = (LinearLayout)itemView.findViewById(R.id.course_view_layout);
-            mFrameLayout = (FrameLayout)itemView.findViewById(R.id.course_layout);
-            mFrameLayout.setOnClickListener(this);
 
             addButton.setVisibility(View.INVISIBLE);
             addButton.setActivated(false);
@@ -188,14 +188,14 @@ public class CourseListFragment extends Fragment {
 
                     FragmentManager manager = getFragmentManager();
                     DetailPickerFragment dialog = DetailPickerFragment.newInstance(mCourse);
+                    dialog.setTargetFragment(CourseListFragment.this, DETAIL_SELECT);
                     dialog.show(manager, DETAIL_SELECTOR);
                 }
             });
         }
 
-        private void bindCourse(Course course, int pos){
+        private void bindCourse(Course course){
             mCourse = course;
-            row_index = pos;
 
             subjectText.setText(mCourse.getSubject());
             numberText.setText(String.valueOf(mCourse.getNumber()));
@@ -203,12 +203,18 @@ public class CourseListFragment extends Fragment {
             creditsText.setText(" " + mCourse.getCredits().replace(".", ""));
         }
 
-        @Override
-        public void onClick(View v) {
+        private void setOnFocusChange(int position){
 
-            Log.d(TAG,"onClick FrameLayout");
-
-            if( addButton.isActivated() )
+            if(selected_row_index == position){
+                subjectText.setTextColor(getResources().getColor(R.color.colorTextIdle));
+                numberText.setTextColor(getResources().getColor(R.color.colorTextIdle));
+                titleText.setTextColor(getResources().getColor(R.color.colorTextIdle));
+                mLinearLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                creditsText.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                addButton.setActivated(true);
+                addButton.setVisibility(View.VISIBLE);
+            }
+            else
             {
                 subjectText.setTextColor(getResources().getColor(R.color.colorAccent));
                 numberText.setTextColor(getResources().getColor(R.color.colorAccent));
@@ -218,20 +224,21 @@ public class CourseListFragment extends Fragment {
                 addButton.setActivated(false);
                 addButton.setVisibility(View.INVISIBLE);
             }
-            else
-            {
-                subjectText.setTextColor(getResources().getColor(R.color.colorTextIdle));
-                numberText.setTextColor(getResources().getColor(R.color.colorTextIdle));
-                titleText.setTextColor(getResources().getColor(R.color.colorTextIdle));
-                mLinearLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                creditsText.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-                addButton.setActivated(true);
-                addButton.setVisibility(View.VISIBLE);
-            }
 
+        }
+
+        @Override
+        public void onClick(View v) {
+
+            if(getAdapterPosition() == RecyclerView.NO_POSITION) return;
+
+            mAdapter.notifyItemChanged(selected_row_index);
+            selected_row_index = getAdapterPosition();
+            mAdapter.notifyItemChanged(selected_row_index);
         }
     }
 
+    static int selected_row_index = -1;
     private class CourseAdapter extends RecyclerView.Adapter<CourseHolder>{
 
         private List<Course> mCourses;
@@ -253,7 +260,8 @@ public class CourseListFragment extends Fragment {
         public void onBindViewHolder(CourseHolder holder, int position) {
             Course course = mCourses.get(position);
 
-            holder.bindCourse(course, position);
+            holder.bindCourse(course);
+            holder.setOnFocusChange(position);
         }
 
         @Override

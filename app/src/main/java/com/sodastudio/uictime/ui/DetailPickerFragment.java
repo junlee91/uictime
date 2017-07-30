@@ -1,7 +1,10 @@
 package com.sodastudio.uictime.ui;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -42,6 +45,9 @@ import java.util.List;
 public class DetailPickerFragment extends DialogFragment {
 
     private static final String ARG_COURSE = "course";
+
+    public static final String EXTRA_CLICK =
+            "com.sodastudio.uictime.detailcourse.click";
 
     static final String COURSE_ADD = "CourseAdd";
 
@@ -100,7 +106,6 @@ public class DetailPickerFragment extends DialogFragment {
         manAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO:: Add detail course by user input. (Additional fragment needed here)
                 FragmentManager manager = getFragmentManager();
                 CourseAddFragment dialog = new CourseAddFragment();
                 dialog.show(manager, COURSE_ADD);
@@ -305,7 +310,13 @@ public class DetailPickerFragment extends DialogFragment {
                     AlertDialog dialog;
                     AlertDialog.Builder builder = new AlertDialog.Builder(DetailPickerFragment.this.getContext());
                     dialog = builder.setMessage("No result found..\nYou can add course manually!\n\nPlease click the button on the right corner.")
-                            .setPositiveButton("Ok", null)
+                            .setPositiveButton("Ok",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            sendResult(Activity.RESULT_OK, true);
+                                        }
+                                    })
                             .create();
                     dialog.show();
                 }
@@ -316,6 +327,16 @@ public class DetailPickerFragment extends DialogFragment {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void sendResult(int resultCode, boolean onClick){
+        if(getTargetFragment() == null) return;
+
+        Intent intent = new Intent();
+        intent.putExtra(EXTRA_CLICK, onClick);
+
+        getTargetFragment()
+                .onActivityResult(getTargetRequestCode(), resultCode, intent);
     }
 
     private void showToast(String text) {
