@@ -354,7 +354,8 @@ public class CourseListFragment extends Fragment {
                     emptyView.setVisibility(View.VISIBLE);
                 }
 
-                mAdapter.notifyDataSetChanged();
+                mAdapter.notifyDataSetChanged();    // refresh the course list
+                selected_row_index = -1;            // reset row index
 
             } catch (Exception e){
                 e.printStackTrace();

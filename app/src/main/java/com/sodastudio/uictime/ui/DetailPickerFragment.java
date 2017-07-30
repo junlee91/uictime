@@ -140,7 +140,7 @@ public class DetailPickerFragment extends DialogFragment {
         private TextView DaysText;
         private TextView TimeText;
         private TextView RoomText;
-        private Button viewButton;
+        private Button addButton;
 
 
         private DetailCourseHolder(View itemView) {
@@ -155,22 +155,22 @@ public class DetailPickerFragment extends DialogFragment {
             TimeText = (TextView)itemView.findViewById(R.id.detail_time_text);
             RoomText = (TextView)itemView.findViewById(R.id.detail_room_text);
 
-            viewButton = (Button)itemView.findViewById(R.id.detail_add_button);
-            viewButton.setVisibility(View.INVISIBLE);
-            viewButton.setActivated(false);
+            addButton = (Button)itemView.findViewById(R.id.detail_add_button);
+            addButton.setVisibility(View.INVISIBLE);
+            addButton.setActivated(false);
 
-            viewButton.setOnClickListener(new View.OnClickListener() {
+            addButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     mScheduleManager = ScheduleManager.getInstance(getActivity());
 
                     if(mScheduleManager.addSchedule(mCourse)){
-                        showToast("Course add success!");
+                        showToast(mCourse.getSubject() + " " + mCourse.getNumber() + " " + mCourse.getTitle() + " add success!");
                     } else{
-                        showToast("Course already in schedule!");
+                        showToast(mCourse.getSubject() + " " + mCourse.getNumber() + " " + mCourse.getTitle() + " already in schedule!");
                     }
 
-                    viewButton.setVisibility(View.INVISIBLE);
+                    addButton.setVisibility(View.INVISIBLE);
                 }
             });
         }
@@ -188,15 +188,15 @@ public class DetailPickerFragment extends DialogFragment {
 
         @Override
         public void onClick(View v) {
-            if( viewButton.isActivated() )
+            if( addButton.isActivated() )
             {
-                viewButton.setActivated(false);
-                viewButton.setVisibility(View.INVISIBLE);
+                addButton.setActivated(false);
+                addButton.setVisibility(View.INVISIBLE);
             }
             else
             {
-                viewButton.setActivated(true);
-                viewButton.setVisibility(View.VISIBLE);
+                addButton.setActivated(true);
+                addButton.setVisibility(View.VISIBLE);
             }
         }
     }
