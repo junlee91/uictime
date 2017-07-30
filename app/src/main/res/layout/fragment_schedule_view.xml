@@ -6,7 +6,8 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryBackground">
 
         <LinearLayout
             android:id="@+id/schedule_linear_layout"
@@ -22,6 +23,7 @@
                 android:id="@+id/schedule_list_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="#e8f7ff"
                 android:visibility="invisible">
             </android.support.v7.widget.RecyclerView>
         </LinearLayout>
@@ -36,23 +38,27 @@
 
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/schedule_total_credits_text"
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="10dp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:text="Total: 12 Hours"
-        android:textSize="20sp"
-        />
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/schedule_total_credits_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="Total: 12 Hours"
+            android:textSize="15sp"/>
+    </FrameLayout>
 
     <Spinner
         android:id="@+id/schedule_term_spinner"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="10dp"
         android:layout_alignParentLeft="true">
     </Spinner>
@@ -62,7 +68,7 @@
         android:id="@+id/concise_view_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="10dp"
         android:layout_alignParentRight="true"
         android:background="@drawable/ic_view_list_black_24dp"/>

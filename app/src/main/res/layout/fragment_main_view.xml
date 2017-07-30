@@ -11,7 +11,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryBackground">
 
         <include layout="@layout/top_menu_bar"/>
     </LinearLayout>
@@ -23,6 +24,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorPrimaryBackground"
             android:id="@+id/fragment">
         </RelativeLayout>
     </FrameLayout>

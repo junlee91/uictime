@@ -11,4 +11,5 @@
     <color name="colorDeleteButton">#ff2600</color>
     <color name="colorCourseListIdle">#d4ddda</color>
     <color name="colorCourseTimeIdle">#686d6b</color>
+    <color name="colorPrimaryBackground">#c9edff</color>
 </resources>
