@@ -144,15 +144,19 @@ public class CourseAddFragment extends DialogFragment {
 
                 mScheduleManager = ScheduleManager.getInstance(getActivity());
 
-                if( mScheduleManager.addSchedule(detailCourse) ){
+                int type = mScheduleManager.addSchedule(detailCourse);
+
+                if( type == 0 ){
 
                     // Add toast
                     String text = subjectText.getText().toString() + " " +
                             numberText.getText().toString() + " " +
                             mTitle + " add success!";
                     showToast(text);
-                } else {
+                } else if(type == 1){
                     showToast("Course already in schedule!");
+                } else if(type == 2){
+                    showToast("Course time conflict!");
                 }
 
                 getDialog().dismiss();

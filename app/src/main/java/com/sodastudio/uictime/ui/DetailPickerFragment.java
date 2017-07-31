@@ -163,11 +163,13 @@ public class DetailPickerFragment extends DialogFragment {
                 @Override
                 public void onClick(View v) {
                     mScheduleManager = ScheduleManager.getInstance(getActivity());
-
-                    if(mScheduleManager.addSchedule(mCourse)){
+                    int type = mScheduleManager.addSchedule(mCourse);
+                    if( type == 0){
                         showToast(mCourse.getSubject() + " " + mCourse.getNumber() + " " + mCourse.getTitle() + " add success!");
-                    } else{
-                        showToast(mCourse.getSubject() + " " + mCourse.getNumber() + " " + mCourse.getTitle() + " already in schedule!");
+                    } else if(type == 1){
+                        showToast("Course already in schedule!");
+                    } else if(type == 2){
+                        showToast("Course time conflict!");
                     }
 
                     addButton.setVisibility(View.INVISIBLE);
