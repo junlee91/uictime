@@ -12,4 +12,5 @@
     <color name="colorCourseListIdle">#d4ddda</color>
     <color name="colorCourseTimeIdle">#686d6b</color>
     <color name="colorPrimaryBackground">#c9edff</color>
+    <color name="colorFFFFFF">#ffffff</color>
 </resources>

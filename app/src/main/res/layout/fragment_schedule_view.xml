@@ -9,6 +9,17 @@
         android:layout_height="match_parent"
         android:background="@color/colorPrimaryBackground">
 
+        <!--Schedule Table-->
+        <FrameLayout
+            android:id="@+id/schedule_table_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="2dp">
+
+            <include layout="@layout/time_table"/>
+
+        </FrameLayout>
+
         <LinearLayout
             android:id="@+id/schedule_linear_layout"
             android:layout_width="match_parent"
@@ -27,14 +38,6 @@
                 android:visibility="invisible">
             </android.support.v7.widget.RecyclerView>
         </LinearLayout>
-
-        <!--Schedule Table-->
-        <FrameLayout
-            android:id="@+id/schedule_table_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </FrameLayout>
 
     </FrameLayout>
 
