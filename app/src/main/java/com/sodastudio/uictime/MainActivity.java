@@ -11,8 +11,6 @@ public class MainActivity extends SingleFragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // TODO:: LoadingActivity with animation
     }
 
     @Override
