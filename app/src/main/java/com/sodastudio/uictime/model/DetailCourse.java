@@ -1,5 +1,9 @@
 package com.sodastudio.uictime.model;
 
+import com.sodastudio.uictime.utils.UICTimeUtils;
+
+import java.util.Date;
+
 /**
  * Created by Jun on 7/22/2017.
  */
@@ -16,6 +20,8 @@ public class DetailCourse {
     private String mTime;
     private String mRoom;
     private String mInstructor;
+    private Date mStartTime;
+    private Date mEndTime;
 
     public DetailCourse(int term, String subject, int number, String title, String credits, int CRN, String type, String days, String time, String room, String instructor) {
         mTerm = term;
@@ -29,6 +35,32 @@ public class DetailCourse {
         mTime = time;
         mRoom = room;
         mInstructor = instructor;
+
+        mStartTime = new Date();
+        mEndTime = new Date();
+
+        setDate(mTime);
+    }
+
+    private void setDate(String times){
+        int startH = UICTimeUtils.getStartHour(times);
+        int startM = UICTimeUtils.getStartMin(times);
+        int endH = UICTimeUtils.getEndHour(times);
+        int endM = UICTimeUtils.getEndMin(times);
+
+        mStartTime.setHours(startH);
+        mStartTime.setMinutes(startM);
+
+        mEndTime.setHours(endH);
+        mEndTime.setMinutes(endM);
+    }
+
+    public Date getStartTime() {
+        return mStartTime;
+    }
+
+    public Date getEndTime() {
+        return mEndTime;
     }
 
     public int getTerm() {

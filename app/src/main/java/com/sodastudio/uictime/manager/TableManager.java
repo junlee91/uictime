@@ -39,6 +39,26 @@ public class TableManager {
         mFriday = new ArrayList<>();
     }
 
+    public void addToMonday(DetailCourse detailCourse){
+        mMonday.add(detailCourse);
+    }
+
+    public void addToTuesday(DetailCourse detailCourse){
+        mTuesday.add(detailCourse);
+    }
+
+    public void addToWednesday(DetailCourse detailCourse){
+        mWednesday.add(detailCourse);
+    }
+
+    public void addToThursday(DetailCourse detailCourse){
+        mThursday.add(detailCourse);
+    }
+
+    public void addToFriday(DetailCourse detailCourse){
+        mFriday.add(detailCourse);
+    }
+
     public List<DetailCourse> getMonday() {
         return mMonday;
     }

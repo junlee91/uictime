@@ -5,6 +5,7 @@ import android.content.Context;
 import com.sodastudio.uictime.model.DetailCourse;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,9 +15,12 @@ import java.util.List;
 public class ScheduleManager {
 
     static ScheduleManager sScheduleManager;
+
     private List<DetailCourse> mCourses;
 
     private Context mContext;
+
+    private TableManager mTableManager;
 
     // 8am ~ 7pm
     // day[0] ~ day[3]  : AM    (8~11am)
@@ -49,6 +53,7 @@ public class ScheduleManager {
         mContext = context;
 
         mCourses = new ArrayList<>();
+        mTableManager = TableManager.getInstance(context);
     }
 
     public List<DetailCourse> getCourses(){
@@ -67,29 +72,129 @@ public class ScheduleManager {
 
         // check for duplicated CRN
         for(DetailCourse course : mCourses){
-            if(detailCourse.getCRN() == course.getCRN() && detailCourse.getCRN() != 1000){
-                return 1;
+            if(detailCourse.getCRN() == course.getCRN() && detailCourse.getCRN() != 9999){
+                return 1;   // CRN duplication
             }
         }
 
-
         // TODO:: check for time
-        if(detailCourse.getDays().equals("TBA") || detailCourse.getTime().equals("TBA")
-                || detailCourse.getTime().equals("ARRANGED")){
-            return 0;
+        Date startTime = detailCourse.getStartTime();       // 9:00
+        Date endTime = detailCourse.getEndTime();           // 9:50
+
+        String days = detailCourse.getDays();
+
+        if( !checkValidateTime(days, startTime, endTime) )
+        {
+            return 2;       // course time conflict
         }
 
-        // invalid case
-        if(!validate(detailCourse.getDays(), detailCourse.getTime())){
-            return 2;
-        }
+        updateTableManager(days, detailCourse); // add to TableManager
 
-        // TODO:: add to schedule table
-        addCourseToScheduleTable(detailCourse.getDays(), detailCourse.getTime());
-
-        mCourses.add(detailCourse);
-        return 0;
+        mCourses.add(detailCourse);     // add to ScheduleManager
+        return 0;                       // success
     }
+
+    private boolean checkValidateTime(String days, Date startTime, Date endTime){
+
+        for(int i = 0; i < days.length(); i++) {
+            char day = days.charAt(i);
+
+            switch (day){
+                case 'M':
+                    for(DetailCourse course : mTableManager.getMonday()){
+
+                        if( startTime.after(course.getStartTime()) && startTime.before(course.getEndTime())){
+                            return false;
+                        }
+                        if( endTime.after(course.getStartTime()) && endTime.before(course.getEndTime())){
+                            return false;
+                        }
+                    }
+                    break;
+                case 'T':
+                    for(DetailCourse course : mTableManager.getTuesday()){
+
+                        if( startTime.after(course.getStartTime()) && startTime.before(course.getEndTime())){
+                            return false;
+                        }
+                        if( endTime.after(course.getStartTime()) && endTime.before(course.getEndTime())){
+                            return false;
+                        }
+                    }
+                    break;
+                case 'W':
+                    for(DetailCourse course : mTableManager.getWednesday()){
+
+                        if( startTime.after(course.getStartTime()) && startTime.before(course.getEndTime())){
+                            return false;
+                        }
+                        if( endTime.after(course.getStartTime()) && endTime.before(course.getEndTime())){
+                            return false;
+                        }
+                    }
+                    break;
+                case 'R':
+                    for(DetailCourse course : mTableManager.getThursday()){
+
+                        if( startTime.after(course.getStartTime()) && startTime.before(course.getEndTime())){
+                            return false;
+                        }
+                        if( endTime.after(course.getStartTime()) && endTime.before(course.getEndTime())){
+                            return false;
+                        }
+                    }
+                    break;
+                case 'F':
+                    for(DetailCourse course : mTableManager.getFriday()){
+
+                        if( startTime.after(course.getStartTime()) && startTime.before(course.getEndTime())){
+                            return false;
+                        }
+                        if( endTime.after(course.getStartTime()) && endTime.before(course.getEndTime())){
+                            return false;
+                        }
+                    }
+                    break;
+            }
+
+        }
+            return true;
+    }
+
+    private void updateTableManager(String days, DetailCourse detailCourse){
+        for(int i = 0; i < days.length(); i++){
+            char day = days.charAt(i);          // M
+
+            switch (day){
+                case 'M':
+                    mTableManager.addToMonday(detailCourse);
+                    break;
+                case 'T':
+                    mTableManager.addToTuesday(detailCourse);
+                    break;
+                case 'W':
+                    mTableManager.addToWednesday(detailCourse);
+                    break;
+                case 'R':
+                    mTableManager.addToThursday(detailCourse);
+                    break;
+                case 'F':
+                    mTableManager.addToFriday(detailCourse);
+                    break;
+            }
+        }
+    }
+
+
+
+//        // invalid case
+//        if(!validate(detailCourse.getDays(), detailCourse.getTime())){
+//            return 2;
+//        }
+//
+//        // TODO:: add to schedule table
+//        addCourseToScheduleTable(detailCourse.getDays(), detailCourse.getTime());
+
 
     // day: MWF T MW    time: 03:00 PM 03:50 PM    9:30 AM 9:50 PM
     private void addCourseToScheduleTable(String days, String times){
