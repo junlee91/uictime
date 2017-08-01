@@ -16,7 +16,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="2dp">
 
-            <include layout="@layout/time_table"/>
+            <!--<include layout="@layout/time_table"/>-->
 
         </FrameLayout>
 

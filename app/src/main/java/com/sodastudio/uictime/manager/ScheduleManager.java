@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ScheduleManager {
 
-    private static ScheduleManager sScheduleManager;
+    static ScheduleManager sScheduleManager;
     private List<DetailCourse> mCourses;
 
     private Context mContext;
@@ -45,7 +45,7 @@ public class ScheduleManager {
 
     //TODO:: Check validity before adding to ScheduleManager
 
-    public ScheduleManager(Context context){
+    private ScheduleManager(Context context){
         mContext = context;
 
         mCourses = new ArrayList<>();
@@ -162,6 +162,7 @@ public class ScheduleManager {
         }
 
         //TODO: size: 12 -> 24
+        //TODO: Half time needed
         if(startM >= 0 && startM < 30){         // class starts at 9:15
             // first half
         }

@@ -1,4 +1,4 @@
-package com.sodastudio.uictime;
+package com.sodastudio.uictime.utils;
 
 /**
  * Created by Jun on 7/22/2017.

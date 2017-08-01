@@ -9,17 +9,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.sodastudio.uictime.CourseLibrary;
+import com.sodastudio.uictime.utils.CourseLibrary;
 import com.sodastudio.uictime.manager.CourseManager;
 import com.sodastudio.uictime.R;
 import com.sodastudio.uictime.model.Course;
