@@ -14,7 +14,11 @@ public class UICTimeUtils {
 
         if(startDay.equals("PM"))
         {
-            startHour += 12;
+            if(startHour == 12){
+                startHour = 12;
+            }
+            else
+                startHour += 12;
         }
 
         return startHour;
@@ -32,7 +36,11 @@ public class UICTimeUtils {
 
         if(endDay.equals("PM"))
         {
-            endHour += 12;
+            if(endHour == 12){
+                endHour = 12;
+            }
+            else
+                endHour += 12;
         }
 
         return endHour;

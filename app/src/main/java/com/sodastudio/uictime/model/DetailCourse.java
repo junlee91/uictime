@@ -39,7 +39,8 @@ public class DetailCourse {
         mStartTime = new Date();
         mEndTime = new Date();
 
-        setDate(mTime);
+        if( !(mTime.equals("ARRANGED") || mTime.equals("") || mTime.equals("TBA")))
+            setDate(mTime);
     }
 
     private void setDate(String times){

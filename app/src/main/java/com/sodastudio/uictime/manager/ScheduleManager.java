@@ -77,13 +77,18 @@ public class ScheduleManager {
             }
         }
 
+        String days = detailCourse.getDays();
+        String mTime = detailCourse.getTime();
         // TODO: Special Case  "TBA" "ARRANGED"
+        if(days.equals("ARRANGED") || days.equals("TBA") || days.equals("") ||
+                mTime.equals("ARRANGED") || mTime.equals("") || mTime.equals("TBA")){
+            mCourses.add(detailCourse);
+            return 0;
+        }
 
         // TODO: check for time
         Date startTime = detailCourse.getStartTime();       // 9:00
         Date endTime = detailCourse.getEndTime();           // 9:50
-
-        String days = detailCourse.getDays();
 
         if( !checkValidateTime(days, startTime, endTime) )
         {
@@ -105,10 +110,10 @@ public class ScheduleManager {
                 case 'M':
                     for(DetailCourse course : mTableManager.getMonday()){
 
-                        if( startTime.after(course.getStartTime()) && startTime.before(course.getEndTime())){
+                        if( startTime.after(course.getStartTime()) && startTime.before(course.getEndTime()) || startTime.equals(course.getStartTime())){
                             return false;
                         }
-                        if( endTime.after(course.getStartTime()) && endTime.before(course.getEndTime())){
+                        if( endTime.after(course.getStartTime()) && endTime.before(course.getEndTime()) || endTime.equals(course.getEndTime())){
                             return false;
                         }
                     }
@@ -116,10 +121,10 @@ public class ScheduleManager {
                 case 'T':
                     for(DetailCourse course : mTableManager.getTuesday()){
 
-                        if( startTime.after(course.getStartTime()) && startTime.before(course.getEndTime())){
+                        if( startTime.after(course.getStartTime()) && startTime.before(course.getEndTime()) || startTime.equals(course.getStartTime())){
                             return false;
                         }
-                        if( endTime.after(course.getStartTime()) && endTime.before(course.getEndTime())){
+                        if( endTime.after(course.getStartTime()) && endTime.before(course.getEndTime()) || endTime.equals(course.getEndTime())){
                             return false;
                         }
                     }
@@ -127,10 +132,10 @@ public class ScheduleManager {
                 case 'W':
                     for(DetailCourse course : mTableManager.getWednesday()){
 
-                        if( startTime.after(course.getStartTime()) && startTime.before(course.getEndTime())){
+                        if( startTime.after(course.getStartTime()) && startTime.before(course.getEndTime()) || startTime.equals(course.getStartTime())){
                             return false;
                         }
-                        if( endTime.after(course.getStartTime()) && endTime.before(course.getEndTime())){
+                        if( endTime.after(course.getStartTime()) && endTime.before(course.getEndTime()) || endTime.equals(course.getEndTime())){
                             return false;
                         }
                     }
@@ -138,10 +143,10 @@ public class ScheduleManager {
                 case 'R':
                     for(DetailCourse course : mTableManager.getThursday()){
 
-                        if( startTime.after(course.getStartTime()) && startTime.before(course.getEndTime())){
+                        if( startTime.after(course.getStartTime()) && startTime.before(course.getEndTime()) || startTime.equals(course.getStartTime())){
                             return false;
                         }
-                        if( endTime.after(course.getStartTime()) && endTime.before(course.getEndTime())){
+                        if( endTime.after(course.getStartTime()) && endTime.before(course.getEndTime()) || endTime.equals(course.getEndTime())){
                             return false;
                         }
                     }
@@ -149,10 +154,10 @@ public class ScheduleManager {
                 case 'F':
                     for(DetailCourse course : mTableManager.getFriday()){
 
-                        if( startTime.after(course.getStartTime()) && startTime.before(course.getEndTime())){
+                        if( startTime.after(course.getStartTime()) && startTime.before(course.getEndTime()) || startTime.equals(course.getStartTime())){
                             return false;
                         }
-                        if( endTime.after(course.getStartTime()) && endTime.before(course.getEndTime())){
+                        if( endTime.after(course.getStartTime()) && endTime.before(course.getEndTime()) || endTime.equals(course.getEndTime())){
                             return false;
                         }
                     }
