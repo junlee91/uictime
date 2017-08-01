@@ -79,5 +79,22 @@ public class TableManager {
         return mFriday;
     }
 
+    public void deleteCourse(DetailCourse mCourse){
+        if(mMonday.contains(mCourse))
+            mMonday.remove(mCourse);
+
+        if(mTuesday.contains(mCourse))
+            mTuesday.remove(mCourse);
+
+        if(mWednesday.contains(mCourse))
+            mWednesday.remove(mCourse);
+
+        if(mThursday.contains(mCourse))
+            mThursday.remove(mCourse);
+
+        if(mFriday.contains(mCourse))
+            mFriday.remove(mCourse);
+    }
+
 
 }

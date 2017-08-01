@@ -16,6 +16,44 @@
             android:layout_height="match_parent"
             android:layout_marginTop="2dp">
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/mondayCourse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorFFFFFF"
+                    android:background="@color/colorAccent"/>
+                <TextView
+                    android:id="@+id/tuesdayCourse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorFFFFFF"
+                    android:background="@color/colorAccent"/>
+                <TextView
+                    android:id="@+id/wednesdayCourse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorFFFFFF"
+                    android:background="@color/colorAccent"/>
+                <TextView
+                    android:id="@+id/thursdayCourse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorFFFFFF"
+                    android:background="@color/colorAccent"/>
+                <TextView
+                    android:id="@+id/fridayCourse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorFFFFFF"
+                    android:background="@color/colorAccent"/>
+            </LinearLayout>
+
             <!--<include layout="@layout/time_table"/>-->
 
         </FrameLayout>

@@ -77,7 +77,9 @@ public class ScheduleManager {
             }
         }
 
-        // TODO:: check for time
+        // TODO: Special Case  "TBA" "ARRANGED"
+
+        // TODO: check for time
         Date startTime = detailCourse.getStartTime();       // 9:00
         Date endTime = detailCourse.getEndTime();           // 9:50
 

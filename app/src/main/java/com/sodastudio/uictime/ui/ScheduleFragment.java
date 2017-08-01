@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sodastudio.uictime.manager.TableManager;
 import com.sodastudio.uictime.utils.CourseLibrary;
 import com.sodastudio.uictime.R;
 import com.sodastudio.uictime.manager.ScheduleManager;
@@ -33,16 +34,24 @@ public class ScheduleFragment extends Fragment {
     private Spinner mTermSpinner;
     private ArrayAdapter mTermAdapter;
 
-    private RecyclerView mScheduleListView;
+    private RecyclerView mScheduleListView;     // Concise Course Information
     private CourseAdapter mAdapter;
 
     private ImageButton mConciseViewButton;
     private ScheduleManager mScheduleManager;
+    private TableManager mTableManager;
 
     private TextView mTotalCreditTextView;
 
-    private Toast mToast;
+    //This is for testing
+    private TextView mondayText;
+    private TextView tuesdayText;
+    private TextView wednesdayText;
+    private TextView thursdayText;
+    private TextView fridayText;
 
+
+    private Toast mToast;
     private CourseLibrary mCourseLibrary;
 
     @Override
@@ -75,6 +84,13 @@ public class ScheduleFragment extends Fragment {
             }
         });
 
+        // this is for testing
+        mondayText = (TextView)view.findViewById(R.id.mondayCourse);
+        tuesdayText = (TextView)view.findViewById(R.id.tuesdayCourse);;
+        wednesdayText = (TextView)view.findViewById(R.id.wednesdayCourse);;
+        thursdayText = (TextView)view.findViewById(R.id.thursdayCourse);;
+        fridayText = (TextView)view.findViewById(R.id.fridayCourse);;
+
         mCourseLibrary = new CourseLibrary();
         upDateUI();
 
@@ -82,6 +98,41 @@ public class ScheduleFragment extends Fragment {
     }
 
     private void upDateUI(){
+
+        //this is for testing
+        String temp = "";
+        TableManager tableManager = TableManager.getInstance(getActivity());
+        for(DetailCourse detailCourse : tableManager.getMonday()){
+            temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
+        }
+        mondayText.setText("Monday: " + temp);
+
+        temp = "";
+        for(DetailCourse detailCourse : tableManager.getTuesday()){
+            temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
+        }
+        tuesdayText.setText("Tuesday: " + temp);
+
+        temp = "";
+        for(DetailCourse detailCourse : tableManager.getWednesday()){
+            temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
+        }
+        wednesdayText.setText("Wednesday: " + temp);
+
+        temp = "";
+        for(DetailCourse detailCourse : tableManager.getThursday()){
+            temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
+        }
+        thursdayText.setText("Thursday: " + temp);
+
+        temp = "";
+        for(DetailCourse detailCourse : tableManager.getFriday()){
+            temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
+        }
+        fridayText.setText("Friday: " + temp);
+
+
+
         int term_id = CourseListFragment.TERM_ID;   // get a term value from previous fragment
 
         String selected_term = mTermSpinner.getSelectedItem().toString();
@@ -142,14 +193,18 @@ public class ScheduleFragment extends Fragment {
                 public void onClick(View v) {
 
                     mScheduleManager = ScheduleManager.getInstance(getActivity());
-
                     mScheduleManager.deleteSchedule(mCourse);
+
+                    //TODO: Delete in TableManager
+                    mTableManager = TableManager.getInstance(getActivity());
+                    mTableManager.deleteCourse(mCourse);
 
                     showToast(mCourse.getSubject() + " " + mCourse.getNumber() + " " + mCourse.getTitle() + " deleted!!");
 
                     mDeleteButton.setVisibility(View.INVISIBLE);
 
                     mAdapter.notifyDataSetChanged();
+                    upDateUI();
                 }
             });
         }
@@ -226,4 +281,9 @@ public class ScheduleFragment extends Fragment {
         mToast.show();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        upDateUI();
+    }
 }
