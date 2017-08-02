@@ -77,19 +77,21 @@ public class ScheduleFragment extends Fragment {
                 if(!mConciseViewButton.isActivated()){
                     mScheduleListView.setVisibility(View.VISIBLE);
                     mConciseViewButton.setActivated(true);
+                    mConciseViewButton.setAlpha(0.4f);
                 } else {
                     mScheduleListView.setVisibility(View.INVISIBLE);
                     mConciseViewButton.setActivated(false);
+                    mConciseViewButton.setAlpha(1.0f);
                 }
             }
         });
 
         // this is for testing
         mondayText = (TextView)view.findViewById(R.id.mondayCourse);
-        tuesdayText = (TextView)view.findViewById(R.id.tuesdayCourse);;
-        wednesdayText = (TextView)view.findViewById(R.id.wednesdayCourse);;
-        thursdayText = (TextView)view.findViewById(R.id.thursdayCourse);;
-        fridayText = (TextView)view.findViewById(R.id.fridayCourse);;
+        tuesdayText = (TextView)view.findViewById(R.id.tuesdayCourse);
+        wednesdayText = (TextView)view.findViewById(R.id.wednesdayCourse);
+        thursdayText = (TextView)view.findViewById(R.id.thursdayCourse);
+        fridayText = (TextView)view.findViewById(R.id.fridayCourse);
 
         mCourseLibrary = new CourseLibrary();
         upDateUI();
