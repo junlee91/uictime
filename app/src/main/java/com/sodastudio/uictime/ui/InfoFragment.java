@@ -54,8 +54,6 @@ public class InfoFragment extends Fragment {
 
         //mNoticeList.add(new Notice( "Why Not", "Soda", "2018-05-05"));
 
-        new BackgroundTask().execute();
-
         mNoticeListAdapter = new NoticeListAdapter(getContext(), mNoticeList);
         notice_list_view.setAdapter(mNoticeListAdapter);
 
@@ -122,6 +120,8 @@ public class InfoFragment extends Fragment {
                     mNoticeList.add(notice);
                     count++;
                 }
+
+                mNoticeListAdapter.notifyDataSetChanged();
 
             } catch (Exception e){
                 e.printStackTrace();
