@@ -87,6 +87,10 @@ public class TimePickerFragment extends DialogFragment {
             time = start + ":" + end + " " + day;
         }
 
+        if(start < 10){
+            time = "0" + time;
+        }
+
         return time;
     }
 

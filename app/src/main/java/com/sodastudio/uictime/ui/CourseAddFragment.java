@@ -133,7 +133,7 @@ public class CourseAddFragment extends DialogFragment {
                 mTitle = titleText.getText().toString();
                 mCredits = mCreditSpinner.getSelectedItem().toString() + " Hours";
                 mCRN = 9999;
-                mType = "";
+                mType = "N/A";
                 mDays = getCheckedDays();
                 mTime = timeText.getText().toString();
                 mRoom = roomText.getText().toString();
