@@ -22,6 +22,7 @@ import com.sodastudio.uictime.manager.ScheduleManager;
 import com.sodastudio.uictime.model.DetailCourse;
 
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by Jun on 7/26/2017.
@@ -107,31 +108,31 @@ public class ScheduleFragment extends Fragment {
         for(DetailCourse detailCourse : tableManager.getMonday()){
             temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
         }
-        mondayText.setText("Monday: " + temp);
+        mondayText.setText("Monday: \n" + temp);
 
         temp = "";
         for(DetailCourse detailCourse : tableManager.getTuesday()){
             temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
         }
-        tuesdayText.setText("Tuesday: " + temp);
+        tuesdayText.setText("Tuesday: \n" + temp);
 
         temp = "";
         for(DetailCourse detailCourse : tableManager.getWednesday()){
             temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
         }
-        wednesdayText.setText("Wednesday: " + temp);
+        wednesdayText.setText("Wednesday: \n" + temp);
 
         temp = "";
         for(DetailCourse detailCourse : tableManager.getThursday()){
             temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
         }
-        thursdayText.setText("Thursday: " + temp);
+        thursdayText.setText("Thursday: \n" + temp);
 
         temp = "";
         for(DetailCourse detailCourse : tableManager.getFriday()){
             temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
         }
-        fridayText.setText("Friday: " + temp);
+        fridayText.setText("Friday: \n" + temp);
 
 
 
@@ -197,7 +198,6 @@ public class ScheduleFragment extends Fragment {
                     mScheduleManager = ScheduleManager.getInstance(getActivity());
                     mScheduleManager.deleteSchedule(mCourse);
 
-                    //TODO: Delete in TableManager
                     mTableManager = TableManager.getInstance(getActivity());
                     mTableManager.deleteCourse(mCourse);
 
@@ -271,8 +271,25 @@ public class ScheduleFragment extends Fragment {
     }
 
     private int getTotalCredits(List<DetailCourse> mCourseList){
-        // TODO:: return total credit hours
-        return 18;
+        // TODO: Need more tests
+        String creditText, Type;
+        int total = 0;
+
+        Scanner scanner;
+
+        for(DetailCourse course : mCourseList){
+            Type = course.getType();
+            if(Type.contains("LEC") || Type.contains("LCD")) {
+
+                creditText = course.getCredits();
+
+                scanner = new Scanner(creditText);
+
+                total += scanner.nextInt();
+            }
+        }
+
+        return total;
     }
 
     private void showToast(String text) {

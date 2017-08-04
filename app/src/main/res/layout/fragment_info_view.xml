@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
+              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
@@ -9,11 +10,16 @@
     <ListView
         android:id="@+id/notice_list_view"
         android:layout_width="match_parent"
-        android:layout_height="550dp"
+        android:layout_height="300dp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:dividerHeight="10dp">
+        android:layout_marginRight="10dp">
 
     </ListView>
-</FrameLayout>
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="80dp"
+        android:background="@drawable/sodastudio_logo"
+        android:layout_gravity="center"/>
+</LinearLayout>
