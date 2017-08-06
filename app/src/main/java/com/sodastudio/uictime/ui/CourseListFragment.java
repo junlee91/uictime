@@ -72,6 +72,8 @@ public class CourseListFragment extends Fragment {
         mselectButton = (Button)view.findViewById(R.id.select_button);
         mSelectedText = (TextView)view.findViewById(R.id.selected_term_text);
 
+        TERM_ID = 220178;   // THIS IS SET TO DEFAULT
+
         setButtonClickListener();
 
         updateUI();

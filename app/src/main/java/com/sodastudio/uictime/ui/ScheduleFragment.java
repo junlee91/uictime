@@ -138,19 +138,14 @@ public class ScheduleFragment extends Fragment {
 //        fridayText.setText("Friday: \n" + temp);
 
 
-
         int term_id = CourseListFragment.TERM_ID;   // get a term value from previous fragment
 
         String selected_term = mTermSpinner.getSelectedItem().toString();
         int selected_term_id = mCourseLibrary.getTermValue(selected_term);
-
-        // TODO:: at first show list from term_id
         // TODO:: get course list with specified term.  onItemSelectedListener? to notify adapter
 
-        //ScheduleManager scheduleManager = ScheduleManager.getInstance(getActivity());
-        //List<DetailCourse> mCourseList = scheduleManager.getCourses();
         ScheduleTableManager scheduleTableManager = ScheduleTableManager.getInstance(getActivity());
-        List<DetailCourse> mCourseList = scheduleTableManager.getSchedules();
+        List<DetailCourse> mCourseList = scheduleTableManager.getSchedules(term_id);
 
         mTotalCreditTextView.setText("Total: " + getTotalCredits(mCourseList) + " Hours");
 
@@ -161,8 +156,6 @@ public class ScheduleFragment extends Fragment {
             mAdapter.setSchedule(mCourseList);
             mAdapter.notifyDataSetChanged();
         }
-
-
     }
 
     private class CourseHolder extends RecyclerView.ViewHolder
@@ -207,9 +200,6 @@ public class ScheduleFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 
-                    //TODO: Change to ScheduleTableManager
-                    //mScheduleManager = ScheduleManager.getInstance(getActivity());
-                    //mScheduleManager.deleteSchedule(mCourse);
                     mScheduleTableManager = ScheduleTableManager.getInstance(getActivity());
                     mScheduleTableManager.deleteSchedule(mCourse);
 

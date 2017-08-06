@@ -64,8 +64,8 @@ public class DetailCourse {
         return mEndTime;
     }
 
-    public int getTerm() {
-        return mTerm;
+    public String getTerm() {
+        return String.valueOf(mTerm);
     }
 
     public void setTerm(int term) {
@@ -104,8 +104,8 @@ public class DetailCourse {
         mCredits = credits;
     }
 
-    public int getCRN() {
-        return mCRN;
+    public String getCRN() {
+        return String.valueOf(mCRN);
     }
 
     public void setCRN(int CRN) {

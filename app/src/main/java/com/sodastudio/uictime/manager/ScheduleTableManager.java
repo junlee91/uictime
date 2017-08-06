@@ -38,10 +38,10 @@ public class ScheduleTableManager {
 
     }
 
-    public List<DetailCourse> getSchedules(){
+    public List<DetailCourse> getSchedules(int termID){
         List<DetailCourse> mCourses = new ArrayList<>();
 
-        ScheduleCursorWrapper cursor = querySchedule(null, null);
+        ScheduleCursorWrapper cursor = querySchedule(ScheduleTable.Cols.TERMID + "= ?", new String[]{ String.valueOf(termID)});
 
         try {
             cursor.moveToFirst();
@@ -58,6 +58,8 @@ public class ScheduleTableManager {
 
     public int addSchedule(DetailCourse detailCourse){
 
+        //TODO: duplication check and time conflict check
+
         ContentValues values = getContentValue(detailCourse);   // get content value by course
         mDatabase.insert(ScheduleTable.NAME, null, values);     // add to database
 
@@ -68,27 +70,31 @@ public class ScheduleTableManager {
 
     public boolean deleteSchedule(DetailCourse detailCourse){
 
+        //TODO: more delete condition CRN and title    and success or fail
+
+        mDatabase.delete(ScheduleTable.NAME,
+                ScheduleTable.Cols.CRN + "= ?", new String[]{ detailCourse.getCRN() });
+
         return true; // success
     }
 
     private void updateSchedule(DetailCourse course){
-        int crn = course.getCRN();
         ContentValues values = getContentValue(course);
 
         mDatabase.update(ScheduleTable.NAME, values,
                 ScheduleTable.Cols.CRN + "= ?",
-                new String[]{ String.valueOf(crn) });
+                new String[]{ course.getCRN() });
     }
 
     private static ContentValues getContentValue(DetailCourse course){
         ContentValues values = new ContentValues();
 
-        values.put(ScheduleTable.Cols.TERMID, course.getTerm());        // int
+        values.put(ScheduleTable.Cols.TERMID, course.getTerm());        // string
         values.put(ScheduleTable.Cols.SUBJECT, course.getSubject());    // string
         values.put(ScheduleTable.Cols.NUMBER, course.getNumber());      // int
         values.put(ScheduleTable.Cols.TITLE, course.getTitle());        // string
         values.put(ScheduleTable.Cols.CREDITS, course.getCredits());    // string
-        values.put(ScheduleTable.Cols.CRN, course.getCRN());            // int
+        values.put(ScheduleTable.Cols.CRN, course.getCRN());            // string
         values.put(ScheduleTable.Cols.TYPE, course.getType());          // string
         values.put(ScheduleTable.Cols.DAYS, course.getDays());          // string
         values.put(ScheduleTable.Cols.TIME, course.getTime());          // string
