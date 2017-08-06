@@ -12,9 +12,7 @@ import java.util.List;
  */
 
 public class TableManager {
-    static TableManager sTableManager;
-
-    private Context mContext;
+    private static TableManager sTableManager;
 
     private List<DetailCourse> mMonday;
     private List<DetailCourse> mTuesday;
@@ -22,16 +20,14 @@ public class TableManager {
     private List<DetailCourse> mThursday;
     private List<DetailCourse> mFriday;
 
-    public static TableManager getInstance(Context context){
+    public static TableManager getInstance(){
         if(sTableManager == null)
-            sTableManager = new TableManager(context);
+            sTableManager = new TableManager();
 
         return sTableManager;
     }
 
-    private TableManager(Context context){
-        mContext = context;
-
+    private TableManager(){
         mMonday = new ArrayList<>();
         mTuesday = new ArrayList<>();
         mWednesday = new ArrayList<>();

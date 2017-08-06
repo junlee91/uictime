@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.sodastudio.uictime.manager.DetailCourseManager;
 import com.sodastudio.uictime.R;
 import com.sodastudio.uictime.manager.ScheduleManager;
+import com.sodastudio.uictime.manager.ScheduleTableManager;
 import com.sodastudio.uictime.model.Course;
 import com.sodastudio.uictime.model.DetailCourse;
 
@@ -51,7 +52,8 @@ public class DetailPickerFragment extends DialogFragment {
 
     static final String COURSE_ADD = "CourseAdd";
 
-    private ScheduleManager mScheduleManager;
+    //private ScheduleManager mScheduleManager;
+    private ScheduleTableManager mScheduleTableManager;
 
     private int mTerm;          // Fall 2017
     private String mSubject;    // CS
@@ -162,8 +164,12 @@ public class DetailPickerFragment extends DialogFragment {
             addButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mScheduleManager = ScheduleManager.getInstance(getActivity());
-                    int type = mScheduleManager.addSchedule(mCourse);
+                    //TODO: change to ScheduleTableManager
+                    //mScheduleManager = ScheduleManager.getInstance(getActivity());
+                    //int type = mScheduleManager.addSchedule(mCourse);
+                    mScheduleTableManager = ScheduleTableManager.getInstance(getActivity());
+                    int type = mScheduleTableManager.addSchedule(mCourse);
+
                     if( type == 0){
                         showToast(mCourse.getSubject() + " " + mCourse.getNumber() + " " + mCourse.getTitle() + " add success!");
                     } else if(type == 1){

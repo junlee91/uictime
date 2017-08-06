@@ -32,13 +32,11 @@ public class ScheduleManager {
         return sScheduleManager;
     }
 
-    //TODO:: Check validity before adding to ScheduleManager
-
     private ScheduleManager(Context context){
         mContext = context;
 
         mCourses = new ArrayList<>();
-        mTableManager = TableManager.getInstance(context);
+        mTableManager = TableManager.getInstance();
     }
 
     public List<DetailCourse> getCourses(){
@@ -55,7 +53,7 @@ public class ScheduleManager {
 
     public int addSchedule(DetailCourse detailCourse){
 
-        mTableManager = TableManager.getInstance(mContext);
+        mTableManager = TableManager.getInstance();
 
         // check for duplicated CRN
         for(DetailCourse course : mCourses){

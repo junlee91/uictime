@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sodastudio.uictime.manager.ScheduleTableManager;
 import com.sodastudio.uictime.manager.TableManager;
 import com.sodastudio.uictime.utils.CourseLibrary;
 import com.sodastudio.uictime.R;
@@ -39,8 +40,10 @@ public class ScheduleFragment extends Fragment {
     private CourseAdapter mAdapter;
 
     private ImageButton mConciseViewButton;
-    private ScheduleManager mScheduleManager;
-    private TableManager mTableManager;
+
+    private ScheduleTableManager mScheduleTableManager;
+    //private ScheduleManager mScheduleManager;
+    //private TableManager mTableManager;
 
     private TextView mTotalCreditTextView;
 
@@ -103,36 +106,36 @@ public class ScheduleFragment extends Fragment {
     private void upDateUI(){
 
         //this is for testing
-        String temp = "";
-        TableManager tableManager = TableManager.getInstance(getActivity());
-        for(DetailCourse detailCourse : tableManager.getMonday()){
-            temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
-        }
-        mondayText.setText("Monday: \n" + temp);
-
-        temp = "";
-        for(DetailCourse detailCourse : tableManager.getTuesday()){
-            temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
-        }
-        tuesdayText.setText("Tuesday: \n" + temp);
-
-        temp = "";
-        for(DetailCourse detailCourse : tableManager.getWednesday()){
-            temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
-        }
-        wednesdayText.setText("Wednesday: \n" + temp);
-
-        temp = "";
-        for(DetailCourse detailCourse : tableManager.getThursday()){
-            temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
-        }
-        thursdayText.setText("Thursday: \n" + temp);
-
-        temp = "";
-        for(DetailCourse detailCourse : tableManager.getFriday()){
-            temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
-        }
-        fridayText.setText("Friday: \n" + temp);
+//        String temp = "";
+//        TableManager tableManager = TableManager.getInstance(getActivity());
+//        for(DetailCourse detailCourse : tableManager.getMonday()){
+//            temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
+//        }
+//        mondayText.setText("Monday: \n" + temp);
+//
+//        temp = "";
+//        for(DetailCourse detailCourse : tableManager.getTuesday()){
+//            temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
+//        }
+//        tuesdayText.setText("Tuesday: \n" + temp);
+//
+//        temp = "";
+//        for(DetailCourse detailCourse : tableManager.getWednesday()){
+//            temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
+//        }
+//        wednesdayText.setText("Wednesday: \n" + temp);
+//
+//        temp = "";
+//        for(DetailCourse detailCourse : tableManager.getThursday()){
+//            temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
+//        }
+//        thursdayText.setText("Thursday: \n" + temp);
+//
+//        temp = "";
+//        for(DetailCourse detailCourse : tableManager.getFriday()){
+//            temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
+//        }
+//        fridayText.setText("Friday: \n" + temp);
 
 
 
@@ -144,13 +147,22 @@ public class ScheduleFragment extends Fragment {
         // TODO:: at first show list from term_id
         // TODO:: get course list with specified term.  onItemSelectedListener? to notify adapter
 
-        ScheduleManager scheduleManager = ScheduleManager.getInstance(getActivity());
-        List<DetailCourse> mCourseList = scheduleManager.getCourses();
+        //ScheduleManager scheduleManager = ScheduleManager.getInstance(getActivity());
+        //List<DetailCourse> mCourseList = scheduleManager.getCourses();
+        ScheduleTableManager scheduleTableManager = ScheduleTableManager.getInstance(getActivity());
+        List<DetailCourse> mCourseList = scheduleTableManager.getSchedules();
 
         mTotalCreditTextView.setText("Total: " + getTotalCredits(mCourseList) + " Hours");
 
-        mAdapter = new CourseAdapter(mCourseList);
-        mScheduleListView.setAdapter(mAdapter);
+        if(mAdapter == null){
+            mAdapter = new CourseAdapter(mCourseList);
+            mScheduleListView.setAdapter(mAdapter);
+        } else {
+            mAdapter.setSchedule(mCourseList);
+            mAdapter.notifyDataSetChanged();
+        }
+
+
     }
 
     private class CourseHolder extends RecyclerView.ViewHolder
@@ -195,11 +207,11 @@ public class ScheduleFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 
-                    mScheduleManager = ScheduleManager.getInstance(getActivity());
-                    mScheduleManager.deleteSchedule(mCourse);
-
-                    mTableManager = TableManager.getInstance(getActivity());
-                    mTableManager.deleteCourse(mCourse);
+                    //TODO: Change to ScheduleTableManager
+                    //mScheduleManager = ScheduleManager.getInstance(getActivity());
+                    //mScheduleManager.deleteSchedule(mCourse);
+                    mScheduleTableManager = ScheduleTableManager.getInstance(getActivity());
+                    mScheduleTableManager.deleteSchedule(mCourse);
 
                     showToast(mCourse.getSubject() + " " + mCourse.getNumber() + " " + mCourse.getTitle() + " deleted!!");
 
@@ -267,6 +279,10 @@ public class ScheduleFragment extends Fragment {
         @Override
         public int getItemCount() {
             return mCourseList.size();
+        }
+
+        public void setSchedule(List<DetailCourse> list){
+            mCourseList = list;
         }
     }
 

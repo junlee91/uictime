@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.sodastudio.uictime.R;
 import com.sodastudio.uictime.manager.ScheduleManager;
+import com.sodastudio.uictime.manager.ScheduleTableManager;
 import com.sodastudio.uictime.model.DetailCourse;
 
 /**
@@ -61,8 +62,9 @@ public class CourseAddFragment extends DialogFragment {
     private Button cancelButton;
     private Button addButton;
 
+    //private ScheduleManager mScheduleManager;
+    private ScheduleTableManager mScheduleTableManager;
     private ArrayAdapter mAdapter;
-    private ScheduleManager mScheduleManager;
     private Toast mToast;
     private AlertDialog mAlertDialog;
 
@@ -142,9 +144,11 @@ public class CourseAddFragment extends DialogFragment {
                 DetailCourse detailCourse = new DetailCourse(mTerm, mSubject, mNumber, mTitle,
                         mCredits, mCRN, mType, mDays, mTime, mRoom, mInstructor);
 
-                mScheduleManager = ScheduleManager.getInstance(getActivity());
+                //mScheduleManager = ScheduleManager.getInstance(getActivity());
+                mScheduleTableManager = ScheduleTableManager.getInstance(getActivity());
 
-                int type = mScheduleManager.addSchedule(detailCourse);
+                //TODO: change to ScheduleTableManager
+                int type = mScheduleTableManager.addSchedule(detailCourse);
 
                 if( type == 0 ){
 
