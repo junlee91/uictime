@@ -37,11 +37,8 @@ public class TableManager {
     }
 
     public void updateTable(List<DetailCourse> mCourses){
-        mMonday.clear();
-        mTuesday.clear();
-        mWednesday.clear();
-        mThursday.clear();
-        mFriday.clear();
+        Log.d("TableManager", "This is only called once");
+        clearTable();
 
         String days;
         for(DetailCourse course : mCourses){
@@ -75,6 +72,49 @@ public class TableManager {
                 case 'F': mFriday.add(course); break;
             }
         }
+    }
+
+    private void clearTable(){
+        mMonday.clear();
+        mTuesday.clear();
+        mWednesday.clear();
+        mThursday.clear();
+        mFriday.clear();
+    }
+
+    public void deleteCourse(DetailCourse mCourse){
+
+        for(DetailCourse course : mMonday){
+            if(mCourse.getCRN().equals(course.getCRN())){
+                mMonday.remove(course);
+                break;
+            }
+        }
+        for(DetailCourse course : mTuesday){
+            if(mCourse.getCRN().equals(course.getCRN())){
+                mTuesday.remove(course);
+                break;
+            }
+        }
+        for(DetailCourse course : mWednesday){
+            if(mCourse.getCRN().equals(course.getCRN())){
+                mWednesday.remove(course);
+                break;
+            }
+        }
+        for(DetailCourse course : mThursday){
+            if(mCourse.getCRN().equals(course.getCRN())){
+                mThursday.remove(course);
+                break;
+            }
+        }
+        for(DetailCourse course : mFriday){
+            if(mCourse.getCRN().equals(course.getCRN())){
+                mFriday.remove(course);
+                break;
+            }
+        }
+
     }
 
 

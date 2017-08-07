@@ -82,7 +82,8 @@ public class ScheduleTableManager {
         mDatabase.delete(ScheduleTable.NAME,
                 ScheduleTable.Cols.CRN + "= ?", new String[]{ detailCourse.getCRN() });
 
-        mTableManager.updateTable(getSchedules(CourseListFragment.TERM_ID));               // delete in Table
+        //mTableManager.updateTable(getSchedules(CourseListFragment.TERM_ID));               // delete in Table
+        mTableManager.deleteCourse(detailCourse);
 
         return true; // success
     }

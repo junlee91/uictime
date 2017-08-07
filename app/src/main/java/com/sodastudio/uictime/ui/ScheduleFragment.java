@@ -1,6 +1,7 @@
 package com.sodastudio.uictime.ui;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -43,8 +44,6 @@ public class ScheduleFragment extends Fragment {
     private ImageButton mConciseViewButton;
 
     private ScheduleTableManager mScheduleTableManager;
-    //private ScheduleManager mScheduleManager;
-    //private TableManager mTableManager;
 
     private TextView mTotalCreditTextView;
 
@@ -55,9 +54,15 @@ public class ScheduleFragment extends Fragment {
     private TextView thursdayText;
     private TextView fridayText;
 
-
     private Toast mToast;
     private CourseLibrary mCourseLibrary;
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -112,21 +117,17 @@ public class ScheduleFragment extends Fragment {
         // String selected_term = mTermSpinner.getSelectedItem().toString();
         // int selected_term_id = mCourseLibrary.getTermValue(selected_term);
 
-        ScheduleTableManager scheduleTableManager = ScheduleTableManager.getInstance(getActivity());
-        List<DetailCourse> mCourseList = scheduleTableManager.getSchedules(term_id);
+        mScheduleTableManager = ScheduleTableManager.getInstance(getActivity());
+        List<DetailCourse> mCourseList = mScheduleTableManager.getSchedules(term_id);
 
         mTotalCreditTextView.setText("Total: " + getTotalCredits(mCourseList) + " Hours");
 
         Log.d(TAG, "updateUI with new table view");
         tempView();
 
-        if(mAdapter == null){
-            mAdapter = new CourseAdapter(mCourseList);
-            mScheduleListView.setAdapter(mAdapter);
-        } else {
-            mAdapter.setSchedule(mCourseList);
-            mAdapter.notifyDataSetChanged();
-        }
+        mAdapter = new CourseAdapter(mCourseList);
+        mScheduleListView.setAdapter(mAdapter);
+
     }
 
     private class CourseHolder extends RecyclerView.ViewHolder
@@ -171,7 +172,6 @@ public class ScheduleFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 
-                    mScheduleTableManager = ScheduleTableManager.getInstance(getActivity());
                     mScheduleTableManager.deleteSchedule(mCourse);
 
                     showToast(mCourse.getSubject() + " " + mCourse.getNumber() + " " + mCourse.getTitle() + " deleted!!");
@@ -241,9 +241,6 @@ public class ScheduleFragment extends Fragment {
             return mCourseList.size();
         }
 
-        public void setSchedule(List<DetailCourse> list){
-            mCourseList = list;
-        }
     }
 
     private int getTotalCredits(List<DetailCourse> mCourseList){
@@ -284,33 +281,37 @@ public class ScheduleFragment extends Fragment {
     private void tempView(){
         //this is for testing
         String temp = "";
-
         TableManager tableManager = TableManager.getInstance();
         for(DetailCourse detailCourse : tableManager.getMonday()){
+            Log.d(TAG, "tempView: " + detailCourse.getTitle());
             temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
         }
         mondayText.setText("Monday: \n" + temp);
 
         temp = "";
         for(DetailCourse detailCourse : tableManager.getTuesday()){
+            Log.d(TAG, "tempView: " + detailCourse.getTitle());
             temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
         }
         tuesdayText.setText("Tuesday: \n" + temp);
 
         temp = "";
         for(DetailCourse detailCourse : tableManager.getWednesday()){
+            Log.d(TAG, "tempView: " + detailCourse.getTitle());
             temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
         }
         wednesdayText.setText("Wednesday: \n" + temp);
 
         temp = "";
         for(DetailCourse detailCourse : tableManager.getThursday()){
+            Log.d(TAG, "tempView: " + detailCourse.getTitle());
             temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
         }
         thursdayText.setText("Thursday: \n" + temp);
 
         temp = "";
         for(DetailCourse detailCourse : tableManager.getFriday()){
+            Log.d(TAG, "tempView: " + detailCourse.getTitle());
             temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
         }
         fridayText.setText("Friday: \n" + temp);
