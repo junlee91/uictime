@@ -21,7 +21,6 @@ import com.sodastudio.uictime.manager.ScheduleTableManager;
 import com.sodastudio.uictime.manager.TableManager;
 import com.sodastudio.uictime.utils.CourseLibrary;
 import com.sodastudio.uictime.R;
-import com.sodastudio.uictime.manager.ScheduleManager;
 import com.sodastudio.uictime.model.DetailCourse;
 
 import java.util.List;

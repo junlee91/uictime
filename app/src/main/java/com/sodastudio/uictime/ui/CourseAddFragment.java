@@ -3,7 +3,6 @@ package com.sodastudio.uictime.ui;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -20,7 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sodastudio.uictime.R;
-import com.sodastudio.uictime.manager.ScheduleManager;
 import com.sodastudio.uictime.manager.ScheduleTableManager;
 import com.sodastudio.uictime.model.DetailCourse;
 
@@ -62,7 +60,6 @@ public class CourseAddFragment extends DialogFragment {
     private Button cancelButton;
     private Button addButton;
 
-    //private ScheduleManager mScheduleManager;
     private ScheduleTableManager mScheduleTableManager;
     private ArrayAdapter mAdapter;
     private Toast mToast;
@@ -128,7 +125,6 @@ public class CourseAddFragment extends DialogFragment {
                     return;
                 }
 
-                //TODO::get all values and create DetailCourse and add to ScheduleManager
                 mTerm = CourseListFragment.TERM_ID;
                 mSubject = subjectText.getText().toString().toUpperCase();
                 mNumber = Integer.valueOf( numberText.getText().toString());

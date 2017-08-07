@@ -23,7 +23,6 @@ import android.widget.Toast;
 
 import com.sodastudio.uictime.manager.DetailCourseManager;
 import com.sodastudio.uictime.R;
-import com.sodastudio.uictime.manager.ScheduleManager;
 import com.sodastudio.uictime.manager.ScheduleTableManager;
 import com.sodastudio.uictime.model.Course;
 import com.sodastudio.uictime.model.DetailCourse;
@@ -52,7 +51,6 @@ public class DetailPickerFragment extends DialogFragment {
 
     static final String COURSE_ADD = "CourseAdd";
 
-    //private ScheduleManager mScheduleManager;
     private ScheduleTableManager mScheduleTableManager;
 
     private int mTerm;          // Fall 2017

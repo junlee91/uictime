@@ -22,7 +22,6 @@ public class ScheduleTableManager {
 
     private static ScheduleTableManager sScheduleTableManager;
 
-    private Context mContext;
     private SQLiteDatabase mDatabase;
 
     private TableManager mTableManager;
@@ -35,7 +34,7 @@ public class ScheduleTableManager {
     }
 
     private ScheduleTableManager(Context context){
-        mContext = context.getApplicationContext();
+        Context mContext = context.getApplicationContext();
         mDatabase = new ScheduleBaseHelper(mContext)    // open database
                 .getWritableDatabase();
 
@@ -63,7 +62,6 @@ public class ScheduleTableManager {
 
     public int addSchedule(DetailCourse detailCourse){
 
-        //TODO: duplication check and time conflict check
         List<DetailCourse> mCourses = getSchedules(CourseListFragment.TERM_ID);
         for(DetailCourse course : mCourses){
             if(detailCourse.getCRN().equals(course.getCRN()) && !detailCourse.getCRN().equals("9999") ){
@@ -83,7 +81,7 @@ public class ScheduleTableManager {
         }
 
         if( !mTableManager.checkValidTime(detailCourse) ){
-            return 2;               // course time conflict
+            return 2;   // course time conflict
         }
 
         ContentValues values = getContentValue(detailCourse);   // get content value by course
