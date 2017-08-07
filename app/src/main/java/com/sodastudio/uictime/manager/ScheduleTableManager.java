@@ -80,9 +80,9 @@ public class ScheduleTableManager {
         //TODO: more delete condition CRN and title    and success or fail
 
         mDatabase.delete(ScheduleTable.NAME,
-                ScheduleTable.Cols.CRN + "= ?", new String[]{ detailCourse.getCRN() });
+                ScheduleTable.Cols.CRN + "= ? AND " + ScheduleTable.Cols.TITLE + "= ? AND " + ScheduleTable.Cols.SUBJECT + "= ?",
+                new String[]{ detailCourse.getCRN(), detailCourse.getTitle(), detailCourse.getSubject() });
 
-        //mTableManager.updateTable(getSchedules(CourseListFragment.TERM_ID));               // delete in Table
         mTableManager.deleteCourse(detailCourse);
 
         return true; // success
