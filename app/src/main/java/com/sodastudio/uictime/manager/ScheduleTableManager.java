@@ -64,11 +64,30 @@ public class ScheduleTableManager {
     public int addSchedule(DetailCourse detailCourse){
 
         //TODO: duplication check and time conflict check
+        List<DetailCourse> mCourses = getSchedules(CourseListFragment.TERM_ID);
+        for(DetailCourse course : mCourses){
+            if(detailCourse.getCRN().equals(course.getCRN()) && !detailCourse.getCRN().equals("9999") ){
+                return 1;           // CRN duplication
+            }
+        }
+
+        String days = detailCourse.getDays();
+        String mTime = detailCourse.getTime();
+        if(days.equals("ARRANGED") || days.equals("TBA") || days.equals("") ||
+                mTime.equals("ARRANGED") || mTime.equals("") || mTime.equals("TBA")){
+
+            ContentValues values = getContentValue(detailCourse);   // get content value by course
+            mDatabase.insert(ScheduleTable.NAME, null, values);     // add to database
+
+            return 0;   // success
+        }
+
+        if( !mTableManager.checkValidTime(detailCourse) ){
+            return 2;               // course time conflict
+        }
 
         ContentValues values = getContentValue(detailCourse);   // get content value by course
         mDatabase.insert(ScheduleTable.NAME, null, values);     // add to database
-
-        updateSchedule(detailCourse);                           // update database
 
         mTableManager.addToTable(detailCourse);                 // add to table
 
@@ -89,13 +108,13 @@ public class ScheduleTableManager {
         return true;        // success
     }
 
-    private void updateSchedule(DetailCourse course){
-        ContentValues values = getContentValue(course);
-
-        mDatabase.update(ScheduleTable.NAME, values,
-                ScheduleTable.Cols.CRN + "= ?",
-                new String[]{ course.getCRN() });
-    }
+//    private void updateSchedule(DetailCourse course){
+//        ContentValues values = getContentValue(course);
+//
+//        mDatabase.update(ScheduleTable.NAME, values,
+//                ScheduleTable.Cols.CRN + "= ?",
+//                new String[]{ course.getCRN() });
+//    }
 
     private static ContentValues getContentValue(DetailCourse course){
         ContentValues values = new ContentValues();

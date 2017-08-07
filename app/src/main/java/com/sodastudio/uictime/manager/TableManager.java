@@ -6,6 +6,7 @@ import android.util.Log;
 import com.sodastudio.uictime.model.DetailCourse;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -117,28 +118,76 @@ public class TableManager {
 
     }
 
+    public boolean checkValidTime(DetailCourse detailCourse){
+        String days = detailCourse.getDays();
+        Date startTime = detailCourse.getStartTime();
+        Date endTime = detailCourse.getEndTime();
 
+        for(int i = 0; i < days.length(); i++){
+            char day = days.charAt(i);
 
+            switch (day){
+                case 'M':
+                    for(DetailCourse course : mMonday){
 
-//    public void addToMonday(DetailCourse detailCourse){
-//        mMonday.add(detailCourse);
-//    }
-//
-//    public void addToTuesday(DetailCourse detailCourse){
-//        mTuesday.add(detailCourse);
-//    }
-//
-//    public void addToWednesday(DetailCourse detailCourse){
-//        mWednesday.add(detailCourse);
-//    }
-//
-//    public void addToThursday(DetailCourse detailCourse){
-//        mThursday.add(detailCourse);
-//    }
-//
-//    public void addToFriday(DetailCourse detailCourse){
-//        mFriday.add(detailCourse);
-//    }
+                        if( startTime.after(course.getStartTime()) && startTime.before(course.getEndTime()) || startTime.equals(course.getStartTime())){
+                            return false;
+                        }
+                        if( endTime.after(course.getStartTime()) && endTime.before(course.getEndTime()) || endTime.equals(course.getEndTime())){
+                            return false;
+                        }
+                    }
+                    break;
+                case 'T':
+                    for(DetailCourse course : mTuesday){
+
+                        if( startTime.after(course.getStartTime()) && startTime.before(course.getEndTime()) || startTime.equals(course.getStartTime())){
+                            return false;
+                        }
+                        if( endTime.after(course.getStartTime()) && endTime.before(course.getEndTime()) || endTime.equals(course.getEndTime())){
+                            return false;
+                        }
+                    }
+                    break;
+                case 'W':
+                    for(DetailCourse course : mWednesday){
+
+                        if( startTime.after(course.getStartTime()) && startTime.before(course.getEndTime()) || startTime.equals(course.getStartTime())){
+                            return false;
+                        }
+                        if( endTime.after(course.getStartTime()) && endTime.before(course.getEndTime()) || endTime.equals(course.getEndTime())){
+                            return false;
+                        }
+                    }
+                    break;
+                case 'R':
+                    for(DetailCourse course : mThursday){
+
+                        if( startTime.after(course.getStartTime()) && startTime.before(course.getEndTime()) || startTime.equals(course.getStartTime())){
+                            return false;
+                        }
+                        if( endTime.after(course.getStartTime()) && endTime.before(course.getEndTime()) || endTime.equals(course.getEndTime())){
+                            return false;
+                        }
+                    }
+                    break;
+                case 'F':
+                    for(DetailCourse course : mFriday){
+
+                        if( startTime.after(course.getStartTime()) && startTime.before(course.getEndTime()) || startTime.equals(course.getStartTime())){
+                            return false;
+                        }
+                        if( endTime.after(course.getStartTime()) && endTime.before(course.getEndTime()) || endTime.equals(course.getEndTime())){
+                            return false;
+                        }
+                    }
+                    break;
+            }
+        }
+
+        return true;
+    }
+
 
     public List<DetailCourse> getMonday() {
         return mMonday;

@@ -144,15 +144,12 @@ public class CourseAddFragment extends DialogFragment {
                 DetailCourse detailCourse = new DetailCourse(mTerm, mSubject, mNumber, mTitle,
                         mCredits, mCRN, mType, mDays, mTime, mRoom, mInstructor);
 
-                //mScheduleManager = ScheduleManager.getInstance(getActivity());
                 mScheduleTableManager = ScheduleTableManager.getInstance(getActivity());
 
-                //TODO: change to ScheduleTableManager
                 int type = mScheduleTableManager.addSchedule(detailCourse);
 
                 if( type == 0 ){
 
-                    // Add toast
                     String text = subjectText.getText().toString() + " " +
                             numberText.getText().toString() + " " +
                             mTitle + " add success!";

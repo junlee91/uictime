@@ -164,9 +164,7 @@ public class DetailPickerFragment extends DialogFragment {
             addButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //TODO: change to ScheduleTableManager
-                    //mScheduleManager = ScheduleManager.getInstance(getActivity());
-                    //int type = mScheduleManager.addSchedule(mCourse);
+
                     mScheduleTableManager = ScheduleTableManager.getInstance(getActivity());
                     int type = mScheduleTableManager.addSchedule(mCourse);
 
