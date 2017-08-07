@@ -157,23 +157,23 @@ public class ScheduleManager {
         for(int i = 0; i < days.length(); i++){
             char day = days.charAt(i);          // M
 
-            switch (day){
-                case 'M':
-                    mTableManager.addToMonday(detailCourse);
-                    break;
-                case 'T':
-                    mTableManager.addToTuesday(detailCourse);
-                    break;
-                case 'W':
-                    mTableManager.addToWednesday(detailCourse);
-                    break;
-                case 'R':
-                    mTableManager.addToThursday(detailCourse);
-                    break;
-                case 'F':
-                    mTableManager.addToFriday(detailCourse);
-                    break;
-            }
+//            switch (day){
+//                case 'M':
+//                    mTableManager.addToMonday(detailCourse);
+//                    break;
+//                case 'T':
+//                    mTableManager.addToTuesday(detailCourse);
+//                    break;
+//                case 'W':
+//                    mTableManager.addToWednesday(detailCourse);
+//                    break;
+//                case 'R':
+//                    mTableManager.addToThursday(detailCourse);
+//                    break;
+//                case 'F':
+//                    mTableManager.addToFriday(detailCourse);
+//                    break;
+//            }
         }
     }
 

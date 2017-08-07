@@ -1,6 +1,7 @@
 package com.sodastudio.uictime.manager;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.sodastudio.uictime.model.DetailCourse;
 
@@ -35,25 +36,69 @@ public class TableManager {
         mFriday = new ArrayList<>();
     }
 
-    public void addToMonday(DetailCourse detailCourse){
-        mMonday.add(detailCourse);
+    public void updateTable(List<DetailCourse> mCourses){
+        mMonday.clear();
+        mTuesday.clear();
+        mWednesday.clear();
+        mThursday.clear();
+        mFriday.clear();
+
+        String days;
+        for(DetailCourse course : mCourses){
+            days = course.getDays();
+
+            for(int i = 0; i < days.length(); i++){
+                char day = days.charAt(i);
+
+                switch (day){
+                    case 'M': mMonday.add(course); break;
+                    case 'T': mTuesday.add(course); break;
+                    case 'W': mWednesday.add(course); break;
+                    case 'R': mThursday.add(course); break;
+                    case 'F': mFriday.add(course); break;
+                }
+            }
+        }
     }
 
-    public void addToTuesday(DetailCourse detailCourse){
-        mTuesday.add(detailCourse);
+    public void addToTable(DetailCourse course){
+        String days = course.getDays();
+
+        for(int i = 0; i < days.length(); i++){
+            char day = days.charAt(i);
+
+            switch (day){
+                case 'M': mMonday.add(course); break;
+                case 'T': mTuesday.add(course); break;
+                case 'W': mWednesday.add(course); break;
+                case 'R': mThursday.add(course); break;
+                case 'F': mFriday.add(course); break;
+            }
+        }
     }
 
-    public void addToWednesday(DetailCourse detailCourse){
-        mWednesday.add(detailCourse);
-    }
 
-    public void addToThursday(DetailCourse detailCourse){
-        mThursday.add(detailCourse);
-    }
 
-    public void addToFriday(DetailCourse detailCourse){
-        mFriday.add(detailCourse);
-    }
+
+//    public void addToMonday(DetailCourse detailCourse){
+//        mMonday.add(detailCourse);
+//    }
+//
+//    public void addToTuesday(DetailCourse detailCourse){
+//        mTuesday.add(detailCourse);
+//    }
+//
+//    public void addToWednesday(DetailCourse detailCourse){
+//        mWednesday.add(detailCourse);
+//    }
+//
+//    public void addToThursday(DetailCourse detailCourse){
+//        mThursday.add(detailCourse);
+//    }
+//
+//    public void addToFriday(DetailCourse detailCourse){
+//        mFriday.add(detailCourse);
+//    }
 
     public List<DetailCourse> getMonday() {
         return mMonday;
@@ -73,23 +118,6 @@ public class TableManager {
 
     public List<DetailCourse> getFriday() {
         return mFriday;
-    }
-
-    public void deleteCourse(DetailCourse mCourse){
-        if(mMonday.contains(mCourse))
-            mMonday.remove(mCourse);
-
-        if(mTuesday.contains(mCourse))
-            mTuesday.remove(mCourse);
-
-        if(mWednesday.contains(mCourse))
-            mWednesday.remove(mCourse);
-
-        if(mThursday.contains(mCourse))
-            mThursday.remove(mCourse);
-
-        if(mFriday.contains(mCourse))
-            mFriday.remove(mCourse);
     }
 
 

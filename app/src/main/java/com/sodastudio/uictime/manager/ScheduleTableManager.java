@@ -9,6 +9,7 @@ import com.sodastudio.uictime.model.DetailCourse;
 import com.sodastudio.uictime.database.ScheduleBaseHelper;
 import com.sodastudio.uictime.database.ScheduleCursorWrapper;
 import com.sodastudio.uictime.database.ScheduleDbSchema.ScheduleTable;
+import com.sodastudio.uictime.ui.CourseListFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,8 @@ public class ScheduleTableManager {
     private Context mContext;
     private SQLiteDatabase mDatabase;
 
+    private TableManager mTableManager;
+
     public static ScheduleTableManager getInstance(Context context){
         if(sScheduleTableManager == null){
             sScheduleTableManager = new ScheduleTableManager(context);
@@ -36,6 +39,8 @@ public class ScheduleTableManager {
         mDatabase = new ScheduleBaseHelper(mContext)    // open database
                 .getWritableDatabase();
 
+        mTableManager = TableManager.getInstance();
+        mTableManager.updateTable(getSchedules(CourseListFragment.TERM_ID));    // update table
     }
 
     public List<DetailCourse> getSchedules(int termID){
@@ -65,6 +70,8 @@ public class ScheduleTableManager {
 
         updateSchedule(detailCourse);                           // update database
 
+        mTableManager.addToTable(detailCourse);                 // add to table
+
         return 0; // success
     }
 
@@ -74,6 +81,8 @@ public class ScheduleTableManager {
 
         mDatabase.delete(ScheduleTable.NAME,
                 ScheduleTable.Cols.CRN + "= ?", new String[]{ detailCourse.getCRN() });
+
+        mTableManager.updateTable(getSchedules(CourseListFragment.TERM_ID));               // delete in Table
 
         return true; // success
     }
