@@ -76,16 +76,17 @@ public class ScheduleTableManager {
     }
 
     public boolean deleteSchedule(DetailCourse detailCourse){
-
-        //TODO: more delete condition CRN and title    and success or fail
-
-        mDatabase.delete(ScheduleTable.NAME,
+        int row_deleted =
+                mDatabase.delete(ScheduleTable.NAME,
                 ScheduleTable.Cols.CRN + "= ? AND " + ScheduleTable.Cols.TITLE + "= ? AND " + ScheduleTable.Cols.SUBJECT + "= ?",
                 new String[]{ detailCourse.getCRN(), detailCourse.getTitle(), detailCourse.getSubject() });
 
-        mTableManager.deleteCourse(detailCourse);
+        if(row_deleted != 1){
+            return false;   // something else happened
+        }
 
-        return true; // success
+        mTableManager.deleteCourse(detailCourse);
+        return true;        // success
     }
 
     private void updateSchedule(DetailCourse course){

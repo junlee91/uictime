@@ -172,14 +172,15 @@ public class ScheduleFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 
-                    mScheduleTableManager.deleteSchedule(mCourse);
-
-                    showToast(mCourse.getSubject() + " " + mCourse.getNumber() + " " + mCourse.getTitle() + " deleted!!");
-
-                    mDeleteButton.setVisibility(View.INVISIBLE);
-
-                    mAdapter.notifyDataSetChanged();
-                    upDateUI();
+                    if( mScheduleTableManager.deleteSchedule(mCourse) ){
+                        showToast(mCourse.getSubject() + " " + mCourse.getNumber() + " " + mCourse.getTitle() + " deleted!!");
+                        mDeleteButton.setVisibility(View.INVISIBLE);
+                        mAdapter.notifyDataSetChanged();
+                        upDateUI();
+                    }
+                    else{
+                        showToast("Unable to delete the course.. try again later");
+                    }
                 }
             });
         }
