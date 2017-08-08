@@ -13,4 +13,9 @@
     <color name="colorCourseTimeIdle">#686d6b</color>
     <color name="colorPrimaryBackground">#c9edff</color>
     <color name="colorFFFFFF">#ffffff</color>
+    <color name="colorUIC_Dark">#2c5581</color>
+    <color name="colorUIC_Light">#e1e9ed</color>
+    <color name="colorUIC_Blue">#337ac3</color>
+    <color name="colorUIC_Blue2">#33a0d3</color>
+    <color name="colorUIC_defalut">#ededed</color>
 </resources>

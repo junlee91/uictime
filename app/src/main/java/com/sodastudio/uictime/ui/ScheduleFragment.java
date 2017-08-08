@@ -34,8 +34,8 @@ public class ScheduleFragment extends Fragment {
 
     public static final String TAG = "ScheduleFragment";
 
-    private Spinner mTermSpinner;
-    private ArrayAdapter mTermAdapter;
+    //private Spinner mTermSpinner;
+    //private ArrayAdapter mTermAdapter;
 
     private RecyclerView mScheduleListView;     // Concise Course Information
     private CourseAdapter mAdapter;
@@ -68,9 +68,9 @@ public class ScheduleFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_schedule_view, container, false);
 
-        mTermAdapter = ArrayAdapter.createFromResource(getContext(), R.array.term, android.R.layout.simple_spinner_dropdown_item);
-        mTermSpinner = (Spinner)view.findViewById(R.id.schedule_term_spinner);
-        mTermSpinner.setAdapter(mTermAdapter);
+        //mTermAdapter = ArrayAdapter.createFromResource(getContext(), R.array.term, android.R.layout.simple_spinner_dropdown_item);
+        //mTermSpinner = (Spinner)view.findViewById(R.id.schedule_term_spinner);
+        //mTermSpinner.setAdapter(mTermAdapter);
 
         mScheduleListView = (RecyclerView)view.findViewById(R.id.schedule_list_view);
         mScheduleListView.setLayoutManager(new LinearLayoutManager(getActivity()));
