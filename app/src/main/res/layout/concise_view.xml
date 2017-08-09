@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
@@ -124,6 +124,13 @@
 
             </FrameLayout>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="18dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
 
             <FrameLayout
                 android:layout_width="wrap_content"
@@ -163,7 +170,6 @@
                     android:text="LAB AB1"/>
             </FrameLayout>
 
-
         </LinearLayout>
     </LinearLayout>
 
@@ -172,7 +178,7 @@
         android:layout_alignParentRight="true"
         android:layout_width="70dp"
         android:layout_height="50dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="5dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/round_rect_shape"
