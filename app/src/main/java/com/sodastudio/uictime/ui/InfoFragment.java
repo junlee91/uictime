@@ -9,7 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.sodastudio.uictime.BuildConfig;
 import com.sodastudio.uictime.R;
 import com.sodastudio.uictime.adapter.NoticeListAdapter;
 import com.sodastudio.uictime.model.Notice;
@@ -36,6 +38,7 @@ public class InfoFragment extends Fragment {
     private ListView notice_list_view;
     private NoticeListAdapter mNoticeListAdapter;
     private List<Notice> mNoticeList;
+    private TextView versionText;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,10 +52,12 @@ public class InfoFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_info_view, container, false);
 
+        versionText = (TextView)view.findViewById(R.id.app_version);
+        String version = "Version: " + BuildConfig.VERSION_NAME;
+        versionText.setText(version);
+
         notice_list_view = (ListView)view.findViewById(R.id.notice_list_view);
         mNoticeList = new ArrayList<>();
-
-        //mNoticeList.add(new Notice( "Why Not", "Soda", "2018-05-05"));
 
         mNoticeListAdapter = new NoticeListAdapter(getContext(), mNoticeList);
         notice_list_view.setAdapter(mNoticeListAdapter);

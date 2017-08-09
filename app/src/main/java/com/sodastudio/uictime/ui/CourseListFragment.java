@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -48,6 +49,7 @@ public class CourseListFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private View emptyView;
+    private ImageView arrowPointer;
     private CourseAdapter mAdapter;
 
     private Button mselectButton;
@@ -68,6 +70,7 @@ public class CourseListFragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         emptyView = view.findViewById(R.id.empty_list_view);
+        arrowPointer = (ImageView)view.findViewById(R.id.empty_arrow_pointer);
 
         mselectButton = (Button)view.findViewById(R.id.select_button);
         mSelectedText = (TextView)view.findViewById(R.id.selected_term_text);
@@ -86,8 +89,14 @@ public class CourseListFragment extends Fragment {
         CourseManager courseManager = CourseManager.getInstance(getActivity());
         List<Course> courses = courseManager.getCourses();
 
-        if(courses.size() == 0) emptyView.setVisibility(View.VISIBLE);
-        else emptyView.setVisibility(View.INVISIBLE);
+        if(courses.size() == 0) {
+            emptyView.setVisibility(View.VISIBLE);
+            arrowPointer.setVisibility(View.VISIBLE);
+        }
+        else{
+            emptyView.setVisibility(View.INVISIBLE);
+            arrowPointer.setVisibility(View.INVISIBLE);
+        }
 
         mAdapter = new CourseAdapter(courses);
         mRecyclerView.setAdapter(mAdapter);
@@ -343,6 +352,7 @@ public class CourseListFragment extends Fragment {
                 }
 
                 emptyView.setVisibility(View.INVISIBLE);
+                arrowPointer.setVisibility(View.INVISIBLE);
 
                 if(count == 0){
                     AlertDialog dialog;
@@ -353,6 +363,7 @@ public class CourseListFragment extends Fragment {
                     dialog.show();
 
                     emptyView.setVisibility(View.VISIBLE);
+                    arrowPointer.setVisibility(View.VISIBLE);
                 }
 
                 mAdapter.notifyDataSetChanged();    // refresh the course list
