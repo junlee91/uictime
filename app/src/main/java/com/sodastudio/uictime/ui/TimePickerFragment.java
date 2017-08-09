@@ -26,11 +26,12 @@ public class TimePickerFragment extends DialogFragment {
     private TimePicker mStartTimePicker;
     private TimePicker mEndTimePicker;
 
+    private static final int TIME_PICKER_INTERVAL=5;
+    private boolean mIgnoreEvent=false;
+
     public static TimePickerFragment getInstance(){
 
-        TimePickerFragment fragment = new TimePickerFragment();
-
-        return fragment;
+        return new TimePickerFragment();
     }
 
     @NonNull
@@ -42,6 +43,9 @@ public class TimePickerFragment extends DialogFragment {
 
         mStartTimePicker = (TimePicker)v.findViewById(R.id.dialog_start_time_picker);
         mEndTimePicker = (TimePicker)v.findViewById(R.id.dialog_end_time_picker);
+
+        mStartTimePicker.setOnTimeChangedListener(mTimeChangedListener);
+        mEndTimePicker.setOnTimeChangedListener(mTimeChangedListener);
 
         return new AlertDialog.Builder(getActivity())
                 .setView(v)
@@ -63,6 +67,25 @@ public class TimePickerFragment extends DialogFragment {
                         })
                 .create();
     }
+
+    private TimePicker.OnTimeChangedListener mTimeChangedListener = new TimePicker.OnTimeChangedListener() {
+        @Override
+        public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+            if(mIgnoreEvent)
+                return;
+
+            if(minute % TIME_PICKER_INTERVAL != 0){
+                int minuteFloor=minute-(minute%TIME_PICKER_INTERVAL);
+                minute=minuteFloor + (minute==minuteFloor+1 ? TIME_PICKER_INTERVAL : 0);
+                if (minute==60)
+                    minute=0;
+                mIgnoreEvent=true;
+                view.setCurrentMinute(minute);
+                mIgnoreEvent=false;
+            }
+
+        }
+    };
 
     private String TimeFormat(int start, int end){
         String time = "";
