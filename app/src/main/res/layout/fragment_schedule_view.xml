@@ -63,36 +63,34 @@
             android:layout_width="match_parent"
             android:layout_height="450dp"
             android:orientation="vertical"
+            android:layout_marginTop="35dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_gravity="center">
+            android:layout_marginRight="10dp">
 
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true">
+
+                <TextView
+                    android:id="@+id/schedule_total_credits_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:text="Total: 12 Hours"
+                    android:textSize="15sp"/>
+            </FrameLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/schedule_list_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#e8f7ff"
-                android:visibility="invisible">
+                android:background="#e8f7ff">
             </android.support.v7.widget.RecyclerView>
         </LinearLayout>
 
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true">
-
-        <TextView
-            android:id="@+id/schedule_total_credits_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:text="Total: 12 Hours"
-            android:textSize="15sp"/>
     </FrameLayout>
 
     <!--<Spinner-->

@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ public class ScheduleFragment extends Fragment {
     //private Spinner mTermSpinner;
     //private ArrayAdapter mTermAdapter;
 
+    private LinearLayout mLinearLayout;
     private RecyclerView mScheduleListView;     // Concise Course Information
     private CourseAdapter mAdapter;
 
@@ -72,6 +74,8 @@ public class ScheduleFragment extends Fragment {
         //mTermSpinner = (Spinner)view.findViewById(R.id.schedule_term_spinner);
         //mTermSpinner.setAdapter(mTermAdapter);
 
+        mLinearLayout = (LinearLayout)view.findViewById(R.id.schedule_linear_layout);
+        mLinearLayout.setVisibility(View.INVISIBLE);
         mScheduleListView = (RecyclerView)view.findViewById(R.id.schedule_list_view);
         mScheduleListView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -84,11 +88,11 @@ public class ScheduleFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(!mConciseViewButton.isActivated()){
-                    mScheduleListView.setVisibility(View.VISIBLE);
+                    mLinearLayout.setVisibility(View.VISIBLE);
                     mConciseViewButton.setActivated(true);
                     mConciseViewButton.setAlpha(0.4f);
                 } else {
-                    mScheduleListView.setVisibility(View.INVISIBLE);
+                    mLinearLayout.setVisibility(View.INVISIBLE);
                     mConciseViewButton.setActivated(false);
                     mConciseViewButton.setAlpha(1.0f);
                 }

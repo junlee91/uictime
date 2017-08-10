@@ -1,10 +1,12 @@
 package com.sodastudio.uictime;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -65,6 +67,24 @@ public class MainPagerActivity extends FragmentActivity {
                 if(fragment instanceof ScheduleFragment){
                     ((ScheduleFragment)fragment).update();
                 }
+
+                switch (position){
+                    case 0:
+                        mListButton.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                        mScheduleButton.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                        mInfoButton.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                        break;
+                    case 1:
+                        mListButton.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                        mScheduleButton.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                        mInfoButton.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                        break;
+                    case 2:
+                        mListButton.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                        mScheduleButton.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                        mInfoButton.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                        break;
+                }
             }
 
             @Override
@@ -122,7 +142,7 @@ public class MainPagerActivity extends FragmentActivity {
         return fList;
     }
 
-    private class MyPageAdapter extends FragmentStatePagerAdapter{
+    private class MyPageAdapter extends FragmentPagerAdapter {
         private List<Fragment> mFragments;
 
         private MyPageAdapter(FragmentManager fm, List<Fragment> fragments) {

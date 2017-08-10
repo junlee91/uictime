@@ -44,7 +44,6 @@ public class InfoFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        new BackgroundTask().execute();
     }
 
     @Override
@@ -53,17 +52,25 @@ public class InfoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_info_view, container, false);
 
         versionText = (TextView)view.findViewById(R.id.app_version);
+        notice_list_view = (ListView)view.findViewById(R.id.notice_list_view);
+
+        update();
+
+        return view;
+    }
+
+    public void update(){
         String version = "Version: " + BuildConfig.VERSION_NAME;
         versionText.setText(version);
 
-        notice_list_view = (ListView)view.findViewById(R.id.notice_list_view);
+        new BackgroundTask().execute();
+
         mNoticeList = new ArrayList<>();
 
-        mNoticeListAdapter = new NoticeListAdapter(getContext(), mNoticeList);
+        if(mNoticeListAdapter == null)
+            mNoticeListAdapter = new NoticeListAdapter(getContext(), mNoticeList);
+
         notice_list_view.setAdapter(mNoticeListAdapter);
-
-
-        return view;
     }
 
     private class BackgroundTask extends AsyncTask<Void, Void, String>
