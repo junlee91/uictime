@@ -276,6 +276,11 @@ public class ScheduleFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        Log.d(TAG, "onResume");
+    }
+
+    public void update(){
+        upDateUI();
     }
 
     private void tempView(){
