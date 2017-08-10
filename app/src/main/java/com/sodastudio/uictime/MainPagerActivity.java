@@ -23,7 +23,7 @@ import java.util.List;
  * Created by Jun on 8/10/2017.
  */
 
-public class CoursePagerActivity extends FragmentActivity {
+public class MainPagerActivity extends FragmentActivity {
 
     private ViewPager pager;
     private MyPageAdapter mMyPageAdapter;
