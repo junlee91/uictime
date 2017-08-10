@@ -54,7 +54,7 @@
                     android:background="@color/colorAccent"/>
             </LinearLayout>
 
-            <!--<include layout="@layout/time_table"/>-->
+            <include layout="@layout/table_view_layout"/>
 
         </FrameLayout>
 
@@ -70,13 +70,15 @@
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/credit_cell_shape"
                 android:layout_centerHorizontal="true">
 
                 <TextView
                     android:id="@+id/schedule_total_credits_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="2dp"
+                    android:padding="3dp"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:text="Total: 12 Hours"
@@ -109,6 +111,7 @@
         android:layout_height="40dp"
         android:layout_marginEnd="10dp"
         android:layout_alignParentEnd="true"
+        android:backgroundTint="@color/colorUIC_Dark"
         android:background="@drawable/hamburger_dark"/>
 
     <ImageButton
