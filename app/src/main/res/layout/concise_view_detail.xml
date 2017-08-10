@@ -1,56 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="5dp">
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:paddingLeft="5dp"
-        android:layout_weight="8">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="8"
+        android:background="@color/colorUIC_defalut">
 
+        <!-- First Row -->
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="3dp"
+            android:background="@color/colorUIC_Blue2">
+
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/concise_course_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Computer Architecture"
-                />
+                android:textColor="@color/colorUIC_Light"
+                android:layout_marginStart="3dp"
+                android:text="CS 385"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/concise_title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/colorUIC_Light"
+                android:textStyle="bold"
+                android:text="Operating Systems Concepts and Design"/>
         </LinearLayout>
 
+        <!-- Middle Row -->
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/tag_black"
-                android:paddingRight="2dp"/>
-            <TextView
-                android:id="@+id/tag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="2dp"
-                android:text="36389"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="LAB AB1"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp">
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -58,16 +54,25 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:gravity="center_vertical">
+
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/clock_black"
-                    android:paddingRight="2dp"/>
+                    android:paddingEnd="2dp"/>
+
                 <TextView
-                    android:id="@+id/time"
+                    android:id="@+id/concise_day_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="MWF 11:00AM 11:50AM"
+                    android:text="MWF"
+                    android:paddingEnd="2dp"
+                    android:maxLines="1"/>
+                <TextView
+                    android:id="@+id/concise_time_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11:00 AM 11:50AM"
                     android:maxLines="1"/>
             </LinearLayout>
 
@@ -83,13 +88,81 @@
                     android:src="@drawable/location_pin_black"
                     android:paddingRight="2dp"/>
                 <TextView
-                    android:id="@+id/location"
+                    android:id="@+id/concise_room_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="BSB 250"
                     android:maxLines="1"/>
             </LinearLayout>
         </LinearLayout>
+
+        <!-- Last Row -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_person_pin_black_24dp"
+                    app:paddingStart="2dp"
+                    app:paddingEnd="2dp"/>
+
+                <TextView
+                    android:id="@+id/concise_instructor_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Eriksson, J"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/concise_type_layout"
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/tag_black"
+                    android:paddingRight="2dp"/>
+                <TextView
+                    android:id="@+id/concise_type_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LCD AA1"
+                    android:maxLines="1"/>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+    <Button
+        android:id="@+id/concise_delete_button"
+        android:layout_alignParentEnd="true"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/remove_rect_shape"
+        android:alpha="0.7"
+        android:text="REMOVE"
+        android:textColor="#ffffff"
+        android:textSize="12sp"
+        android:textStyle="bold"/>
+
+</RelativeLayout>

@@ -138,7 +138,7 @@ public class ScheduleFragment extends Fragment {
 
         private DetailCourse mCourse;
 
-        private TextView mCrnText;
+        // private TextView mCrnText;
         private TextView mCourseText;
         private TextView mTitleText;
         private TextView mTypeText;
@@ -147,7 +147,7 @@ public class ScheduleFragment extends Fragment {
         private TextView mRoomText;
         private TextView mInstructorText;
         private Button mDeleteButton;
-        private FrameLayout mTypeLayout;
+        private LinearLayout mTypeLayout;
 
 
         private CourseHolder(View view){
@@ -155,7 +155,7 @@ public class ScheduleFragment extends Fragment {
 
             view.setOnClickListener(this);
 
-            mCrnText = (TextView)view.findViewById(R.id.concise_crn_text);
+            //mCrnText = (TextView)view.findViewById(R.id.concise_crn_text);
             mCourseText = (TextView)view.findViewById(R.id.concise_course_text);
             mTitleText = (TextView)view.findViewById(R.id.concise_title_text);
             mTypeText = (TextView)view.findViewById(R.id.concise_type_text);
@@ -163,7 +163,7 @@ public class ScheduleFragment extends Fragment {
             mDayText = (TextView)view.findViewById(R.id.concise_day_text);
             mRoomText = (TextView)view.findViewById(R.id.concise_room_text);
             mInstructorText = (TextView)view.findViewById(R.id.concise_instructor_text);
-            mTypeLayout = (FrameLayout)view.findViewById(R.id.concise_type_layout);
+            mTypeLayout = (LinearLayout) view.findViewById(R.id.concise_type_layout);
 
             mTypeLayout.setVisibility(View.INVISIBLE);
 
@@ -190,12 +190,13 @@ public class ScheduleFragment extends Fragment {
 
         public void bindCourse(DetailCourse course){
             mCourse = course;
+            String tmp = mCourse.getDays() + " | ";
 
-            mCrnText.setText(String.valueOf( mCourse.getCRN()));
+            //mCrnText.setText(String.valueOf( mCourse.getCRN()));
             mCourseText.setText(mCourse.getSubject() + " " + String.valueOf( mCourse.getNumber()));
             mTitleText.setText(mCourse.getTitle());
+            mDayText.setText(tmp);
             mTimeText.setText(mCourse.getTime());
-            mDayText.setText(mCourse.getDays());
             mRoomText.setText(mCourse.getRoom());
             mInstructorText.setText(mCourse.getInstructor());
 
@@ -223,14 +224,14 @@ public class ScheduleFragment extends Fragment {
     private class CourseAdapter extends RecyclerView.Adapter<CourseHolder>{
         private List<DetailCourse> mCourseList;
 
-        public CourseAdapter(List<DetailCourse> list){
+        private CourseAdapter(List<DetailCourse> list){
             mCourseList = list;
         }
 
         @Override
         public CourseHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            View view = layoutInflater.inflate(R.layout.concise_view, parent, false);
+            View view = layoutInflater.inflate(R.layout.concise_view_detail, parent, false);
             return new CourseHolder(view);
         }
 
