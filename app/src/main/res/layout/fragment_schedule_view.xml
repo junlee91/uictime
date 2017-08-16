@@ -68,10 +68,9 @@
             android:layout_marginRight="10dp">
 
             <FrameLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/credit_cell_shape"
-                android:layout_centerHorizontal="true">
+                android:background="@drawable/credit_cell_shape">
 
                 <TextView
                     android:id="@+id/schedule_total_credits_text"

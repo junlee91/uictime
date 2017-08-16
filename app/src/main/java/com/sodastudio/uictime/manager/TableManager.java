@@ -86,31 +86,31 @@ public class TableManager {
     public void deleteCourse(DetailCourse mCourse){
 
         for(DetailCourse course : mMonday){
-            if(mCourse.getCRN().equals(course.getCRN())){
+            if(mCourse.getCRN().equals(course.getCRN()) && mCourse.getTitle().equals(course.getTitle())){
                 mMonday.remove(course);
                 break;
             }
         }
         for(DetailCourse course : mTuesday){
-            if(mCourse.getCRN().equals(course.getCRN())){
+            if(mCourse.getCRN().equals(course.getCRN()) && mCourse.getTitle().equals(course.getTitle())){
                 mTuesday.remove(course);
                 break;
             }
         }
         for(DetailCourse course : mWednesday){
-            if(mCourse.getCRN().equals(course.getCRN())){
+            if(mCourse.getCRN().equals(course.getCRN()) && mCourse.getTitle().equals(course.getTitle())){
                 mWednesday.remove(course);
                 break;
             }
         }
         for(DetailCourse course : mThursday){
-            if(mCourse.getCRN().equals(course.getCRN())){
+            if(mCourse.getCRN().equals(course.getCRN()) && mCourse.getTitle().equals(course.getTitle())){
                 mThursday.remove(course);
                 break;
             }
         }
         for(DetailCourse course : mFriday){
-            if(mCourse.getCRN().equals(course.getCRN())){
+            if(mCourse.getCRN().equals(course.getCRN()) && mCourse.getTitle().equals(course.getTitle())){
                 mFriday.remove(course);
                 break;
             }

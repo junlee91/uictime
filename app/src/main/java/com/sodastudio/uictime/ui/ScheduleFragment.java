@@ -176,7 +176,7 @@ public class ScheduleFragment extends Fragment {
                 public void onClick(View v) {
 
                     if( mScheduleTableManager.deleteSchedule(mCourse) ){
-                        showToast(mCourse.getSubject() + " " + mCourse.getNumber() + " " + mCourse.getTitle() + " deleted!!");
+                        showToast(mCourse.getSubject() + " " + mCourse.getNumber() + " " + mCourse.getTitle() + " removed!!");
                         mDeleteButton.setVisibility(View.INVISIBLE);
                         mAdapter.notifyDataSetChanged();
                         upDateUI();
