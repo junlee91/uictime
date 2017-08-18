@@ -1,11 +1,17 @@
 package com.sodastudio.uictime.ui;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +30,8 @@ import com.sodastudio.uictime.utils.CourseLibrary;
 import com.sodastudio.uictime.R;
 import com.sodastudio.uictime.model.DetailCourse;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 import java.util.Scanner;
 
@@ -43,6 +51,10 @@ public class ScheduleFragment extends Fragment {
     private CourseAdapter mAdapter;
 
     private ImageButton mConciseViewButton;
+    private ImageButton mSaveButton;
+    private ImageButton mShareButton;
+
+    private FrameLayout mTableLayout;
 
     private ScheduleTableManager mScheduleTableManager;
 
@@ -99,6 +111,12 @@ public class ScheduleFragment extends Fragment {
             }
         });
 
+        mSaveButton = (ImageButton)view.findViewById(R.id.save_button);
+        mShareButton = (ImageButton)view.findViewById(R.id.share_button);
+        setSaveShareButtonListener();
+
+        mTableLayout = (FrameLayout)view.findViewById(R.id.table_layout);
+
         // this is for testing
         mondayText = (TextView)view.findViewById(R.id.mondayCourse);
         tuesdayText = (TextView)view.findViewById(R.id.tuesdayCourse);
@@ -123,7 +141,8 @@ public class ScheduleFragment extends Fragment {
         mScheduleTableManager = ScheduleTableManager.getInstance(getActivity());
         List<DetailCourse> mCourseList = mScheduleTableManager.getSchedules(term_id);
 
-        mTotalCreditTextView.setText("Total: " + getTotalCredits(mCourseList) + " Hours");
+        if(mTotalCreditTextView != null)
+            mTotalCreditTextView.setText("Total: " + getTotalCredits(mCourseList) + " Hours");
 
         Log.d(TAG, "updateUI with new table view");
         tempView();
@@ -131,6 +150,92 @@ public class ScheduleFragment extends Fragment {
         mAdapter = new CourseAdapter(mCourseList);
         mScheduleListView.setAdapter(mAdapter);
 
+    }
+
+    private void setSaveShareButtonListener(){
+        mSaveButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if(isExternalStorageWritable()){
+
+
+                    Log.d(TAG, "External Storage is writable");
+
+                    File storageDir = getAlbumStorageDir("/UICTime");
+                    File newFile = new File(storageDir.getPath() + "/text.png");    // TODO: file name change to term
+
+                    if(storageDir.exists()){
+                        Log.d(TAG, "Directory exists");
+
+                        mTableLayout.setDrawingCacheEnabled(true);
+                        mTableLayout.buildDrawingCache();
+
+                        Bitmap cache = mTableLayout.getDrawingCache();
+
+                        try{
+                            FileOutputStream fileOutputStream = new FileOutputStream(newFile.getPath());
+                            cache.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
+
+                            fileOutputStream.flush();
+                            fileOutputStream.close();
+
+                        }catch (Exception e){
+                            e.printStackTrace();
+                            showToast("Oops! Saving failed.. try again later");
+                        }finally {
+                            mTableLayout.destroyDrawingCache();
+                            scanFile(newFile.getPath());
+                            showToast("Table Saved!");
+                        }
+                    }
+
+                } else {
+                    Log.d(TAG, "External Storage is not writable");
+                }
+            }
+
+        });
+
+        mShareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+
+    private Bitmap layoutToBitmap(){
+        Bitmap bitmap = Bitmap.createBitmap(mTableLayout.getWidth(), mTableLayout.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        mTableLayout.draw(canvas);
+        return bitmap;
+    }
+
+    private void scanFile(String path){
+        MediaScannerConnection.scanFile(getActivity(),
+                new String[]{path}, null,
+                new MediaScannerConnection.OnScanCompletedListener() {
+                    @Override
+                    public void onScanCompleted(String path, Uri uri) {
+                        Log.i(TAG, "Finished Scanning " + path);
+                    }
+                });
+    }
+
+    public File getAlbumStorageDir(String albumName) {
+        // Get the directory for the user's public pictures directory.
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + albumName);
+
+        if (!file.mkdir()) {
+            Log.e(TAG, "Directory not created");
+        }
+        return file;
+    }
+
+    public boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+
+        return Environment.MEDIA_MOUNTED.equals(state);
     }
 
     private class CourseHolder extends RecyclerView.ViewHolder
