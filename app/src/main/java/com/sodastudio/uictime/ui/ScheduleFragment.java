@@ -15,7 +15,6 @@ import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -29,6 +28,7 @@ import com.sodastudio.uictime.manager.TableManager;
 import com.sodastudio.uictime.utils.CourseLibrary;
 import com.sodastudio.uictime.R;
 import com.sodastudio.uictime.model.DetailCourse;
+import com.sodastudio.uictime.view.TableView;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -46,19 +46,29 @@ public class ScheduleFragment extends Fragment {
     //private Spinner mTermSpinner;
     //private ArrayAdapter mTermAdapter;
 
-    private LinearLayout mLinearLayout;
-    private RecyclerView mScheduleListView;     // Concise Course Information
-    private CourseAdapter mAdapter;
-
-    private ImageButton mConciseViewButton;
-    private ImageButton mSaveButton;
-    private ImageButton mShareButton;
-
-    private FrameLayout mTableLayout;
-
     private ScheduleTableManager mScheduleTableManager;
 
+    private LinearLayout mLinearLayout;
+    private RecyclerView mScheduleListView;     // Concise Course Information
+
+    private CourseAdapter mAdapter;
+    private ImageButton mConciseViewButton;
+    private ImageButton mSaveButton;
+
+    private ImageButton mShareButton;
+
     private TextView mTotalCreditTextView;
+
+    private FrameLayout mTableLayout;
+    private TableView mTableView;
+    private TextView mTableTextView;
+
+    public static int viewWidth;
+    public static int viewHeight;
+    // This is temp x,y
+    public static int[] location = new int[2];
+    public static float viewX;
+    public static float viewY;
 
     //This is for testing
     private TextView mondayText;
@@ -74,7 +84,6 @@ public class ScheduleFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -116,6 +125,19 @@ public class ScheduleFragment extends Fragment {
         setSaveShareButtonListener();
 
         mTableLayout = (FrameLayout)view.findViewById(R.id.table_layout);
+        mTableView = (TableView)view.findViewById(R.id.table_view);
+        mTableTextView = (TextView)view.findViewById(R.id.monday_1);
+
+        // wait for UI set on screen
+        mTableLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                viewWidth = mTableTextView.getWidth();
+                viewHeight = mTableTextView.getHeight();
+
+                mTableTextView.getLocationOnScreen(location);
+            }
+        });
 
         // this is for testing
         mondayText = (TextView)view.findViewById(R.id.mondayCourse);
@@ -199,7 +221,7 @@ public class ScheduleFragment extends Fragment {
         mShareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //TODO: sharing intent
             }
         });
     }
@@ -391,6 +413,7 @@ public class ScheduleFragment extends Fragment {
 
     public void update(){
         upDateUI();
+        mTableView.invalidate();    // redraw table
     }
 
     private void tempView(){
@@ -431,4 +454,8 @@ public class ScheduleFragment extends Fragment {
         }
         fridayText.setText("Friday: \n" + temp);
     }
+
+
+
+
 }

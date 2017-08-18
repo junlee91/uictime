@@ -1854,7 +1854,10 @@
                     android:background="@drawable/cell_shape"/>
             </LinearLayout>
         </TableRow>
-
-
     </TableLayout>
+
+    <com.sodastudio.uictime.view.TableView
+        android:id="@+id/table_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </FrameLayout>
