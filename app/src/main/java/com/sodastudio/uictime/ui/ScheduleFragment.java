@@ -30,6 +30,8 @@ import com.sodastudio.uictime.R;
 import com.sodastudio.uictime.model.DetailCourse;
 import com.sodastudio.uictime.view.TableView;
 
+import org.w3c.dom.Text;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
@@ -61,12 +63,26 @@ public class ScheduleFragment extends Fragment {
 
     private FrameLayout mTableLayout;
     private TableView mTableView;
-    private TextView mTableTextView;
-    private TextView mTableTimeTextView;
 
-    public static int viewWidth;
+    // TextView
+    private TextView mTableMondayTextView;
+    private TextView mTableTuesdayTextView;
+    private TextView mTableWednesdayTextView;
+    private TextView mTableThursdayTextView;
+    private TextView mTableFridayTextView;
+    private TextView mTableTimeTextView;
+    // size
+    public static int mondayWidth;
+    public static int tuesdayWidth;
+    public static int wednesdayWidth;
+    public static int thursdayWidth;
+    public static int fridayWidth;
     public static int viewHeight;
     public static int leftMargin;
+
+    private TextView mTableTextView;    // testing
+    private TextView mTextView;     // testing
+    public static int viewWidth;    // testing
 
     //This is for testing
     private TextView mondayText;
@@ -124,15 +140,26 @@ public class ScheduleFragment extends Fragment {
 
         mTableLayout = (FrameLayout)view.findViewById(R.id.table_layout);
         mTableView = (TableView)view.findViewById(R.id.table_view);
-        mTableTextView = (TextView)view.findViewById(R.id.monday_1);
         mTableTimeTextView = (TextView)view.findViewById(R.id.time_text);
+
+        mTableMondayTextView = (TextView)view.findViewById(R.id.monday_0);
+        mTableTuesdayTextView = (TextView)view.findViewById(R.id.tuesday_0);
+        mTableWednesdayTextView = (TextView)view.findViewById(R.id.wednesday_0);
+        mTableThursdayTextView = (TextView)view.findViewById(R.id.thursday_0);
+        mTableFridayTextView = (TextView)view.findViewById(R.id.friday_0);
 
         // wait for UI set on screen
         mTableLayout.post(new Runnable() {
             @Override
             public void run() {
-                viewWidth = mTableTextView.getWidth();
-                viewHeight = mTableTextView.getHeight();
+
+                mondayWidth = mTableMondayTextView.getWidth();
+                tuesdayWidth = mTableTuesdayTextView.getWidth();
+                wednesdayWidth = mTableWednesdayTextView.getWidth();
+                thursdayWidth = mTableThursdayTextView.getWidth();
+                fridayWidth = mTableFridayTextView.getWidth();
+
+                viewHeight = mTableMondayTextView.getHeight();
                 leftMargin = mTableTimeTextView.getWidth();
             }
         });

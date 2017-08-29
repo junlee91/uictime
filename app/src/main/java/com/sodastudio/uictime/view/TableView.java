@@ -29,45 +29,99 @@ public class TableView extends View {
     private TableManager mTableManager;
     private Context mContext;
 
+    private float baseXpos;
+    private float baseYpos;
+
+    private int mondayWidth;
+    private int tuesdayWidth;
+    private int wednesdayWidth;
+    private int thursdayWidth;
+    private int fridayWidth;
+    private int viewHeight;
+
     public TableView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
         mContext = context;
         mTableManager = TableManager.getInstance();
+
+    }
+
+    private void setValues(){
+        baseXpos = ScheduleFragment.leftMargin;
+        baseYpos = dpTopx(17);
+
+        mondayWidth = ScheduleFragment.mondayWidth;
+        tuesdayWidth = ScheduleFragment.tuesdayWidth;
+        wednesdayWidth = ScheduleFragment.wednesdayWidth;
+        thursdayWidth = ScheduleFragment.thursdayWidth;
+        fridayWidth = ScheduleFragment.fridayWidth;
+
+        viewHeight = ScheduleFragment.viewHeight;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         Log.d(TAG, "onDraw");
+        setValues();
         drawTimeTable(canvas);
     }
 
     private void drawTimeTable(Canvas canvas){
 
-        float baseX = ScheduleFragment.leftMargin;
-        float baseY = dpTopx(17);
+        float baseX = baseXpos;
+        float baseY = baseYpos;
 
-        int width = ScheduleFragment.viewWidth;
-        int height = ScheduleFragment.viewHeight;
+        int width = mondayWidth;
+        int height = viewHeight;
 
-        RectF r = new RectF(baseX, baseY, baseX + width, baseY + height + height);
+        // Monday  8-9
+        RectF r = new RectF(baseX, baseY, baseX + width, baseY + height);
         Paint p = new Paint();
 
         p.setColor(Color.RED);
         p.setAlpha(80);
         canvas.drawRect(r, p);
 
-        float x = baseX + (width*2);
-        float y = baseY + (height*10);
+        // Tuesday
+        baseX = baseXpos + getPositionByDay("T");
+        baseY = baseYpos + viewHeight*5;
+        width = tuesdayWidth;
+        height = viewHeight*2;
 
-        RectF r2 = new RectF(x, y, x+width, y+height);
+        RectF r2 = new RectF(baseX, baseY, baseX + width, baseY + height);
         p.setColor(Color.CYAN);
+        p.setAlpha(80);
         canvas.drawRect(r2, p);
+
+        // Wednesday
+        baseX = baseXpos + getPositionByDay("W");
+        baseY = baseYpos + viewHeight*10;
+        width = wednesdayWidth;
+        height = viewHeight * 3;
+
+        RectF r3 = new RectF(baseX, baseY, baseX + width, baseY + height);
+        p.setColor(Color.CYAN);
+        p.setAlpha(80);
+        canvas.drawRect(r3, p);
 
 
         for(DetailCourse detailCourse : mTableManager.getMonday()){
 
         }
+    }
+
+    // get starting position
+    private int getPositionByDay(String day){
+        switch (day){
+            case "M": return 0;
+            case "T": return mondayWidth;
+            case "W": return mondayWidth + tuesdayWidth;
+            case "R": return mondayWidth + tuesdayWidth + wednesdayWidth;
+            case "F": return mondayWidth + tuesdayWidth + wednesdayWidth + thursdayWidth;
+        }
+
+        return 0;
     }
 
     //dp to px

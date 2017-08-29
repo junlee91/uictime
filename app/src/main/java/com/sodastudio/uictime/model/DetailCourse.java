@@ -1,5 +1,7 @@
 package com.sodastudio.uictime.model;
 
+import android.graphics.Color;
+
 import com.sodastudio.uictime.utils.UICTimeUtils;
 
 import java.util.Date;
@@ -22,6 +24,7 @@ public class DetailCourse {
     private String mInstructor;
     private Date mStartTime;
     private Date mEndTime;
+    private int bgColor;
 
     public DetailCourse(int term, String subject, int number, String title, String credits, int CRN, String type, String days, String time, String room, String instructor) {
         mTerm = term;
@@ -41,6 +44,8 @@ public class DetailCourse {
 
         if( !(mTime.equals("ARRANGED") || mTime.equals("") || mTime.equals("TBA")))
             setDate(mTime);
+
+        bgColor = Color.CYAN;   // to be changed
     }
 
     private void setDate(String times){
@@ -54,6 +59,14 @@ public class DetailCourse {
 
         mEndTime.setHours(endH);
         mEndTime.setMinutes(endM);
+    }
+
+    public int getBgColor() {
+        return bgColor;
+    }
+
+    public void setBgColor(int bgColor) {
+        this.bgColor = bgColor;
     }
 
     public Date getStartTime() {
