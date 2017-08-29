@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -101,17 +102,23 @@ public class TableView extends View {
         height = viewHeight * 3;
 
         RectF r3 = new RectF(baseX, baseY, baseX + width, baseY + height);
+
         p.setColor(Color.CYAN);
         p.setAlpha(80);
         canvas.drawRect(r3, p);
 
 
-        for(DetailCourse detailCourse : mTableManager.getMonday()){
 
-        }
+        // for(DetailCourse detailCourse : mTableManager.getMonday()){}
     }
 
-    // get starting position
+    //TODO: get starting position by time
+    private int getPositionByTime(){
+
+        return 0;
+    }
+
+    // get starting base position by day
     private int getPositionByDay(String day){
         switch (day){
             case "M": return 0;
@@ -130,24 +137,5 @@ public class TableView extends View {
         DisplayMetrics metrics = resources.getDisplayMetrics();
         float px = dp * ((float)metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
         return px;
-    }
-
-    private void drawTimeTable(Canvas canvas, int canvasWidth, int canvasHeight){
-        RectF r = new RectF(0, 0, 50, 30);
-        Paint p = new Paint();
-        p.setColor(Color.RED);
-        canvas.drawRect(r, p);
-    }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        Log.d(TAG, "onMeasure");
-
-        DisplayMetrics dm = mContext.getResources().getDisplayMetrics();
-
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
-
-        setMeasuredDimension(width, height);
     }
 }

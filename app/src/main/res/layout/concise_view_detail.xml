@@ -159,7 +159,6 @@
         android:layout_marginEnd="5dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/remove_rect_shape"
-        android:alpha="0.7"
         android:text="REMOVE"
         android:textColor="#ffffff"
         android:textSize="12sp"
