@@ -62,13 +62,11 @@ public class ScheduleFragment extends Fragment {
     private FrameLayout mTableLayout;
     private TableView mTableView;
     private TextView mTableTextView;
+    private TextView mTableTimeTextView;
 
     public static int viewWidth;
     public static int viewHeight;
-    // This is temp x,y
-    public static int[] location = new int[2];
-    public static float viewX;
-    public static float viewY;
+    public static int leftMargin;
 
     //This is for testing
     private TextView mondayText;
@@ -127,6 +125,7 @@ public class ScheduleFragment extends Fragment {
         mTableLayout = (FrameLayout)view.findViewById(R.id.table_layout);
         mTableView = (TableView)view.findViewById(R.id.table_view);
         mTableTextView = (TextView)view.findViewById(R.id.monday_1);
+        mTableTimeTextView = (TextView)view.findViewById(R.id.time_text);
 
         // wait for UI set on screen
         mTableLayout.post(new Runnable() {
@@ -134,8 +133,7 @@ public class ScheduleFragment extends Fragment {
             public void run() {
                 viewWidth = mTableTextView.getWidth();
                 viewHeight = mTableTextView.getHeight();
-
-                mTableTextView.getLocationOnScreen(location);
+                leftMargin = mTableTimeTextView.getWidth();
             }
         });
 

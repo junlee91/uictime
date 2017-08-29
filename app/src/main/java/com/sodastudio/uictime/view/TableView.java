@@ -1,6 +1,7 @@
 package com.sodastudio.uictime.view;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -41,6 +42,49 @@ public class TableView extends View {
         drawTimeTable(canvas);
     }
 
+    private void drawTimeTable(Canvas canvas){
+
+        float baseX = ScheduleFragment.leftMargin;
+        float baseY = dpTopx(17);
+
+        int width = ScheduleFragment.viewWidth;
+        int height = ScheduleFragment.viewHeight;
+
+        RectF r = new RectF(baseX, baseY, baseX + width, baseY + height + height);
+        Paint p = new Paint();
+
+        p.setColor(Color.RED);
+        p.setAlpha(80);
+        canvas.drawRect(r, p);
+
+        float x = baseX + (width*2);
+        float y = baseY + (height*10);
+
+        RectF r2 = new RectF(x, y, x+width, y+height);
+        p.setColor(Color.CYAN);
+        canvas.drawRect(r2, p);
+
+
+        for(DetailCourse detailCourse : mTableManager.getMonday()){
+
+        }
+    }
+
+    //dp to px
+    private float dpTopx(float dp){
+        Resources resources = mContext.getResources();
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        float px = dp * ((float)metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
+        return px;
+    }
+
+    private void drawTimeTable(Canvas canvas, int canvasWidth, int canvasHeight){
+        RectF r = new RectF(0, 0, 50, 30);
+        Paint p = new Paint();
+        p.setColor(Color.RED);
+        canvas.drawRect(r, p);
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         Log.d(TAG, "onMeasure");
@@ -50,32 +94,6 @@ public class TableView extends View {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-
-    }
-
-    private void drawTimeTable(Canvas canvas){
-
-
-        int width = ScheduleFragment.viewWidth;
-        int height = ScheduleFragment.viewHeight;
-        float x = ScheduleFragment.location[0];
-        float y = ScheduleFragment.location[1];
-
-        RectF r = new RectF(x, y, x+width, y+height);
-        Paint p = new Paint();
-        p.setColor(Color.RED);
-        canvas.drawRect(r, p);
-
-
-        for(DetailCourse detailCourse : mTableManager.getMonday()){
-
-        }
-    }
-
-    private void drawTimeTable(Canvas canvas, int canvasWidth, int canvasHeight){
-        RectF r = new RectF(0, 0, 50, 30);
-        Paint p = new Paint();
-        p.setColor(Color.RED);
-        canvas.drawRect(r, p);
+        setMeasuredDimension(width, height);
     }
 }
