@@ -13,39 +13,46 @@ public class CourseLibrary {
         return 0;
     }
 
+    public String getTermString(int termID){
+        if(termID == 220178)
+            return "Fall 2017";
+
+        return "";
+    }
+
     public String getSubjectValue(String subject){
 
         switch (subject){
-            case "Academic Skills Program":                return "ASP";
-            case "Accounting":                return "ACTG";
-            case "African American Studies":                return "AAST";
-            case "Anatomy and Cell Biology":                return "ANAT";
-            case "Anthropology":                return "ANTH";
-            case "Applied Health Sciences":                return "AHS";
-            case "Arabic":                return "ARAB";
-            case "Archaeological Studies":                return "ARST";
-            case "Architecture":                return "ARCH";
-            case "Art":                return "ART";
-            case "Art History":                return "AH";
-            case "Basic Medical Sciences":                return "BMS";
-            case "Biochem Molecular Genetics":                return "BCMG";
-            case "Bioengineering":                return "BIOE";
-            case "Biological Sciences":                return "BIOS";
-            case "Biomedical Hlth Info Sciences":                return "BHIS";
-            case "Biomedical Visualization":                return "BVIS";
-            case "Biopharmaceutical Sciences":                return "BPS";
-            case "Biostatistics":                return "BSTT";
-            case "Business Administration":                return "BA";
-            case "Campus Courses":                return "CC";
-            case "Catholic Studies":                return "CST";
-            case "Central East European Studies":                return "CEES";
-            case "Chemical Engineering":                return "CHE";
-            case "Chemistry":                return "CHEM";
-            case "Chinese":                return "CHIN";
-            case "Civil Materials Engineering":                return "CME";
-            case "Classics":                return "CL";
-            case "Clerkship - Medicine":                return "CLER";
-            case "Clerkship Electives-Chicago":                return "CELE";
+            case "Academic Skills Program": return "ASP";
+            case "Accounting": return "ACTG";
+            case "African American Studies": return "AAST";
+            case "Anatomy and Cell Biology": return "ANAT";
+            case "Anthropology": return "ANTH";
+            case "Applied Health Sciences": return "AHS";
+            case "Arabic": return "ARAB";
+            case "Archaeological Studies": return "ARST";
+            case "Architecture": return "ARCH";
+            case "Art": return "ART";
+            case "Art History": return "AH";
+            case "Basic Medical Sciences": return "BMS";
+            case "Biochem Molecular Genetics": return "BCMG";
+            case "Bioengineering": return "BIOE";
+            case "Biological Sciences": return "BIOS";
+            case "Biomedical Hlth Info Sciences": return "BHIS";
+            case "Biomedical Visualization": return "BVIS";
+            case "Biopharmaceutical Sciences": return "BPS";
+            case "Biostatistics": return "BSTT";
+            case "Business Administration": return "BA";
+            case "Campus Courses": return "CC";
+            case "Catholic Studies": return "CST";
+            case "Central East European Studies": return "CEES";
+            case "Chemical Engineering": return "CHE";
+            case "Chemistry": return "CHEM";
+            case "Chinese": return "CHIN";
+            case "Civil Materials Engineering": return "CME";
+            case "Classics": return "CL";
+            case "Clerkship - Medicine": return "CLER";
+            case "Clerkship Electives-Chicago":return "CELE";
             case "Clerkship Electives-Peoria": return "PELE";
             case "Clerkship Electives-Rockford": return "RELE";
             case "Clerkship Electives-Urbana": return "UELE";

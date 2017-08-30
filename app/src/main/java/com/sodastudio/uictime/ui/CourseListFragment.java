@@ -59,7 +59,7 @@ public class CourseListFragment extends Fragment {
     private int mTerm;
     private String mSubject;
 
-    public static int TERM_ID;
+    public static int TERM_ID = 220178; // THIS IS SET TO DEFAULT
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -74,8 +74,6 @@ public class CourseListFragment extends Fragment {
 
         mselectButton = (Button)view.findViewById(R.id.select_button);
         mSelectedText = (TextView)view.findViewById(R.id.selected_term_text);
-
-        //TERM_ID = 220178;   // THIS IS SET TO DEFAULT
 
         setButtonClickListener();
 
@@ -100,6 +98,8 @@ public class CourseListFragment extends Fragment {
 
         mAdapter = new CourseAdapter(courses);
         mRecyclerView.setAdapter(mAdapter);
+
+        mSelectedText.setText("Selected Term: " + mCourseLibrary.getTermString(TERM_ID));
     }
 
     @Override
