@@ -192,7 +192,7 @@ public class ScheduleFragment extends Fragment {
             mTotalCreditTextView.setText("Total: " + getTotalCredits(mCourseList) + " Hours");
 
         Log.d(TAG, "updateUI with new table view");
-        tempView();
+        //tempView();
 
         mAdapter = new CourseAdapter(mCourseList);
         mScheduleListView.setAdapter(mAdapter);
@@ -332,6 +332,7 @@ public class ScheduleFragment extends Fragment {
                         mDeleteButton.setVisibility(View.INVISIBLE);
                         mAdapter.notifyDataSetChanged();
                         upDateUI();
+                        mTableView.invalidate();    // redraw table
                     }
                     else{
                         showToast("Unable to delete the course.. try again later");
