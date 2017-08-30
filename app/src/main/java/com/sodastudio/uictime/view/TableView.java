@@ -3,8 +3,10 @@ package com.sodastudio.uictime.view;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -73,6 +75,7 @@ public class TableView extends View {
         int width = mondayWidth;
         int height = viewHeight;
 
+        Paint basePainter = new Paint();
         Paint p = new Paint();
 
 //        // Monday  8-9
@@ -109,13 +112,17 @@ public class TableView extends View {
             baseX = baseXpos + getPositionByDay("M");
             baseY = baseYpos + (viewHeight * getPositionByTime(detailCourse));
             width = mondayWidth;
-            height = viewHeight * getDuration(detailCourse);  //TODO: duration
+            height = viewHeight * getDuration(detailCourse);
 
+            RectF baseRect = new RectF(baseX, baseY, baseX + width, baseY + height);
             RectF rectF = new RectF(baseX, baseY, baseX + width, baseY + height);
+
+            basePainter.setColor(Color.WHITE);
 
             p.setColor(detailCourse.getBgColor());
             p.setAlpha(80);
 
+            canvas.drawRect(baseRect, basePainter);
             canvas.drawRect(rectF, p);
         }
 
@@ -126,11 +133,15 @@ public class TableView extends View {
             width = tuesdayWidth;
             height = viewHeight * getDuration(detailCourse);  //TODO: duration
 
+            RectF baseRect = new RectF(baseX, baseY, baseX + width, baseY + height);
             RectF rectF = new RectF(baseX, baseY, baseX + width, baseY + height);
+
+            basePainter.setColor(Color.WHITE);
 
             p.setColor(detailCourse.getBgColor());
             p.setAlpha(80);
 
+            canvas.drawRect(baseRect, basePainter);
             canvas.drawRect(rectF, p);
         }
 
@@ -141,11 +152,15 @@ public class TableView extends View {
             width = wednesdayWidth;
             height = viewHeight * getDuration(detailCourse);  //TODO: duration
 
+            RectF baseRect = new RectF(baseX, baseY, baseX + width, baseY + height);
             RectF rectF = new RectF(baseX, baseY, baseX + width, baseY + height);
+
+            basePainter.setColor(Color.WHITE);
 
             p.setColor(detailCourse.getBgColor());
             p.setAlpha(80);
 
+            canvas.drawRect(baseRect, basePainter);
             canvas.drawRect(rectF, p);
         }
 
@@ -156,12 +171,15 @@ public class TableView extends View {
             width = thursdayWidth;
             height = viewHeight * getDuration(detailCourse);  //TODO: duration
 
-
+            RectF baseRect = new RectF(baseX, baseY, baseX + width, baseY + height);
             RectF rectF = new RectF(baseX, baseY, baseX + width, baseY + height);
+
+            basePainter.setColor(Color.WHITE);
 
             p.setColor(detailCourse.getBgColor());
             p.setAlpha(80);
 
+            canvas.drawRect(baseRect, basePainter);
             canvas.drawRect(rectF, p);
         }
 
@@ -172,11 +190,16 @@ public class TableView extends View {
             width = fridayWidth;
             height = viewHeight * getDuration(detailCourse);  //TODO: duration
 
+            RectF baseRect = new RectF(baseX, baseY, baseX + width, baseY + height);
             RectF rectF = new RectF(baseX, baseY, baseX + width, baseY + height);
 
-            p.setColor(detailCourse.getBgColor());
-            p.setAlpha(80);
+            basePainter.setColor(detailCourse.getBgColor());
 
+            p.setColor(detailCourse.getBgColor());
+            p.setStyle(Paint.Style.STROKE);
+            p.setStrokeWidth(2);
+
+            canvas.drawRect(baseRect, basePainter);
             canvas.drawRect(rectF, p);
         }
     }

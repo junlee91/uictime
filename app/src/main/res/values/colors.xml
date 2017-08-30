@@ -18,4 +18,6 @@
     <color name="colorUIC_Blue">#337ac3</color>
     <color name="colorUIC_Blue2">#33a0d3</color>
     <color name="colorUIC_defalut">#ededed</color>
+
+    <color name="colorSampleCourseBGColor">#99fdff</color>
 </resources>

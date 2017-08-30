@@ -30,8 +30,6 @@ import com.sodastudio.uictime.R;
 import com.sodastudio.uictime.model.DetailCourse;
 import com.sodastudio.uictime.view.TableView;
 
-import org.w3c.dom.Text;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
