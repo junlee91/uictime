@@ -46,7 +46,7 @@ public class DetailCourse {
         if( !(mTime.equals("ARRANGED") || mTime.equals("") || mTime.equals("TBA")))
             setDate(mTime);
 
-        setBgColor(R.color.colorSampleCourseBGColor);
+        setBgColor(Color.CYAN);
     }
 
     private void setDate(String times){

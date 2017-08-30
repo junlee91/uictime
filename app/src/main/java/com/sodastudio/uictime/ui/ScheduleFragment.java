@@ -47,6 +47,7 @@ public class ScheduleFragment extends Fragment {
     //private ArrayAdapter mTermAdapter;
 
     private ScheduleTableManager mScheduleTableManager;
+    private TableManager mTableManager;
 
     private LinearLayout mLinearLayout;
     private RecyclerView mScheduleListView;     // Concise Course Information
@@ -186,15 +187,19 @@ public class ScheduleFragment extends Fragment {
         mScheduleTableManager = ScheduleTableManager.getInstance(getActivity());
         List<DetailCourse> mCourseList = mScheduleTableManager.getSchedules(term_id);
 
+        mTableManager = TableManager.getInstance();
+        mTableManager.updateTable(mScheduleTableManager.getSchedules(CourseListFragment.TERM_ID));    // update table
+
         if(mTotalCreditTextView != null)
             mTotalCreditTextView.setText("Total: " + getTotalCredits(mCourseList) + " Hours");
 
         Log.d(TAG, "updateUI with new table view");
-        //tempView();
+        tempView();
 
         mAdapter = new CourseAdapter(mCourseList);
         mScheduleListView.setAdapter(mAdapter);
 
+        mTableView.invalidate();    // redraw table
     }
 
     private void setSaveShareButtonListener(){
@@ -330,7 +335,7 @@ public class ScheduleFragment extends Fragment {
                         mDeleteButton.setVisibility(View.INVISIBLE);
                         mAdapter.notifyDataSetChanged();
                         upDateUI();
-                        mTableView.invalidate();    // redraw table
+
                     }
                     else{
                         showToast("Unable to delete the course.. try again later");
@@ -437,7 +442,7 @@ public class ScheduleFragment extends Fragment {
 
     public void update(){
         upDateUI();
-        mTableView.invalidate();    // redraw table
+        //mTableView.invalidate();    // redraw table
     }
 
     private void tempView(){

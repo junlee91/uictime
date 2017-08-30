@@ -29,6 +29,9 @@ public class TableView extends View {
     private TableManager mTableManager;
     private Context mContext;
 
+    private Paint basePainter;
+    private Paint p;
+
     private float baseXpos;
     private float baseYpos;
 
@@ -43,7 +46,20 @@ public class TableView extends View {
         super(context, attrs);
 
         mContext = context;
+
+        init();
+    }
+
+    private void init(){
         mTableManager = TableManager.getInstance();
+
+        basePainter = new Paint();
+        p = new Paint();
+
+        basePainter.setColor(Color.WHITE);
+
+        p.setAlpha(80);
+        p.setStyle(Paint.Style.FILL);
 
     }
 
@@ -75,38 +91,6 @@ public class TableView extends View {
         int width = mondayWidth;
         int height = viewHeight;
 
-        Paint basePainter = new Paint();
-        Paint p = new Paint();
-
-//        // Monday  8-9
-//        RectF r = new RectF(baseX, baseY, baseX + width, baseY + height);
-//
-//        p.setColor(Color.RED);
-//        p.setAlpha(80);
-//        canvas.drawRect(r, p);
-//
-//        // Tuesday
-//        baseX = baseXpos + getPositionByDay("T");
-//        baseY = baseYpos + viewHeight*5;
-//        width = tuesdayWidth;
-//        height = viewHeight*2;
-//
-//        RectF r2 = new RectF(baseX, baseY, baseX + width, baseY + height);
-//        p.setColor(Color.CYAN);
-//        p.setAlpha(80);
-//        canvas.drawRect(r2, p);
-//
-//        // Wednesday
-//        baseX = baseXpos + getPositionByDay("W");
-//        baseY = baseYpos + viewHeight*15;
-//        width = wednesdayWidth;
-//        height = viewHeight * 2;
-//
-//        RectF r3 = new RectF(baseX, baseY, baseX + width, baseY + height);
-//
-//        p.setColor(Color.CYAN);
-//        p.setAlpha(80);
-//        canvas.drawRect(r3, p);
         for(DetailCourse detailCourse : mTableManager.getMonday()){
 
             baseX = baseXpos + getPositionByDay("M");
@@ -117,10 +101,7 @@ public class TableView extends View {
             RectF baseRect = new RectF(baseX, baseY, baseX + width, baseY + height);
             RectF rectF = new RectF(baseX, baseY, baseX + width, baseY + height);
 
-            basePainter.setColor(Color.WHITE);
-
             p.setColor(detailCourse.getBgColor());
-            p.setAlpha(80);
 
             canvas.drawRect(baseRect, basePainter);
             canvas.drawRect(rectF, p);
@@ -136,10 +117,7 @@ public class TableView extends View {
             RectF baseRect = new RectF(baseX, baseY, baseX + width, baseY + height);
             RectF rectF = new RectF(baseX, baseY, baseX + width, baseY + height);
 
-            basePainter.setColor(Color.WHITE);
-
             p.setColor(detailCourse.getBgColor());
-            p.setAlpha(80);
 
             canvas.drawRect(baseRect, basePainter);
             canvas.drawRect(rectF, p);
@@ -155,10 +133,7 @@ public class TableView extends View {
             RectF baseRect = new RectF(baseX, baseY, baseX + width, baseY + height);
             RectF rectF = new RectF(baseX, baseY, baseX + width, baseY + height);
 
-            basePainter.setColor(Color.WHITE);
-
             p.setColor(detailCourse.getBgColor());
-            p.setAlpha(80);
 
             canvas.drawRect(baseRect, basePainter);
             canvas.drawRect(rectF, p);
@@ -174,10 +149,7 @@ public class TableView extends View {
             RectF baseRect = new RectF(baseX, baseY, baseX + width, baseY + height);
             RectF rectF = new RectF(baseX, baseY, baseX + width, baseY + height);
 
-            basePainter.setColor(Color.WHITE);
-
             p.setColor(detailCourse.getBgColor());
-            p.setAlpha(80);
 
             canvas.drawRect(baseRect, basePainter);
             canvas.drawRect(rectF, p);
@@ -193,9 +165,7 @@ public class TableView extends View {
             RectF baseRect = new RectF(baseX, baseY, baseX + width, baseY + height);
             RectF rectF = new RectF(baseX, baseY, baseX + width, baseY + height);
 
-            basePainter.setColor(detailCourse.getBgColor());
-
-            p.setColor(detailCourse.getBgColor());
+            p.setColor(Color.RED);
             p.setStyle(Paint.Style.STROKE);
             p.setStrokeWidth(2);
 
