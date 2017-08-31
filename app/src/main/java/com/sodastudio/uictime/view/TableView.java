@@ -18,7 +18,6 @@ import com.sodastudio.uictime.ui.CourseListFragment;
 import com.sodastudio.uictime.ui.ScheduleFragment;
 import com.sodastudio.uictime.utils.UICTimeUtils;
 
-import java.util.List;
 
 /**
  * Created by Jun on 8/18/2017.

@@ -10,7 +10,6 @@ import com.sodastudio.uictime.database.ScheduleBaseHelper;
 import com.sodastudio.uictime.database.ScheduleCursorWrapper;
 import com.sodastudio.uictime.database.ScheduleDbSchema.ScheduleTable;
 import com.sodastudio.uictime.ui.CourseListFragment;
-import com.sodastudio.uictime.utils.UICTimeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +24,6 @@ public class ScheduleTableManager {
 
     private SQLiteDatabase mDatabase;
 
-    private ColorListManager mColorListManager;
     private TableManager mTableManager;
 
     private List<DetailCourse> mDetailCourses;
