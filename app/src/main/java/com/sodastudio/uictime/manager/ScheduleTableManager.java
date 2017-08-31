@@ -10,6 +10,7 @@ import com.sodastudio.uictime.database.ScheduleBaseHelper;
 import com.sodastudio.uictime.database.ScheduleCursorWrapper;
 import com.sodastudio.uictime.database.ScheduleDbSchema.ScheduleTable;
 import com.sodastudio.uictime.ui.CourseListFragment;
+import com.sodastudio.uictime.utils.UICTimeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,10 @@ public class ScheduleTableManager {
 
     private SQLiteDatabase mDatabase;
 
+    private ColorListManager mColorListManager;
     private TableManager mTableManager;
+
+    private List<DetailCourse> mDetailCourses;
 
     public static ScheduleTableManager getInstance(Context context){
         if(sScheduleTableManager == null){
@@ -38,8 +42,17 @@ public class ScheduleTableManager {
         mDatabase = new ScheduleBaseHelper(mContext)    // open database
                 .getWritableDatabase();
 
+        mDetailCourses = getSchedules(CourseListFragment.TERM_ID);
+
         mTableManager = TableManager.getInstance();
-        mTableManager.updateTable(getSchedules(CourseListFragment.TERM_ID));    // update table
+        mTableManager.updateTable(mDetailCourses);    // update table
+
+        mColorListManager = ColorListManager.getInstance();
+
+        for(DetailCourse course : mDetailCourses){
+            mColorListManager.setColorHashMap(course.getCRN(), UICTimeUtils.getColor((int)(Math.random() * 9)));
+        }
+
     }
 
     public List<DetailCourse> getSchedules(int termID){
@@ -89,6 +102,8 @@ public class ScheduleTableManager {
 
         mTableManager.addToTable(detailCourse);                 // add to table
 
+        mColorListManager.setColorHashMap(detailCourse.getCRN(), UICTimeUtils.getColor((int)(Math.random() * 9)));
+
         return 0; // success
     }
 
@@ -105,14 +120,6 @@ public class ScheduleTableManager {
         mTableManager.deleteCourse(detailCourse);
         return true;        // success
     }
-
-//    private void updateSchedule(DetailCourse course){
-//        ContentValues values = getContentValue(course);
-//
-//        mDatabase.update(ScheduleTable.NAME, values,
-//                ScheduleTable.Cols.CRN + "= ?",
-//                new String[]{ course.getCRN() });
-//    }
 
     private static ContentValues getContentValue(DetailCourse course){
         ContentValues values = new ContentValues();

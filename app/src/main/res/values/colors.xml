@@ -18,6 +18,17 @@
     <color name="colorUIC_Blue">#337ac3</color>
     <color name="colorUIC_Blue2">#33a0d3</color>
     <color name="colorUIC_defalut">#ededed</color>
+    
+    <color name="colorCourse_1">#c4ff5e</color>
+    <color name="colorCourse_2">#fce1a4</color>
+    <color name="colorCourse_3">#f6fca4</color>
+    <color name="colorCourse_4">#bbfca4</color>
+    <color name="colorCourse_5">#a4fccb</color>
+    <color name="colorCourse_6">#a4eafc</color>
+    <color name="colorCourse_7">#a4affc</color>
+    <color name="colorCourse_8">#c8a4fc</color>
+    <color name="colorCourse_9">#fca4ea</color>
+    <color name="colorCourse_10">#fff549</color>
 
     <color name="colorSampleCourseBGColor">#99fdff</color>
 </resources>

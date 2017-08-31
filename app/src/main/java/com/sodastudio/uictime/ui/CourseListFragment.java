@@ -133,8 +133,6 @@ public class CourseListFragment extends Fragment {
                 dialog.show();
             }
 
-            // Comment on API 15
-            // mselectButton.setBackground(getResources().getDrawable(R.drawable.ic_search_black_24dp));
             mselectButton.setAlpha(1.0f);
         }
 
@@ -158,8 +156,6 @@ public class CourseListFragment extends Fragment {
                 dialog.setTargetFragment(CourseListFragment.this, COURSE_SELECT);
                 dialog.show(manager, COURSE_SELECTOR);
 
-                // Comment on API 15
-                //mselectButton.setBackground(getResources().getDrawable(R.drawable.ic_pageview_black_24dp));
                 mselectButton.setAlpha(0.4f);
             }
         });

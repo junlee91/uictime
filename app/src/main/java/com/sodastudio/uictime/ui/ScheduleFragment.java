@@ -1,7 +1,6 @@
 package com.sodastudio.uictime.ui;
 
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,13 +17,11 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sodastudio.uictime.manager.ScheduleTableManager;
 import com.sodastudio.uictime.manager.TableManager;
-import com.sodastudio.uictime.utils.CourseLibrary;
 import com.sodastudio.uictime.R;
 import com.sodastudio.uictime.model.DetailCourse;
 import com.sodastudio.uictime.view.TableView;
@@ -42,9 +38,6 @@ import java.util.Scanner;
 public class ScheduleFragment extends Fragment {
 
     public static final String TAG = "ScheduleFragment";
-
-    //private Spinner mTermSpinner;
-    //private ArrayAdapter mTermAdapter;
 
     private ScheduleTableManager mScheduleTableManager;
     private TableManager mTableManager;
@@ -79,10 +72,6 @@ public class ScheduleFragment extends Fragment {
     public static int viewHeight;
     public static int leftMargin;
 
-    private TextView mTableTextView;    // testing
-    private TextView mTextView;     // testing
-    public static int viewWidth;    // testing
-
     //This is for testing
     private TextView mondayText;
     private TextView tuesdayText;
@@ -91,8 +80,6 @@ public class ScheduleFragment extends Fragment {
     private TextView fridayText;
 
     private Toast mToast;
-    private CourseLibrary mCourseLibrary;
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -170,7 +157,6 @@ public class ScheduleFragment extends Fragment {
         thursdayText = (TextView)view.findViewById(R.id.thursdayCourse);
         fridayText = (TextView)view.findViewById(R.id.fridayCourse);
 
-        mCourseLibrary = new CourseLibrary();
         upDateUI();
 
         return view;
@@ -179,10 +165,6 @@ public class ScheduleFragment extends Fragment {
     private void upDateUI(){
 
         int term_id = CourseListFragment.TERM_ID;   // get a term value from previous fragment
-
-        // TODO:: get course list with specified term.  onItemSelectedListener? to notify adapter
-        // String selected_term = mTermSpinner.getSelectedItem().toString();
-        // int selected_term_id = mCourseLibrary.getTermValue(selected_term);
 
         mScheduleTableManager = ScheduleTableManager.getInstance(getActivity());
         List<DetailCourse> mCourseList = mScheduleTableManager.getSchedules(term_id);
@@ -194,7 +176,7 @@ public class ScheduleFragment extends Fragment {
             mTotalCreditTextView.setText("Total: " + getTotalCredits(mCourseList) + " Hours");
 
         Log.d(TAG, "updateUI with new table view");
-        tempView();
+        //tempView();
 
         mAdapter = new CourseAdapter(mCourseList);
         mScheduleListView.setAdapter(mAdapter);
@@ -207,7 +189,6 @@ public class ScheduleFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(isExternalStorageWritable()){
-
 
                     Log.d(TAG, "External Storage is writable");
 
@@ -254,13 +235,6 @@ public class ScheduleFragment extends Fragment {
         });
     }
 
-    private Bitmap layoutToBitmap(){
-        Bitmap bitmap = Bitmap.createBitmap(mTableLayout.getWidth(), mTableLayout.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        mTableLayout.draw(canvas);
-        return bitmap;
-    }
-
     private void scanFile(String path){
         MediaScannerConnection.scanFile(getActivity(),
                 new String[]{path}, null,
@@ -303,7 +277,6 @@ public class ScheduleFragment extends Fragment {
         private TextView mInstructorText;
         private Button mDeleteButton;
         private LinearLayout mTypeLayout;
-
 
         private CourseHolder(View view){
             super(view);
@@ -442,7 +415,6 @@ public class ScheduleFragment extends Fragment {
 
     public void update(){
         upDateUI();
-        //mTableView.invalidate();    // redraw table
     }
 
     private void tempView(){

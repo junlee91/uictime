@@ -1,10 +1,29 @@
 package com.sodastudio.uictime.utils;
 
+import com.sodastudio.uictime.R;
+
 /**
  * Created by Jun on 8/1/2017.
  */
 
 public class UICTimeUtils {
+
+    private static int DEFAULT_COLOR[] = {  // 0 - 9
+            R.color.colorCourse_1,
+            R.color.colorCourse_2,
+            R.color.colorCourse_3,
+            R.color.colorCourse_4,
+            R.color.colorCourse_5,
+            R.color.colorCourse_6,
+            R.color.colorCourse_7,
+            R.color.colorCourse_8,
+            R.color.colorCourse_9,
+            R.color.colorCourse_10
+    };
+
+    public static int getColor(int idx){
+        return DEFAULT_COLOR[idx];
+    }
 
     public static int getStartHour(String times){
 
