@@ -33,7 +33,8 @@ public class ScheduleBaseHelper extends SQLiteOpenHelper {
                 ScheduleTable.Cols.DAYS + ", " +
                 ScheduleTable.Cols.TIME + ", " +
                 ScheduleTable.Cols.ROOM + ", " +
-                ScheduleTable.Cols.INSTR +
+                ScheduleTable.Cols.INSTR + ", " +
+                ScheduleTable.Cols.COLOR +
                 ")"
         );
     }

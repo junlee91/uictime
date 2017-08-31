@@ -32,7 +32,8 @@ public class ScheduleCursorWrapper extends CursorWrapper {
         String time = getString(getColumnIndex(ScheduleTable.Cols.TIME));
         String room = getString(getColumnIndex(ScheduleTable.Cols.ROOM));
         String instructor = getString(getColumnIndex(ScheduleTable.Cols.INSTR));
+        int colorIDX = getInt(getColumnIndex(ScheduleTable.Cols.COLOR));
 
-        return new DetailCourse(Integer.valueOf(termId), subject, number, title, credits, Integer.valueOf(crn), type, days, time, room, instructor);
+        return new DetailCourse(Integer.valueOf(termId), subject, number, title, credits, Integer.valueOf(crn), type, days, time, room, instructor, colorIDX);
     }
 }

@@ -26,6 +26,7 @@ import com.sodastudio.uictime.R;
 import com.sodastudio.uictime.manager.ScheduleTableManager;
 import com.sodastudio.uictime.model.Course;
 import com.sodastudio.uictime.model.DetailCourse;
+import com.sodastudio.uictime.utils.UICTimeUtils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -304,7 +305,8 @@ public class DetailPickerFragment extends DialogFragment {
                     detailInstructor = object.getString("detailInstructor");
 
                     DetailCourse detailCourse = new DetailCourse(mTerm, mSubject, mNumber, mTitle, mCredits,
-                            Integer.valueOf(detailCRN), detailType, detailDays, detailTime, detailRoom, detailInstructor);
+                            Integer.valueOf(detailCRN), detailType, detailDays, detailTime,
+                            detailRoom, detailInstructor, UICTimeUtils.getColor((int)(Math.random() * 9)));
 
                     detailCourseManager.addDetailCourse(detailCourse);
                     count++;

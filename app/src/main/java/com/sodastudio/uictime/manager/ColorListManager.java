@@ -1,7 +1,5 @@
 package com.sodastudio.uictime.manager;
 
-import android.graphics.Color;
-
 import java.util.HashMap;
 
 /**

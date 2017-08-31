@@ -24,7 +24,9 @@ public class DetailCourse {
     private Date mEndTime;
     private int bgColor;
 
-    public DetailCourse(int term, String subject, int number, String title, String credits, int CRN, String type, String days, String time, String room, String instructor) {
+    public DetailCourse(int term, String subject, int number, String title,
+                        String credits, int CRN, String type, String days, String time, String room, String instructor,
+                        int colorIDX) {
         mTerm = term;
         mSubject = subject;
         mNumber = number;
@@ -42,6 +44,8 @@ public class DetailCourse {
 
         if( !(mTime.equals("ARRANGED") || mTime.equals("") || mTime.equals("TBA")))
             setDate(mTime);
+
+        bgColor = colorIDX;
     }
 
     private void setDate(String times){

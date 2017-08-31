@@ -21,6 +21,7 @@ public class ScheduleDbSchema {
             public static final String TIME = "time";
             public static final String ROOM = "room";
             public static final String INSTR = "instructor";
+            public static final String COLOR = "color";
         }
 
     }

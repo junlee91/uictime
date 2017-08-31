@@ -12,8 +12,6 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 
-import com.sodastudio.uictime.R;
-import com.sodastudio.uictime.manager.ColorListManager;
 import com.sodastudio.uictime.manager.TableManager;
 import com.sodastudio.uictime.model.DetailCourse;
 import com.sodastudio.uictime.ui.CourseListFragment;
@@ -33,7 +31,6 @@ public class TableView extends View {
     private int selected_term = CourseListFragment.TERM_ID;
 
     private TableManager mTableManager;
-    private ColorListManager mColorListManager;
     private Context mContext;
 
     private Paint basePainter;
@@ -60,7 +57,6 @@ public class TableView extends View {
 
     private void init() {
         mTableManager = TableManager.getInstance();
-        mColorListManager = ColorListManager.getInstance();
 
         basePainter = new Paint();
         p = new Paint();
@@ -97,7 +93,6 @@ public class TableView extends View {
         int width = mondayWidth;
         int height = viewHeight;
 
-        int colorCheck;
         int colorIDX = Color.WHITE; // default
 
         for(DetailCourse detailCourse : mTableManager.getMonday()){
@@ -109,10 +104,7 @@ public class TableView extends View {
 
             RectF rectF = new RectF(baseX, baseY, baseX + width, baseY + height);
 
-            colorCheck = mColorListManager.getColor(detailCourse.getCRN());
-
-            if(colorCheck != 0)
-                colorIDX = getResources().getColor(colorCheck);
+            colorIDX = getResources().getColor(detailCourse.getBgColor());
 
             p.setColor(colorIDX);
             p.setAlpha(80);
@@ -135,10 +127,7 @@ public class TableView extends View {
 
             RectF rectF = new RectF(baseX, baseY, baseX + width, baseY + height);
 
-            colorCheck = mColorListManager.getColor(detailCourse.getCRN());
-
-            if(colorCheck != 0)
-                colorIDX = getResources().getColor(colorCheck);
+            colorIDX = getResources().getColor(detailCourse.getBgColor());
 
             p.setColor(colorIDX);
             p.setAlpha(80);
@@ -161,10 +150,7 @@ public class TableView extends View {
 
             RectF rectF = new RectF(baseX, baseY, baseX + width, baseY + height);
 
-            colorCheck = mColorListManager.getColor(detailCourse.getCRN());
-
-            if(colorCheck != 0)
-                colorIDX = getResources().getColor(colorCheck);
+            colorIDX = getResources().getColor(detailCourse.getBgColor());
 
             p.setColor(colorIDX);
             p.setAlpha(80);
@@ -187,10 +173,7 @@ public class TableView extends View {
 
             RectF rectF = new RectF(baseX, baseY, baseX + width, baseY + height);
 
-            colorCheck = mColorListManager.getColor(detailCourse.getCRN());
-
-            if(colorCheck != 0)
-                colorIDX = getResources().getColor(colorCheck);
+            colorIDX = getResources().getColor(detailCourse.getBgColor());
 
             p.setColor(colorIDX);
             p.setAlpha(80);
@@ -213,10 +196,7 @@ public class TableView extends View {
 
             RectF rectF = new RectF(baseX, baseY, baseX + width, baseY + height);
 
-            colorCheck = mColorListManager.getColor(detailCourse.getCRN());
-
-            if(colorCheck != 0)
-                colorIDX = getResources().getColor(colorCheck);
+            colorIDX = getResources().getColor(detailCourse.getBgColor());
 
             p.setColor(colorIDX);
             p.setAlpha(80);

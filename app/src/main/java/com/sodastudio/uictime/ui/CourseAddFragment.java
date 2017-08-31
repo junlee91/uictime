@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.sodastudio.uictime.R;
 import com.sodastudio.uictime.manager.ScheduleTableManager;
 import com.sodastudio.uictime.model.DetailCourse;
+import com.sodastudio.uictime.utils.UICTimeUtils;
 
 /**
  * Created by Jun on 7/27/2017.
@@ -138,7 +139,7 @@ public class CourseAddFragment extends DialogFragment {
                 mInstructor = instructorText.getText().toString();
 
                 DetailCourse detailCourse = new DetailCourse(mTerm, mSubject, mNumber, mTitle,
-                        mCredits, mCRN, mType, mDays, mTime, mRoom, mInstructor);
+                        mCredits, mCRN, mType, mDays, mTime, mRoom, mInstructor, UICTimeUtils.getColor((int)(Math.random() * 9)));
 
                 mScheduleTableManager = ScheduleTableManager.getInstance(getActivity());
 

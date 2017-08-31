@@ -47,12 +47,6 @@ public class ScheduleTableManager {
         mTableManager = TableManager.getInstance();
         mTableManager.updateTable(mDetailCourses);    // update table
 
-        mColorListManager = ColorListManager.getInstance();
-
-        for(DetailCourse course : mDetailCourses){
-            mColorListManager.setColorHashMap(course.getCRN(), UICTimeUtils.getColor((int)(Math.random() * 9)));
-        }
-
     }
 
     public List<DetailCourse> getSchedules(int termID){
@@ -102,8 +96,6 @@ public class ScheduleTableManager {
 
         mTableManager.addToTable(detailCourse);                 // add to table
 
-        mColorListManager.setColorHashMap(detailCourse.getCRN(), UICTimeUtils.getColor((int)(Math.random() * 9)));
-
         return 0; // success
     }
 
@@ -135,6 +127,7 @@ public class ScheduleTableManager {
         values.put(ScheduleTable.Cols.TIME, course.getTime());          // string
         values.put(ScheduleTable.Cols.ROOM, course.getRoom());          // string
         values.put(ScheduleTable.Cols.INSTR, course.getInstructor());   // string
+        values.put(ScheduleTable.Cols.COLOR, course.getBgColor());      // int
 
         return values;
     }
