@@ -117,10 +117,10 @@ public class TableView extends View {
 
         for(DetailCourse detailCourse : mTableManager.getMonday()){
 
-            baseX = baseXpos + getPositionByDay("M");
-            baseY = baseYpos + (mondayHeight * getPositionByTime(detailCourse));
-            width = mondayWidth;
-            height = mondayHeight * getDuration(detailCourse);
+            baseX = baseXpos + getPositionByDay("M") + dpTopx(1);
+            baseY = baseYpos + (mondayHeight * getPositionByTime(detailCourse)) + dpTopx(1);
+            width = mondayWidth - (int)dpTopx(2);
+            height = mondayHeight * getDuration(detailCourse) - (int)dpTopx(2);
 
             textX = baseX + (width/2);
             textY = baseY + (height * 0.4f);
@@ -144,10 +144,10 @@ public class TableView extends View {
 
         for(DetailCourse detailCourse : mTableManager.getTuesday()){
 
-            baseX = baseXpos + getPositionByDay("T");
-            baseY = baseYpos + (tuesdayHeight * getPositionByTime(detailCourse));
-            width = tuesdayWidth;
-            height = tuesdayHeight * getDuration(detailCourse);
+            baseX = baseXpos + getPositionByDay("T") + dpTopx(1);
+            baseY = baseYpos + (tuesdayHeight * getPositionByTime(detailCourse)) + dpTopx(1);
+            width = tuesdayWidth - (int)dpTopx(2);
+            height = tuesdayHeight * getDuration(detailCourse) - (int)dpTopx(2);
 
             textX = baseX + (width/2);
             textY = baseY + (height * 0.4f);
@@ -171,10 +171,10 @@ public class TableView extends View {
 
         for(DetailCourse detailCourse : mTableManager.getWednesday()){
 
-            baseX = baseXpos + getPositionByDay("W");
-            baseY = baseYpos + (wednesdayHeight * getPositionByTime(detailCourse));
-            width = wednesdayWidth;
-            height = wednesdayHeight * getDuration(detailCourse);
+            baseX = baseXpos + getPositionByDay("W") + dpTopx(1);
+            baseY = baseYpos + (wednesdayHeight * getPositionByTime(detailCourse)) + dpTopx(1);
+            width = wednesdayWidth - (int)dpTopx(2);
+            height = wednesdayHeight * getDuration(detailCourse) - (int)dpTopx(2);
 
             textX = baseX + (width/2);
             textY = baseY + (height * 0.4f);
@@ -198,10 +198,10 @@ public class TableView extends View {
 
         for(DetailCourse detailCourse : mTableManager.getThursday()){
 
-            baseX = baseXpos + getPositionByDay("R");
-            baseY = baseYpos + (thursdayHeight * getPositionByTime(detailCourse));
-            width = thursdayWidth;
-            height = thursdayHeight * getDuration(detailCourse);
+            baseX = baseXpos + getPositionByDay("R") + dpTopx(1);
+            baseY = baseYpos + (thursdayHeight * getPositionByTime(detailCourse)) + dpTopx(1);
+            width = thursdayWidth - (int)dpTopx(2);
+            height = thursdayHeight * getDuration(detailCourse) - (int)dpTopx(2);
 
             textX = baseX + (width/2);
             textY = baseY + (height * 0.4f);
@@ -225,10 +225,10 @@ public class TableView extends View {
 
         for(DetailCourse detailCourse : mTableManager.getFriday()){
 
-            baseX = baseXpos + getPositionByDay("F");
-            baseY = baseYpos + (fridayHeight * getPositionByTime(detailCourse));
-            width = fridayWidth;
-            height = fridayHeight * getDuration(detailCourse);
+            baseX = baseXpos + getPositionByDay("F") + dpTopx(1);
+            baseY = baseYpos + (fridayHeight * getPositionByTime(detailCourse)) + dpTopx(1);
+            width = fridayWidth - (int)dpTopx(2);
+            height = fridayHeight * getDuration(detailCourse) - (int)dpTopx(2);
 
             textX = baseX + (width/2);
             textY = baseY + (height * 0.4f);
