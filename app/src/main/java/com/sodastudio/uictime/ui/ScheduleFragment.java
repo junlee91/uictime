@@ -69,7 +69,13 @@ public class ScheduleFragment extends Fragment {
     public static int wednesdayWidth;
     public static int thursdayWidth;
     public static int fridayWidth;
-    public static int viewHeight;
+
+    public static int mondayHeight;
+    public static int tuesdayHeight;
+    public static int wednesdayHeight;
+    public static int thursdayHeight;
+    public static int fridayHeight;
+
     public static int leftMargin;
 
     //This is for testing
@@ -145,7 +151,12 @@ public class ScheduleFragment extends Fragment {
                 thursdayWidth = mTableThursdayTextView.getWidth();
                 fridayWidth = mTableFridayTextView.getWidth();
 
-                viewHeight = mTableMondayTextView.getHeight();
+                mondayHeight = mTableMondayTextView.getHeight();
+                tuesdayHeight = mTableTuesdayTextView.getHeight();
+                wednesdayHeight = mTableWednesdayTextView.getHeight();
+                thursdayHeight = mTableThursdayTextView.getHeight();
+                fridayHeight = mTableFridayTextView.getHeight();
+
                 leftMargin = mTableTimeTextView.getWidth();
             }
         });
