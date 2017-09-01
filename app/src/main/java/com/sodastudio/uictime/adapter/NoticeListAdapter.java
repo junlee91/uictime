@@ -49,7 +49,9 @@ public class NoticeListAdapter extends BaseAdapter {
 
         noticeText.setText(noticeList.get(position).getNotice());
         nameText.setText(noticeList.get(position).getName());
-        dateText.setText("   " + noticeList.get(position).getDate());
+
+        String date = "   " +  noticeList.get(position).getDate();
+        dateText.setText(date);
 
         v.setTag(noticeList.get(position).getNotice());
         return v;

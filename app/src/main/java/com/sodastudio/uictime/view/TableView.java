@@ -117,6 +117,8 @@ public class TableView extends View {
 
         for(DetailCourse detailCourse : mTableManager.getMonday()){
 
+            if(detailCourse.getTime().equals("ARRANGED")) continue;
+
             baseX = baseXpos + getPositionByDay("M") + dpTopx(1);
             baseY = baseYpos + (mondayHeight * getPositionByTime(detailCourse)) + dpTopx(1);
             width = mondayWidth - (int)dpTopx(2);
@@ -143,6 +145,8 @@ public class TableView extends View {
         }
 
         for(DetailCourse detailCourse : mTableManager.getTuesday()){
+
+            if(detailCourse.getTime().equals("ARRANGED")) continue;
 
             baseX = baseXpos + getPositionByDay("T") + dpTopx(1);
             baseY = baseYpos + (tuesdayHeight * getPositionByTime(detailCourse)) + dpTopx(1);
@@ -171,6 +175,8 @@ public class TableView extends View {
 
         for(DetailCourse detailCourse : mTableManager.getWednesday()){
 
+            if(detailCourse.getTime().equals("ARRANGED")) continue;
+
             baseX = baseXpos + getPositionByDay("W") + dpTopx(1);
             baseY = baseYpos + (wednesdayHeight * getPositionByTime(detailCourse)) + dpTopx(1);
             width = wednesdayWidth - (int)dpTopx(2);
@@ -198,6 +204,8 @@ public class TableView extends View {
 
         for(DetailCourse detailCourse : mTableManager.getThursday()){
 
+            if(detailCourse.getTime().equals("ARRANGED")) continue;
+
             baseX = baseXpos + getPositionByDay("R") + dpTopx(1);
             baseY = baseYpos + (thursdayHeight * getPositionByTime(detailCourse)) + dpTopx(1);
             width = thursdayWidth - (int)dpTopx(2);
@@ -224,6 +232,8 @@ public class TableView extends View {
         }
 
         for(DetailCourse detailCourse : mTableManager.getFriday()){
+
+            if(detailCourse.getTime().equals("ARRANGED")) continue;
 
             baseX = baseXpos + getPositionByDay("F") + dpTopx(1);
             baseY = baseYpos + (fridayHeight * getPositionByTime(detailCourse)) + dpTopx(1);
