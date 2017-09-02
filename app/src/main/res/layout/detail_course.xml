@@ -41,9 +41,9 @@
 
             <TextView
                 android:id="@+id/detail_instructor_text"
-                android:layout_width="180dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
+                android:layout_marginStart="30dp"
                 android:gravity="center"
                 android:textColor="@color/colorTextIdle"
                 android:textStyle="bold"

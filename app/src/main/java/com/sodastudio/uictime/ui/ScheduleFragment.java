@@ -28,7 +28,11 @@ import com.sodastudio.uictime.view.TableView;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 /**
@@ -204,7 +208,11 @@ public class ScheduleFragment extends Fragment {
                     Log.d(TAG, "External Storage is writable");
 
                     File storageDir = getAlbumStorageDir("/UICTime");
-                    File newFile = new File(storageDir.getPath() + "/text.png");    // TODO: file name change to term
+
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                    String format = simpleDateFormat.format(new Date());
+                    String filename = format + "_" + CourseListFragment.TERM_ID + ".png";
+                    File newFile = new File(storageDir.getPath() + "/" + filename);
 
                     if(storageDir.exists()){
                         Log.d(TAG, "Directory exists");
@@ -238,12 +246,12 @@ public class ScheduleFragment extends Fragment {
 
         });
 
-        mShareButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO: sharing intent
-            }
-        });
+//        mShareButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //TODO: sharing intent
+//            }
+//        });
     }
 
     private void scanFile(String path){
