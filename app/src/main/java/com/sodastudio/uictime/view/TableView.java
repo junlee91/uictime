@@ -76,9 +76,9 @@ public class TableView extends View {
         linePainter.setStrokeWidth(2);
 
         textPainter.setColor(getResources().getColor(R.color.colorUIC_Dark));
-        textPainter.setTypeface(Typeface.DEFAULT);
+        textPainter.setTypeface(Typeface.DEFAULT_BOLD);
         textPainter.setTextAlign(Paint.Align.CENTER);
-        textPainter.setTextSize(25);
+        textPainter.setTextSize(20);
     }
 
     private void setValues(){
@@ -334,7 +334,7 @@ public class TableView extends View {
 
                 default_color_idx++;
 
-                if(default_color_idx == 10)
+                if(default_color_idx == UICTimeUtils.default_color_length)
                     default_color_idx = 0;
 
                 mScheduleTableManager.updateSchedule(detailCourse);

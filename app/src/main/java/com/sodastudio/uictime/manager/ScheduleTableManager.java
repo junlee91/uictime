@@ -111,12 +111,12 @@ public class ScheduleTableManager {
         return true;        // success
     }
 
-    public void updateSchedule(DetailCourse course){
-        ContentValues values = getContentValue(course);
+    public void updateSchedule(DetailCourse detailCourse){
+        ContentValues values = getContentValue(detailCourse);
 
         mDatabase.update(ScheduleTable.NAME, values,
                 ScheduleTable.Cols.CRN + "= ? AND " + ScheduleTable.Cols.TITLE + "= ? AND " + ScheduleTable.Cols.SUBJECT + "= ?",
-                new String[]{ course.getCRN(), course.getTitle(), course.getSubject() } );
+                new String[]{ detailCourse.getCRN(), detailCourse.getTitle(), detailCourse.getSubject() } );
     }
 
     private static ContentValues getContentValue(DetailCourse course){

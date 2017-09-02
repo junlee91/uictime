@@ -8,6 +8,7 @@ import com.sodastudio.uictime.R;
 
 public class UICTimeUtils {
 
+    public static int default_color_length = 10;
     private static int DEFAULT_COLOR[] = {  // 0 - 9
             R.color.colorCourse_1,
             R.color.colorCourse_2,
