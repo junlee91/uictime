@@ -78,7 +78,7 @@ public class TableView extends View {
         textPainter.setColor(getResources().getColor(R.color.colorUIC_Dark));
         textPainter.setTypeface(Typeface.DEFAULT_BOLD);
         textPainter.setTextAlign(Paint.Align.CENTER);
-        textPainter.setTextSize(20);
+        textPainter.setTextSize(23);
     }
 
     private void setValues(){
