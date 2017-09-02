@@ -11,9 +11,11 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.sodastudio.uictime.R;
+import com.sodastudio.uictime.manager.ScheduleTableManager;
 import com.sodastudio.uictime.manager.TableManager;
 import com.sodastudio.uictime.model.DetailCourse;
 import com.sodastudio.uictime.ui.CourseListFragment;
@@ -31,6 +33,7 @@ public class TableView extends View {
 
     private int selected_term = CourseListFragment.TERM_ID;
 
+    private ScheduleTableManager mScheduleTableManager;
     private TableManager mTableManager;
     private Context mContext;
 
@@ -48,6 +51,8 @@ public class TableView extends View {
     private int thursdayWidth, thursdayHeight;
     private int fridayWidth, fridayHeight;
 
+    private static int default_color_idx = 0;
+
     public TableView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
@@ -57,6 +62,7 @@ public class TableView extends View {
     }
 
     private void init() {
+        mScheduleTableManager = ScheduleTableManager.getInstance(getContext());
         mTableManager = TableManager.getInstance();
 
         basePainter = new Paint();
@@ -130,6 +136,7 @@ public class TableView extends View {
             location = detailCourse.getRoom();
 
             RectF rectF = new RectF(baseX, baseY, baseX + width, baseY + height);
+            mTableManager.updateTableView(rectF, detailCourse);
 
             colorIDX = getResources().getColor(detailCourse.getBgColor());
 
@@ -159,6 +166,7 @@ public class TableView extends View {
             location = detailCourse.getRoom();
 
             RectF rectF = new RectF(baseX, baseY, baseX + width, baseY + height);
+            mTableManager.updateTableView(rectF, detailCourse);
 
             colorIDX = getResources().getColor(detailCourse.getBgColor());
 
@@ -188,6 +196,7 @@ public class TableView extends View {
             location = detailCourse.getRoom();
 
             RectF rectF = new RectF(baseX, baseY, baseX + width, baseY + height);
+            mTableManager.updateTableView(rectF, detailCourse);
 
             colorIDX = getResources().getColor(detailCourse.getBgColor());
 
@@ -217,6 +226,7 @@ public class TableView extends View {
             location = detailCourse.getRoom();
 
             RectF rectF = new RectF(baseX, baseY, baseX + width, baseY + height);
+            mTableManager.updateTableView(rectF, detailCourse);
 
             colorIDX = getResources().getColor(detailCourse.getBgColor());
 
@@ -246,6 +256,7 @@ public class TableView extends View {
             location = detailCourse.getRoom();
 
             RectF rectF = new RectF(baseX, baseY, baseX + width, baseY + height);
+            mTableManager.updateTableView(rectF, detailCourse);
 
             colorIDX = getResources().getColor(detailCourse.getBgColor());
 
@@ -302,5 +313,36 @@ public class TableView extends View {
         DisplayMetrics metrics = resources.getDisplayMetrics();
         float px = dp * ((float)metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
         return px;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        float x = event.getX();
+        float y = event.getY();
+
+        if(event.getAction() == MotionEvent.ACTION_UP){
+            Log.d(TAG, "action up");
+
+            DetailCourse detailCourse = mTableManager.contains(x,y);
+
+            if(detailCourse != null){
+                Log.d(TAG, "touched: " + detailCourse.getTitle());
+
+                // set new color
+                detailCourse.setBgColor(UICTimeUtils.getColor(default_color_idx));
+
+                default_color_idx++;
+
+                if(default_color_idx == 10)
+                    default_color_idx = 0;
+
+                mScheduleTableManager.updateSchedule(detailCourse);
+
+                this.invalidate();  // redraw table
+            }
+        }
+
+        return true;
     }
 }

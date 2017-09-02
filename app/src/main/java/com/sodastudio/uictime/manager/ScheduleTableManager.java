@@ -111,6 +111,14 @@ public class ScheduleTableManager {
         return true;        // success
     }
 
+    public void updateSchedule(DetailCourse course){
+        ContentValues values = getContentValue(course);
+
+        mDatabase.update(ScheduleTable.NAME, values,
+                ScheduleTable.Cols.CRN + "= ? AND " + ScheduleTable.Cols.TITLE + "= ? AND " + ScheduleTable.Cols.SUBJECT + "= ?",
+                new String[]{ course.getCRN(), course.getTitle(), course.getSubject() } );
+    }
+
     private static ContentValues getContentValue(DetailCourse course){
         ContentValues values = new ContentValues();
 

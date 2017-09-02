@@ -1,12 +1,15 @@
 package com.sodastudio.uictime.manager;
 
 import android.content.Context;
+import android.graphics.RectF;
 import android.util.Log;
 
 import com.sodastudio.uictime.model.DetailCourse;
+import com.sodastudio.uictime.view.TableView;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -14,6 +17,9 @@ import java.util.List;
  */
 
 public class TableManager {
+
+    private static String Tag = TableManager.class.getSimpleName();
+
     private static TableManager sTableManager;
 
     private List<DetailCourse> mMonday;
@@ -21,6 +27,9 @@ public class TableManager {
     private List<DetailCourse> mWednesday;
     private List<DetailCourse> mThursday;
     private List<DetailCourse> mFriday;
+
+    private List<RectF> mRectFList;
+    private HashMap<RectF, DetailCourse> mRectFDetailCourseHashMap;
 
     public static TableManager getInstance(){
         if(sTableManager == null)
@@ -35,6 +44,26 @@ public class TableManager {
         mWednesday = new ArrayList<>();
         mThursday = new ArrayList<>();
         mFriday = new ArrayList<>();
+
+        mRectFList = new ArrayList<>();
+        mRectFDetailCourseHashMap = new HashMap<>();
+    }
+
+    public void updateTableView(RectF rectF, DetailCourse detailCourse){
+        mRectFList.add(rectF);
+        mRectFDetailCourseHashMap.put(rectF, detailCourse);
+
+    }
+
+    public DetailCourse contains(float touch_x, float touch_y){
+
+        for(RectF rectF : mRectFList){
+            if(rectF.contains(touch_x, touch_y)){
+
+                return mRectFDetailCourseHashMap.get(rectF);
+            }
+        }
+        return null;
     }
 
     public void updateTable(List<DetailCourse> mCourses){
@@ -81,6 +110,9 @@ public class TableManager {
         mWednesday.clear();
         mThursday.clear();
         mFriday.clear();
+
+        mRectFList.clear();
+        mRectFDetailCourseHashMap.clear();
     }
 
     public void deleteCourse(DetailCourse mCourse){
