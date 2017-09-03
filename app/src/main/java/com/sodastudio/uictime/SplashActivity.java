@@ -4,10 +4,16 @@ package com.sodastudio.uictime;
  * Created by Jun on 7/31/2017.
  */
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -16,6 +22,9 @@ import android.widget.LinearLayout;
 
 
 public class SplashActivity extends Activity {
+
+    private static int PERMISSION_REQUEST = 0;
+
     public void onAttachedToWindow(){
         super.onAttachedToWindow();
         Window window = getWindow();
@@ -27,7 +36,34 @@ public class SplashActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
-        StartAnimations();
+        setPermission();
+    }
+
+    private void setPermission(){
+        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if(permissionCheck != PackageManager.PERMISSION_GRANTED){
+
+            ActivityCompat.requestPermissions( this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    PERMISSION_REQUEST
+            );
+        } else {
+            StartAnimations();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        switch (requestCode){
+            case 0:
+                if(grantResults.length > 0 &&
+                        grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    StartAnimations();
+                }
+                break;
+        }
     }
 
     private void StartAnimations(){
@@ -68,5 +104,4 @@ public class SplashActivity extends Activity {
         };
         splashTread.start();
     }
-
 }

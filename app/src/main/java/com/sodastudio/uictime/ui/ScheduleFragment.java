@@ -1,12 +1,17 @@
 package com.sodastudio.uictime.ui;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -203,16 +208,18 @@ public class ScheduleFragment extends Fragment {
         mSaveButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+
                 if(isExternalStorageWritable()){
 
                     Log.d(TAG, "External Storage is writable");
 
                     File storageDir = getAlbumStorageDir("/UICTime");
 
-                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
                     String format = simpleDateFormat.format(new Date());
                     String filename = format + "_" + CourseListFragment.TERM_ID + ".png";
                     File newFile = new File(storageDir.getPath() + "/" + filename);
+
 
                     if(storageDir.exists()){
                         Log.d(TAG, "Directory exists");
