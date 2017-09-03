@@ -127,6 +127,7 @@ public class TableView extends View {
 
             baseX = baseXpos + getPositionByDay("M") + dpTopx(1);
             baseY = baseYpos + (mondayHeight * getPositionByTime(detailCourse)) + dpTopx(1);
+            baseY = setBaseYPosition(detailCourse, baseY);
             width = mondayWidth - (int)dpTopx(2);
             height = mondayHeight * getDuration(detailCourse) - (int)dpTopx(2);
 
@@ -157,6 +158,7 @@ public class TableView extends View {
 
             baseX = baseXpos + getPositionByDay("T") + dpTopx(1);
             baseY = baseYpos + (tuesdayHeight * getPositionByTime(detailCourse)) + dpTopx(1);
+            baseY = setBaseYPosition(detailCourse, baseY);
             width = tuesdayWidth - (int)dpTopx(2);
             height = tuesdayHeight * getDuration(detailCourse) - (int)dpTopx(2);
 
@@ -187,6 +189,7 @@ public class TableView extends View {
 
             baseX = baseXpos + getPositionByDay("W") + dpTopx(1);
             baseY = baseYpos + (wednesdayHeight * getPositionByTime(detailCourse)) + dpTopx(1);
+            baseY = setBaseYPosition(detailCourse, baseY);
             width = wednesdayWidth - (int)dpTopx(2);
             height = wednesdayHeight * getDuration(detailCourse) - (int)dpTopx(2);
 
@@ -217,6 +220,7 @@ public class TableView extends View {
 
             baseX = baseXpos + getPositionByDay("R") + dpTopx(1);
             baseY = baseYpos + (thursdayHeight * getPositionByTime(detailCourse)) + dpTopx(1);
+            baseY = setBaseYPosition(detailCourse, baseY);
             width = thursdayWidth - (int)dpTopx(2);
             height = thursdayHeight * getDuration(detailCourse) - (int)dpTopx(2);
 
@@ -247,6 +251,7 @@ public class TableView extends View {
 
             baseX = baseXpos + getPositionByDay("F") + dpTopx(1);
             baseY = baseYpos + (fridayHeight * getPositionByTime(detailCourse)) + dpTopx(1);
+            baseY = setBaseYPosition(detailCourse, baseY);
             width = fridayWidth - (int)dpTopx(2);
             height = fridayHeight * getDuration(detailCourse) - (int)dpTopx(2);
 
@@ -272,15 +277,58 @@ public class TableView extends View {
         }
     }
 
+    private float setBaseYPosition(DetailCourse course, float yPos){
+
+        int startHour = UICTimeUtils.getStartHour(course.getTime());
+        int position = (startHour-8)*2;
+
+        if(8 <= position && position <= 9)
+        {
+            yPos += dpTopx(1);
+        }
+        else if(10 <= position && position <= 11)
+        {
+            yPos += dpTopx(1);
+        }
+        else if(12 <= position && position <= 13)
+        {
+            yPos += dpTopx(2);
+        }
+        else if(14 <= position && position <= 15)
+        {
+            yPos += dpTopx(2);
+        }
+        else if(16 <= position && position <= 17)
+        {
+            yPos += dpTopx(3);
+        }
+        else if(18 <= position && position <= 19)
+        {
+            yPos += dpTopx(4);
+        }
+        else if(20 <= position && position <= 21)
+        {
+            yPos += dpTopx(4);
+        }
+        else if(22 <= position && position <= 23)
+        {
+            yPos += dpTopx(4);
+        }
+
+        return yPos;
+    }
+
     private int getPositionByTime(DetailCourse course){
 
         int startHour = UICTimeUtils.getStartHour(course.getTime());
         int startMin = UICTimeUtils.getStartMin(course.getTime());
 
+        int position = (startHour-8)*2;
+
         if(startMin > 0)
-            return (startHour-8)*2+1;
+            return position + 1;
         else
-            return (startHour-8)*2;
+            return position;
     }
 
     private int getDuration(DetailCourse course){
