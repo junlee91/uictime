@@ -22,5 +22,6 @@ git clone https://github.com/junlee91/uictime.git
 
 ## Screenshots
 
-[![Screenshot](screenshots/uictime_screenshots.png)](https://raw.githubusercontent.com/junlee91/uictime/screenshot/uictime_screenshots.png)
+[![Screenshot](screenshot/uictime_screenshots.png)](https://github.com/junlee91/uictime/blob/master/screenshot/uictime_screenshots.png)
 
+[studio]: https://developer.android.com/tools/studio/index.html
