@@ -23,7 +23,7 @@ import android.widget.LinearLayout;
 
 public class SplashActivity extends Activity {
 
-    private static int PERMISSION_REQUEST = 0;
+    private static final int PERMISSION_REQUEST = 0;
 
     public void onAttachedToWindow(){
         super.onAttachedToWindow();
@@ -57,7 +57,7 @@ public class SplashActivity extends Activity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
         switch (requestCode){
-            case 0:
+            case PERMISSION_REQUEST:
                 if(grantResults.length > 0 &&
                         grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     StartAnimations();
