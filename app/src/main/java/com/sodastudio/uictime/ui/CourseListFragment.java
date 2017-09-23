@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -47,11 +48,14 @@ public class CourseListFragment extends Fragment {
     private static final int COURSE_SELECT = 0;
     private static final int DETAIL_SELECT = 1;
 
+    static final String COURSE_ADD = "CourseAdd";
+
     private RecyclerView mRecyclerView;
     private View emptyView;
     private ImageView arrowPointer;
     private CourseAdapter mAdapter;
 
+    private ImageButton manAddButton;
     private Button mselectButton;
     private TextView mSelectedText;
 
@@ -74,6 +78,7 @@ public class CourseListFragment extends Fragment {
 
         mselectButton = (Button)view.findViewById(R.id.select_button);
         mSelectedText = (TextView)view.findViewById(R.id.selected_term_text);
+        manAddButton = (ImageButton)view.findViewById(R.id.list_man_add_button);
 
         setButtonClickListener();
 
@@ -157,6 +162,15 @@ public class CourseListFragment extends Fragment {
                 dialog.show(manager, COURSE_SELECTOR);
 
                 mselectButton.setAlpha(0.4f);
+            }
+        });
+
+        manAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager manager = getFragmentManager();
+                CourseAddFragment dialog = new CourseAddFragment();
+                dialog.show(manager, COURSE_ADD);
             }
         });
     }

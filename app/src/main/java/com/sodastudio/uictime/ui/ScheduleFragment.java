@@ -412,7 +412,7 @@ public class ScheduleFragment extends Fragment {
 
         for(DetailCourse course : mCourseList){
             Type = course.getType();
-            if(Type.contains("LEC") || Type.contains("LCD")) {
+            if(Type.contains("LEC") || Type.contains("LCD") || Type.contains("N/A")) {
 
                 creditText = course.getCredits();
 

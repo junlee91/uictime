@@ -34,6 +34,8 @@ public class MainPagerActivity extends FragmentActivity {
     private Button mScheduleButton;
     private Button mInfoButton;
 
+    private boolean firstRun = true;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +59,10 @@ public class MainPagerActivity extends FragmentActivity {
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+                if(firstRun && positionOffset == 0 && positionOffsetPixels == 0){
+                    onPageSelected(0);
+                    firstRun = false;
+                }
             }
 
             @Override

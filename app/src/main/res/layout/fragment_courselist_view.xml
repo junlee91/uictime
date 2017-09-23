@@ -21,6 +21,14 @@
         android:layout_marginTop="35dp"
         android:layout_marginLeft="110dp"/>
 
+    <ImageButton
+        android:id="@+id/list_man_add_button"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_gravity="end"
+        android:background="@drawable/ic_add_black_24dp"
+        android:backgroundTint="@color/colorGray"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/course_list_view"
         android:layout_width="match_parent"
