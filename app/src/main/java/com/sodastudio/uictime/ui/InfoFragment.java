@@ -1,13 +1,17 @@
 package com.sodastudio.uictime.ui;
 
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -35,10 +39,14 @@ public class InfoFragment extends Fragment {
 
     public static final String TAG = "InfoFragment";
 
+    private static final String LINK = "https://play.google.com/store/apps/details?id=com.sodastudio.uictime";
+
     private ListView notice_list_view;
     private NoticeListAdapter mNoticeListAdapter;
     private List<Notice> mNoticeList;
     private TextView versionText;
+
+    private ImageButton emailButton;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,6 +61,20 @@ public class InfoFragment extends Fragment {
 
         versionText = (TextView)view.findViewById(R.id.app_version);
         notice_list_view = (ListView)view.findViewById(R.id.notice_list_view);
+        emailButton = (ImageButton)view.findViewById(R.id.email_button);
+
+        emailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: send email");
+
+                Intent sendIntent = new Intent(Intent.ACTION_SEND);
+                sendIntent.setType("text/plain");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "Check this out! " + LINK);
+
+                startActivity(sendIntent);
+            }
+        });
 
         update();
 

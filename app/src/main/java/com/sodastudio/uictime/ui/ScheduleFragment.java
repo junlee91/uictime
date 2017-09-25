@@ -87,13 +87,6 @@ public class ScheduleFragment extends Fragment {
 
     public static int leftMargin;
 
-    //This is for testing
-    private TextView mondayText;
-    private TextView tuesdayText;
-    private TextView wednesdayText;
-    private TextView thursdayText;
-    private TextView fridayText;
-
     private Toast mToast;
 
     @Override
@@ -169,13 +162,6 @@ public class ScheduleFragment extends Fragment {
                 leftMargin = mTableTimeTextView.getWidth();
             }
         });
-
-        // this is for testing
-        mondayText = (TextView)view.findViewById(R.id.mondayCourse);
-        tuesdayText = (TextView)view.findViewById(R.id.tuesdayCourse);
-        wednesdayText = (TextView)view.findViewById(R.id.wednesdayCourse);
-        thursdayText = (TextView)view.findViewById(R.id.thursdayCourse);
-        fridayText = (TextView)view.findViewById(R.id.fridayCourse);
 
         upDateUI();
 
@@ -442,47 +428,5 @@ public class ScheduleFragment extends Fragment {
     public void update(){
         upDateUI();
     }
-
-    private void tempView(){
-        //this is for testing
-        String temp = "";
-        TableManager tableManager = TableManager.getInstance();
-        for(DetailCourse detailCourse : tableManager.getMonday()){
-            Log.d(TAG, "tempView: " + detailCourse.getTitle());
-            temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
-        }
-        mondayText.setText("Monday: \n" + temp);
-
-        temp = "";
-        for(DetailCourse detailCourse : tableManager.getTuesday()){
-            Log.d(TAG, "tempView: " + detailCourse.getTitle());
-            temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
-        }
-        tuesdayText.setText("Tuesday: \n" + temp);
-
-        temp = "";
-        for(DetailCourse detailCourse : tableManager.getWednesday()){
-            Log.d(TAG, "tempView: " + detailCourse.getTitle());
-            temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
-        }
-        wednesdayText.setText("Wednesday: \n" + temp);
-
-        temp = "";
-        for(DetailCourse detailCourse : tableManager.getThursday()){
-            Log.d(TAG, "tempView: " + detailCourse.getTitle());
-            temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
-        }
-        thursdayText.setText("Thursday: \n" + temp);
-
-        temp = "";
-        for(DetailCourse detailCourse : tableManager.getFriday()){
-            Log.d(TAG, "tempView: " + detailCourse.getTitle());
-            temp += detailCourse.getSubject() + " " + detailCourse.getNumber()+ " " + detailCourse.getTitle() + "\n";
-        }
-        fridayText.setText("Friday: \n" + temp);
-    }
-
-
-
 
 }

@@ -8,40 +8,14 @@
     <ListView
         android:id="@+id/notice_list_view"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="250dp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
-
     </ListView>
 
-
-        <LinearLayout
-            android:visibility="invisible"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/question"
-                android:textSize="25sp"/>
-
-            <ImageButton
-                android:id="@+id/email_button"
-                android:layout_marginStart="10dp"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@drawable/ic_email_black_24dp"
-                />
-        </LinearLayout>
-
-
     <ImageView
+        android:id="@+id/SodaStudio_logo"
         android:layout_width="250dp"
         android:layout_height="80dp"
         android:layout_marginBottom="20dp"
@@ -59,5 +33,32 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:text="Version: 1.0"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_above="@id/SodaStudio_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recommend_text"
+            android:textColor="@color/colorUIC_Blue"
+            android:textStyle="bold"
+            android:textSize="25sp"/>
+
+        <ImageButton
+            android:id="@+id/email_button"
+            android:contentDescription="@string/send_email_button"
+            android:layout_marginStart="10dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/ic_email_black_24dp"
+            />
+    </LinearLayout>
 
 </RelativeLayout>
