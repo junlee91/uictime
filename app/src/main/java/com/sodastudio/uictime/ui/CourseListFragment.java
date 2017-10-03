@@ -126,7 +126,7 @@ public class CourseListFragment extends Fragment {
 
             mSelectedText.setText("Selected Term: " + term);
 
-            if(mTerm != 0 && mSubject != null)
+            if(mSubject != null)
                 new BackgroundTask().execute();
             else
             {

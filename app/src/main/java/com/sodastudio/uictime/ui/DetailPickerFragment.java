@@ -243,8 +243,13 @@ public class DetailPickerFragment extends DialogFragment {
         @Override
         protected void onPreExecute(){
             try {
-                target = "http://junlee7.cafe24.com/uictime/DetailList.php?courseSubject=" + URLEncoder.encode(mSubject, "UTF-8")
-                        + "&courseNumber=" + URLEncoder.encode(String.valueOf(mNumber), "UTF-8");
+//                target = "http://junlee7.cafe24.com/uictime/DetailList.php?courseSubject=" + URLEncoder.encode(mSubject, "UTF-8")
+//                        + "&courseNumber=" + URLEncoder.encode(String.valueOf(mNumber), "UTF-8");
+
+                target = "http://junlee7.cafe24.com/uictime/DetailListByTerm.php?courseSubject="
+                        + URLEncoder.encode(mSubject, "UTF-8") + "&courseNumber=" + URLEncoder.encode(String.valueOf(mNumber), "UTF-8")
+                        + "&courseTerm=" + URLEncoder.encode(String.valueOf(mTerm), "UTF-8");
+
             } catch (Exception e){
                 e.printStackTrace();
             }
