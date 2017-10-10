@@ -61,7 +61,11 @@ public class SplashActivity extends Activity {
                 if(grantResults.length > 0 &&
                         grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     StartAnimations();
+                }else{
+                    Log.d("Splash", "Permission not GRANTED");
+                    SplashActivity.this.finish();
                 }
+
                 break;
         }
     }
