@@ -9,6 +9,8 @@ public class CourseLibrary {
     public int getTermValue(String term){
         if(term.equals("Fall 2017"))
             return 220178;
+        else if(term.equals("Spring 2018"))
+            return 220181;
 
         return 0;
     }
@@ -16,6 +18,17 @@ public class CourseLibrary {
     public String getTermString(int termID){
         if(termID == 220178)
             return "Fall 2017";
+        else if(termID == 220181)
+            return "Spring 2018";
+
+        return "";
+    }
+
+    public String getTermDB(int termID){
+        if(termID == 220178)
+            return "DETAIL_FA17";
+        else if(termID == 220181)
+            return "DETAIL_SP18";
 
         return "";
     }

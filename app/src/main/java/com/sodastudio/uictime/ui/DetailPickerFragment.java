@@ -13,6 +13,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ import com.sodastudio.uictime.R;
 import com.sodastudio.uictime.manager.ScheduleTableManager;
 import com.sodastudio.uictime.model.Course;
 import com.sodastudio.uictime.model.DetailCourse;
+import com.sodastudio.uictime.utils.CourseLibrary;
 import com.sodastudio.uictime.utils.UICTimeUtils;
 
 import org.json.JSONArray;
@@ -53,6 +55,7 @@ public class DetailPickerFragment extends DialogFragment {
     static final String COURSE_ADD = "CourseAdd";
 
     private ScheduleTableManager mScheduleTableManager;
+    private CourseLibrary mCourseLibrary = new CourseLibrary();
 
     private int mTerm;          // Fall 2017
     private String mSubject;    // CS
@@ -246,10 +249,12 @@ public class DetailPickerFragment extends DialogFragment {
 //                target = "http://junlee7.cafe24.com/uictime/DetailList.php?courseSubject=" + URLEncoder.encode(mSubject, "UTF-8")
 //                        + "&courseNumber=" + URLEncoder.encode(String.valueOf(mNumber), "UTF-8");
 
-                target = "http://junlee7.cafe24.com/uictime/DetailListByTerm.php?courseSubject="
-                        + URLEncoder.encode(mSubject, "UTF-8") + "&courseNumber=" + URLEncoder.encode(String.valueOf(mNumber), "UTF-8")
+                target = "http://junlee7.cafe24.com/uictime/SelectDetails.php?"
+                        + "detailDB=" + URLEncoder.encode(mCourseLibrary.getTermDB(mTerm), "UTF-8")
+                        + "&courseSubject=" + URLEncoder.encode(mSubject, "UTF-8") + "&courseNumber=" + URLEncoder.encode(String.valueOf(mNumber), "UTF-8")
                         + "&courseTerm=" + URLEncoder.encode(String.valueOf(mTerm), "UTF-8");
 
+                Log.d("DetailPicker", target);
             } catch (Exception e){
                 e.printStackTrace();
             }

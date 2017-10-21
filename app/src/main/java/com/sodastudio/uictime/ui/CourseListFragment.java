@@ -63,7 +63,7 @@ public class CourseListFragment extends Fragment {
     private int mTerm;
     private String mSubject;
 
-    public static int TERM_ID = 220178; // THIS IS SET TO DEFAULT
+    public static int TERM_ID = 220181; // THIS IS SET TO DEFAULT : CHANGE ON NEW SEMESTER UPDATED!
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){

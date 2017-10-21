@@ -282,6 +282,8 @@ public class TableView extends View {
         int startHour = UICTimeUtils.getStartHour(course.getTime());
         int position = (startHour-8)*2;
 
+        float temp = yPos;
+
         if(8 <= position && position <= 9)
         {
             yPos += dpTopx(1);
@@ -300,19 +302,19 @@ public class TableView extends View {
         }
         else if(16 <= position && position <= 17)
         {
-            yPos += dpTopx(3);
+            yPos += dpTopx(2);
         }
         else if(18 <= position && position <= 19)
         {
-            yPos += dpTopx(4);
+            yPos += dpTopx(2);
         }
         else if(20 <= position && position <= 21)
         {
-            yPos += dpTopx(4);
+            yPos += dpTopx(3);
         }
         else if(22 <= position && position <= 23)
         {
-            yPos += dpTopx(4);
+            yPos += dpTopx(3);
         }
 
         return yPos;

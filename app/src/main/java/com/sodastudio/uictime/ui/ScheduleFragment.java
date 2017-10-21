@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +54,7 @@ public class ScheduleFragment extends Fragment {
 
     private LinearLayout mLinearLayout;
     private RecyclerView mScheduleListView;     // Concise Course Information
+    private Switch mGradSwitch;
 
     private CourseAdapter mAdapter;
     private ImageButton mConciseViewButton;
@@ -107,6 +109,8 @@ public class ScheduleFragment extends Fragment {
         mLinearLayout.setVisibility(View.INVISIBLE);
         mScheduleListView = (RecyclerView)view.findViewById(R.id.schedule_list_view);
         mScheduleListView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        mGradSwitch = (Switch)view.findViewById(R.id.grad_switch);
 
         mTotalCreditTextView = (TextView)view.findViewById(R.id.schedule_total_credits_text);
 

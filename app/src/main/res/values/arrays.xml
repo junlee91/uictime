@@ -171,8 +171,8 @@
     </string-array>
     
     <string-array name="term">
-        <item>Fall 2017</item>
         <item>Spring 2018</item>
+        <item>Fall 2017</item>
     </string-array>
 
     <string-array name="credits">
